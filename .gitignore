@@ -21,6 +21,9 @@ android/android
 *.7z
 *.blockmap
 
+# Playwright MCP artifacts
+.playwright-mcp
+
 # Env & secrets
 .env
 .env.*
