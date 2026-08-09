@@ -1,0 +1,100 @@
+- generic [ref=f11e1]:
+  - main [ref=f11e2]:
+    - generic [ref=f11e3]:
+      - generic [ref=f11e4]:
+        - link "الرئيسية" [ref=f11e5] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f11e9]:
+          - heading "المصحف المجوّد والتفسير" [level=1] [ref=f11e10]
+          - paragraph [ref=f11e11]: الصفحة ١ من ٦٠٤
+        - button "تغيير شكل التطبيق" [ref=f11e13]
+      - generic [ref=f11e21]:
+        - button "سورة / جزء / صفحة" [ref=f11e22] [cursor=pointer]
+        - button "السابقة" [ref=f11e23] [cursor=pointer]
+        - textbox "رقم الصفحة" [ref=f11e24]: "1"
+        - button "التالية" [ref=f11e25] [cursor=pointer]
+        - combobox "اختيار القارئ" [ref=f11e26] [cursor=pointer]:
+          - generic: مشاري العفاسي
+        - combobox "نوع التفسير" [ref=f11e30]:
+          - option "التفسير الميسر" [selected]
+          - option "تفسير السعدي"
+          - option "تفسير ابن كثير"
+          - option "تفسير الطبري"
+          - option "تفسير القرطبي"
+          - option "تفسير البغوي"
+          - option "التفسير الوسيط"
+          - option "Ibn Kathir (English)"
+          - option "Ma'arif al-Qur'an (English)"
+        - combobox "نوع المصحف" [ref=f11e31]:
+          - option "مصحف المدينة مجوّد ملون (خط عثمان طه)" [selected]
+          - option "مصحف المدينة (مجمع الملك فهد)"
+          - option "مصحف المدينة — نسخة خفيفة"
+          - option "مصحف المدينة — دقة عالية"
+    - article [ref=f11e33]:
+      - generic [ref=f11e52]:
+        - generic: ﱁﱂﱃﱄﱅ
+        - generic: ﱆﱇﱈﱉﱊ
+        - generic: ﱋﱌﱍﱎﱏﱐﱑ
+        - generic: ﱒﱓﱔﱕﱖﱗ
+        - generic: ﱘﱙﱚﱛﱜﱝ
+        - generic: ﱞﱟﱠﱡ
+        - generic: ﱢﱣﱤ
+        - generic [ref=f11e54]:
+          - generic [ref=f11e59]: سُورَةُ ٱلْفَاتِحَةِ
+          - generic [ref=f11e60]: مَكِّيَّة، آياتها ٧
+        - generic [ref=f11e65]:
+          - button "ﱁ" [ref=f11e66]
+          - button "ﱂ" [ref=f11e67]
+          - button "ﱃ" [ref=f11e68]
+          - button "ﱄ" [ref=f11e69]
+          - button "ﱅ" [ref=f11e70]
+        - generic [ref=f11e71]:
+          - button "ﱆ" [ref=f11e72] [cursor=pointer]
+          - button "ﱇ" [ref=f11e73] [cursor=pointer]
+          - button "ﱈ" [ref=f11e74] [cursor=pointer]
+          - button "ﱉ" [ref=f11e75] [cursor=pointer]
+          - button "ﱊ" [ref=f11e76] [cursor=pointer]
+        - generic [ref=f11e77]:
+          - button "ﱋ" [ref=f11e78] [cursor=pointer]
+          - button "ﱌ" [ref=f11e79] [cursor=pointer]
+          - button "ﱍ" [ref=f11e80] [cursor=pointer]
+          - button "ﱎ" [ref=f11e81] [cursor=pointer]
+          - button "ﱏ" [ref=f11e82] [cursor=pointer]
+          - button "ﱐ" [ref=f11e83] [cursor=pointer]
+          - button "ﱑ" [ref=f11e84] [cursor=pointer]
+        - generic [ref=f11e85]:
+          - button "ﱒ" [ref=f11e86] [cursor=pointer]
+          - button "ﱓ" [ref=f11e87] [cursor=pointer]
+          - button "ﱔ" [ref=f11e88] [cursor=pointer]
+          - button "ﱕ" [ref=f11e89] [cursor=pointer]
+          - button "ﱖ" [ref=f11e90] [cursor=pointer]
+          - button "ﱗ" [ref=f11e91] [cursor=pointer]
+        - generic [ref=f11e92]:
+          - button "ﱘ" [ref=f11e93] [cursor=pointer]
+          - button "ﱙ" [ref=f11e94] [cursor=pointer]
+          - button "ﱚ" [ref=f11e95] [cursor=pointer]
+          - button "ﱛ" [ref=f11e96] [cursor=pointer]
+          - button "ﱜ" [ref=f11e97] [cursor=pointer]
+          - button "ﱝ" [ref=f11e98] [cursor=pointer]
+        - generic [ref=f11e99]:
+          - button "ﱞ" [ref=f11e100] [cursor=pointer]
+          - button "ﱟ" [ref=f11e101] [cursor=pointer]
+          - button "ﱠ" [ref=f11e102] [cursor=pointer]
+          - button "ﱡ" [ref=f11e103] [cursor=pointer]
+        - generic [ref=f11e104]:
+          - button "ﱢ" [ref=f11e105] [cursor=pointer]
+          - button "ﱣ" [ref=f11e106] [cursor=pointer]
+          - button "ﱤ" [ref=f11e107] [cursor=pointer]
+    - generic [ref=f11e38]:
+      - generic [ref=f11e39]:
+        - heading "سُورَةُ ٱلْفَاتِحَةِ — الآية ١" [level=2] [ref=f11e115]
+        - button "تشغيل التلاوة" [active] [ref=f11e44]
+      - generic [ref=f11e47]: أبتدئ قراءة القرآن باسم الله مستعينا به، (اللهِ) علم على الرب -تبارك وتعالى- المعبود بحق دون سواه، وهو أخص أسماء الله تعالى، ولا يسمى به غيره سبحانه. (الرَّحْمَنِ) ذي الرحمة العامة الذي وسعت رحمته جميع الخلق، (الرَّحِيمِ) بالمؤمنين، وهما اسمان من أسمائه تعالى، يتضمنان إثبات صفة الرحمة لله تعالى كما يليق بجلاله.
+  - generic [ref=f11e121]:
+    - button "إيقاف التلاوة" [ref=f11e122]
+    - generic [ref=f11e126]:
+      - link "سورة سُورَةُ ٱلْفَاتِحَةِ" [ref=f11e127] [cursor=pointer]:
+        - /url: /tafsir
+      - paragraph [ref=f11e128]: الآية ١ — مشاري العفاسي
+    - generic [ref=f11e129]: مشغّل مشترك
+    - button "إغلاق المشغّل" [ref=f11e132]

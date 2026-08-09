@@ -1,0 +1,41 @@
+- generic [active] [ref=f3e1]:
+  - main [ref=f3e3]:
+    - generic [ref=f3e4]:
+      - generic [ref=f3e5]:
+        - link "الرئيسية" [ref=f3e6] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f3e10]:
+          - heading "الإعدادات" [level=1] [ref=f3e11]
+          - paragraph [ref=f3e12]: Settings
+        - button "تغيير شكل التطبيق" [ref=f3e14]
+      - generic [ref=f3e21]: كل شيء محفوظ على جهازك فقط — بلا حساب
+    - generic [ref=f3e22]:
+      - generic [ref=f3e23]:
+        - heading "شكل التطبيق" [level=2] [ref=f3e24]
+        - generic [ref=f3e31]:
+          - button "قوس قزح المتحرك" [ref=f3e32]
+          - button "الزمرد الكلاسيكي" [ref=f3e37]
+          - button "أزرق المحيط" [ref=f3e40]
+          - button "العنّاب الوردي" [ref=f3e43]
+          - button "بنفسج الليل" [ref=f3e46]
+          - button "رمال الصحراء" [ref=f3e49]
+          - button "الحبر والورق" [ref=f3e52]
+      - generic [ref=f3e55]:
+        - heading "الوضع الليلي" [level=2] [ref=f3e56]
+        - generic [ref=f3e59]:
+          - button "نهار" [ref=f3e60]
+          - button "ليل" [ref=f3e68]
+      - link "التحميلات والعمل دون إنترنت لم تُحمّل أي تلاوة بعد" [ref=f3e73] [cursor=pointer]:
+        - /url: /downloads
+        - generic [ref=f3e79]:
+          - generic [ref=f3e80]: التحميلات والعمل دون إنترنت
+          - generic [ref=f3e81]: لم تُحمّل أي تلاوة بعد
+      - generic [ref=f3e82]:
+        - heading "حول التطبيق" [level=2] [ref=f3e83]
+        - paragraph [ref=f3e87]: الموسوعة الإسلامية — تطبيق محلي بالكامل. لا يحتاج حساباً ولا تسجيل دخول، ولا يُرسل بياناتك إلى أي خادم. تقدمك وعلاماتك وملاحظاتك وتحميلاتك تبقى على جهازك.
+        - generic [ref=f3e88]: النسخة 1.1.0
+      - generic [ref=f3e91]:
+        - heading "إعادة تعيين البيانات" [level=2] [ref=f3e92]
+        - paragraph [ref=f3e96]: حذف التقدم والعلامات وسجل المسابقة والملاحظات والتلاوات المحمّلة والإعدادات من هذا الجهاز.
+        - button "مسح كل البيانات" [ref=f3e97]
+  - region "Notifications alt+T"

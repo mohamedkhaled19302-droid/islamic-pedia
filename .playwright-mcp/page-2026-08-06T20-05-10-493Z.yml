@@ -1,0 +1,100 @@
+- generic [ref=f22e1]:
+  - main [ref=f22e2]:
+    - generic [ref=f22e3]:
+      - generic [ref=f22e4]:
+        - link "الرئيسية" [ref=f22e5] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f22e9]:
+          - heading "المصحف المجوّد والتفسير" [level=1] [ref=f22e10]
+          - paragraph [ref=f22e11]: الصفحة ١ من ٦٠٤
+        - button "تغيير شكل التطبيق" [ref=f22e13]
+      - generic [ref=f22e21]:
+        - button "سورة / جزء / صفحة" [ref=f22e22] [cursor=pointer]
+        - button "السابقة" [ref=f22e23] [cursor=pointer]
+        - textbox "رقم الصفحة" [ref=f22e24]: "1"
+        - button "التالية" [ref=f22e25] [cursor=pointer]
+        - combobox "اختيار القارئ" [ref=f22e26] [cursor=pointer]:
+          - generic: مشاري العفاسي
+        - combobox "نوع التفسير" [ref=f22e29]:
+          - option "التفسير الميسر" [selected]
+          - option "تفسير السعدي"
+          - option "تفسير ابن كثير"
+          - option "تفسير الطبري"
+          - option "تفسير القرطبي"
+          - option "تفسير البغوي"
+          - option "التفسير الوسيط"
+          - option "Ibn Kathir (English)"
+          - option "Ma'arif al-Qur'an (English)"
+        - combobox "نوع المصحف" [ref=f22e30]:
+          - option "مصحف المدينة مجوّد ملون (خط عثمان طه)" [selected]
+          - option "مصحف المدينة (مجمع الملك فهد)"
+          - option "مصحف المدينة — نسخة خفيفة"
+          - option "مصحف المدينة — دقة عالية"
+    - article [ref=f22e32]:
+      - generic [ref=f22e51]:
+        - generic: ﱁﱂﱃﱄﱅ
+        - generic: ﱆﱇﱈﱉﱊ
+        - generic: ﱋﱌﱍﱎﱏﱐﱑ
+        - generic: ﱒﱓﱔﱕﱖﱗ
+        - generic: ﱘﱙﱚﱛﱜﱝ
+        - generic: ﱞﱟﱠﱡ
+        - generic: ﱢﱣﱤ
+        - generic [ref=f22e53]:
+          - generic [ref=f22e58]: سُورَةُ ٱلْفَاتِحَةِ
+          - generic [ref=f22e59]: مَكِّيَّة، آياتها ٧
+        - generic [ref=f22e64]:
+          - button "ﱁ" [ref=f22e65] [cursor=pointer]
+          - button "ﱂ" [ref=f22e66] [cursor=pointer]
+          - button "ﱃ" [ref=f22e67] [cursor=pointer]
+          - button "ﱄ" [ref=f22e68] [cursor=pointer]
+          - button "ﱅ" [ref=f22e69] [cursor=pointer]
+        - generic [ref=f22e70]:
+          - button "ﱆ" [ref=f22e71] [cursor=pointer]
+          - button "ﱇ" [ref=f22e72] [cursor=pointer]
+          - button "ﱈ" [ref=f22e73] [cursor=pointer]
+          - button "ﱉ" [ref=f22e74] [cursor=pointer]
+          - button "ﱊ" [ref=f22e75] [cursor=pointer]
+        - generic [ref=f22e76]:
+          - button "ﱋ" [ref=f22e77] [cursor=pointer]
+          - button "ﱌ" [ref=f22e78] [cursor=pointer]
+          - button "ﱍ" [ref=f22e79] [cursor=pointer]
+          - button "ﱎ" [ref=f22e80] [cursor=pointer]
+          - button "ﱏ" [ref=f22e81] [cursor=pointer]
+          - button "ﱐ" [ref=f22e82] [cursor=pointer]
+          - button "ﱑ" [ref=f22e83] [cursor=pointer]
+        - generic [ref=f22e84]:
+          - button "ﱒ" [ref=f22e85]
+          - button "ﱓ" [ref=f22e86]
+          - button "ﱔ" [ref=f22e87]
+          - button "ﱕ" [ref=f22e88]
+          - button "ﱖ" [ref=f22e89]
+          - button "ﱗ" [ref=f22e90] [cursor=pointer]
+        - generic [ref=f22e91]:
+          - button "ﱘ" [ref=f22e92] [cursor=pointer]
+          - button "ﱙ" [ref=f22e93] [cursor=pointer]
+          - button "ﱚ" [ref=f22e94] [cursor=pointer]
+          - button "ﱛ" [ref=f22e95] [cursor=pointer]
+          - button "ﱜ" [ref=f22e96] [cursor=pointer]
+          - button "ﱝ" [ref=f22e97] [cursor=pointer]
+        - generic [ref=f22e98]:
+          - button "ﱞ" [ref=f22e99] [cursor=pointer]
+          - button "ﱟ" [ref=f22e100] [cursor=pointer]
+          - button "ﱠ" [ref=f22e101] [cursor=pointer]
+          - button "ﱡ" [ref=f22e102] [cursor=pointer]
+        - generic [ref=f22e103]:
+          - button "ﱢ" [ref=f22e104] [cursor=pointer]
+          - button "ﱣ" [ref=f22e105] [cursor=pointer]
+          - button "ﱤ" [ref=f22e106] [cursor=pointer]
+    - generic [ref=f22e37]:
+      - generic [ref=f22e38]:
+        - heading "سُورَةُ ٱلْفَاتِحَةِ — الآية ٥" [level=2] [ref=f22e140]
+        - button "تشغيل التلاوة" [active] [ref=f22e43]
+      - generic [ref=f22e46]: إنا نخصك وحدك بالعبادة، ونستعين بك وحدك في جميع أمورنا، فالأمر كله بيدك، لا يملك منه أحد مثقال ذرة. وفي هذه الآية دليل على أن العبد لا يجوز له أن يصرف شيئًا من أنواع العبادة كالدعاء والاستغاثة والذبح والطواف إلا لله وحده، وفيها شفاء القلوب من داء التعلق بغير الله، ومن أمراض الرياء والعجب، والكبرياء.
+  - generic [ref=f22e120]:
+    - button "متابعة التلاوة" [ref=f22e144]
+    - generic [ref=f22e125]:
+      - link "سورة سُورَةُ ٱلْفَاتِحَةِ" [ref=f22e126] [cursor=pointer]:
+        - /url: /tafsir
+      - paragraph [ref=f22e127]: الآية ٥ — مشاري العفاسي
+    - generic [ref=f22e128]: مشغّل مشترك
+    - button "إغلاق المشغّل" [ref=f22e131]

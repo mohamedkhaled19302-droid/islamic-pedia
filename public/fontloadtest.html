@@ -1,0 +1,30 @@
+<!doctype html>
+<html dir="rtl">
+<head>
+<meta charset="utf-8">
+<style>
+@font-face { font-family:'t-night'; src:url('/data/quran/v4/fonts/p2-n.woff2') format('woff2'); }
+@font-face { font-family:'t-day'; src:url('/data/quran/v4/fonts/p2.woff2') format('woff2'); }
+body { font-size: 40px; }
+.d { font-family:'t-day'; }
+.n { font-family:'t-night'; }
+</style>
+</head>
+<body>
+<div class="d" id="d">&#xFC41;&#xFC42;&#xFC43;&#xFC44;</div>
+<div class="n" id="n">&#xFC41;&#xFC42;&#xFC43;&#xFC44;</div>
+<div id="report"></div>
+<script>
+window.onload = () => {
+  setTimeout(() => {
+    const r = [];
+    r.push('day check: ' + document.fonts.check('40px "t-day"'));
+    r.push('night check: ' + document.fonts.check('40px "t-night"'));
+    r.push('day status: ' + (document.fonts.get('40px "t-day"') || []).map(f => f.status).join(','));
+    r.push('night status: ' + (document.fonts.get('40px "t-night"') || []).map(f => f.status).join(','));
+    document.getElementById('report').textContent = r.join(' | ');
+  }, 2000);
+};
+</script>
+</body>
+</html>

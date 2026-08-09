@@ -1,0 +1,46 @@
+- generic [active] [ref=f7e1]:
+  - main [ref=f7e2]:
+    - generic [ref=f7e3]:
+      - generic [ref=f7e4]:
+        - link "الرئيسية" [ref=f7e5] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f7e9]:
+          - heading "صفحة صفحة" [level=1] [ref=f7e10]
+          - paragraph [ref=f7e11]: الصفحة ٢ من ٦٠٤
+        - button "تغيير شكل التطبيق" [ref=f7e13]
+      - generic [ref=f7e21]:
+        - button "سورة / جزء / صفحة" [ref=f7e22] [cursor=pointer]
+        - generic [ref=f7e23]:
+          - button "الصفحة السابقة" [ref=f7e24] [cursor=pointer]
+          - textbox "رقم الصفحة" [ref=f7e25]: "2"
+          - button "الصفحة التالية" [ref=f7e26] [cursor=pointer]
+        - combobox "اختيار القارئ" [ref=f7e27] [cursor=pointer]:
+          - generic: مشاري العفاسي
+        - generic [ref=f7e30]:
+          - generic [ref=f7e31]: تكرار
+          - combobox "عدد مرات التكرار" [ref=f7e32]:
+            - option "0" [selected]
+            - option "1"
+            - option "2"
+            - option "3"
+            - option "4"
+            - option "5"
+            - option "6"
+            - option "7"
+            - option "8"
+            - option "9"
+            - option "10"
+        - button "تشغيل تلقائي" [ref=f7e33] [cursor=pointer]
+        - button "1×" [ref=f7e34] [cursor=pointer]
+        - generic [ref=f7e35]:
+          - button "مصحف" [ref=f7e36]
+          - button "آية آية" [ref=f7e41]
+          - button "مصحف SearchTruth" [ref=f7e45]
+        - combobox "نوع المصحف" [ref=f7e49]:
+          - option "مصحف المدينة مجوّد ملون (خط عثمان طه)" [selected]
+          - option "مصحف المدينة (مجمع الملك فهد)"
+          - option "مصحف المدينة — نسخة خفيفة"
+          - option "مصحف المدينة — دقة عالية"
+        - button "الوضع الليلي" [ref=f7e50] [cursor=pointer]
+    - button "تشغيل الصفحة" [ref=f7e56]
+  - region "Notifications alt+T"

@@ -1,0 +1,37 @@
+- main [ref=f17e2]:
+  - generic [ref=f17e3]:
+    - generic [ref=f17e4]:
+      - link "الرئيسية" [ref=f17e5] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f17e9]:
+        - heading "المصحف المجوّد والتفسير" [level=1] [ref=f17e10]
+        - paragraph [ref=f17e11]: الصفحة ١ من ٦٠٤
+      - button "تغيير شكل التطبيق" [ref=f17e13]
+    - generic [ref=f17e21]:
+      - button "سورة / جزء / صفحة" [ref=f17e22] [cursor=pointer]
+      - button "السابقة" [ref=f17e23] [cursor=pointer]
+      - textbox "رقم الصفحة" [ref=f17e24]: "1"
+      - button "التالية" [ref=f17e25] [cursor=pointer]
+      - combobox "اختيار القارئ" [ref=f17e26] [cursor=pointer]:
+        - generic: مشاري العفاسي
+      - combobox "نوع التفسير" [ref=f17e29]:
+        - option "التفسير الميسر" [selected]
+        - option "تفسير السعدي"
+        - option "تفسير ابن كثير"
+        - option "تفسير الطبري"
+        - option "تفسير القرطبي"
+        - option "تفسير البغوي"
+        - option "التفسير الوسيط"
+        - option "Ibn Kathir (English)"
+        - option "Ma'arif al-Qur'an (English)"
+      - combobox "نوع المصحف" [ref=f17e30]:
+        - option "مصحف المدينة مجوّد ملون (خط عثمان طه)" [selected]
+        - option "مصحف المدينة (مجمع الملك فهد)"
+        - option "مصحف المدينة — نسخة خفيفة"
+        - option "مصحف المدينة — دقة عالية"
+  - article [ref=f17e32]
+  - generic [ref=f17e37]:
+    - generic [ref=f17e38]:
+      - heading "اضغط على أي آية لعرض تفسيرها" [level=2] [ref=f17e39]
+      - button "تشغيل التلاوة" [ref=f17e43]
+    - paragraph [ref=f17e47]: اختر آية من المصحف بالأعلى، أو شغّل التلاوة ليتغيّر التفسير مع كل آية يقرؤها الشيخ.

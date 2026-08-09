@@ -1,0 +1,22 @@
+- generic [ref=e1]:
+  - main [ref=e41]:
+    - generic [ref=e42]:
+      - generic [ref=e43]:
+        - generic [ref=e44]:
+          - generic [ref=e45]: بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ
+          - generic [ref=e46]: المظهر · 3/4
+        - generic [ref=e97]:
+          - heading "ما المظهر المفضل لديك؟" [level=2] [ref=e98]
+          - paragraph [ref=e99]: ينعكس الاختيار فوراً حتى تختار ما يناسب عينيك.
+          - generic [ref=e100]:
+            - button "النهار مشرق وواضح" [ref=e101]:
+              - generic [ref=e108]: النهار
+              - generic [ref=e109]: مشرق وواضح
+            - button "الليل مريح للعين" [ref=e110]:
+              - generic [ref=e113]: الليل
+              - generic [ref=e114]: مريح للعين
+        - generic [ref=e55]:
+          - button "رجوع" [ref=e56]
+          - button "التالي" [active] [ref=e64]
+      - paragraph [ref=e67]: المصحف والتلاوات من مصادر مفتوحة — لا توجد حسابات ولا جمع بيانات.
+  - region "Notifications alt+T"

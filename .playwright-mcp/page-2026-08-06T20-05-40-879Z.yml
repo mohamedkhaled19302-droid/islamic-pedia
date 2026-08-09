@@ -1,0 +1,52 @@
+- main [ref=f23e2]:
+  - generic [ref=f23e4]:
+    - link "الرئيسية" [ref=f23e5] [cursor=pointer]:
+      - /url: /
+    - generic [ref=f23e9]:
+      - heading "التحميلات والعمل دون إنترنت" [level=1] [ref=f23e10]
+      - paragraph [ref=f23e11]: حمّل ما تحتاجه واقرأ واستمع دون اتصال
+    - button "تغيير شكل التطبيق" [ref=f23e13]
+  - generic [ref=f23e20]:
+    - generic [ref=f23e21]:
+      - heading "مساحة التخزين" [level=2] [ref=f23e22]
+      - paragraph [ref=f23e27]: "التلاوات المحمّلة: ٠ آية (0 بايت) · المستخدم من المتصفح: 4.7 ميغابايت من 10244.7 ميغابايت"
+    - generic [ref=f23e28]:
+      - heading "تحميل التلاوات للعمل دون إنترنت" [level=2] [ref=f23e29]
+      - paragraph [ref=f23e34]: التلاوة المحمّلة تعمل في كل أقسام التطبيق (الوضع المستمر، صفحة صفحة، المجوّد والتفسير، التكرار للحفظ) عبر المشغّل المشترك — حتى بلا إنترنت.
+      - generic [ref=f23e35]:
+        - combobox "اختيار القارئ" [ref=f23e36] [cursor=pointer]:
+          - generic: مشاري العفاسي
+        - generic [ref=f23e39]:
+          - combobox "نطاق التحميل" [ref=f23e40]:
+            - option "سورة" [selected]
+            - option "جزء"
+            - option "صفحة"
+            - option "المصحف كاملاً"
+          - combobox "رقم السورة" [ref=f23e41]
+          - button "تحميل (سورة 1 — مشاري العفاسي)" [ref=f23e42] [cursor=pointer]
+      - generic [ref=f23e44]:
+        - heading "التلاوات المحمّلة — ٠ آية" [level=3] [ref=f23e45]
+        - button "حذف الكل" [disabled]
+    - generic [ref=f23e46]:
+      - heading "تنزيل المصاحف" [level=2] [ref=f23e47]
+      - paragraph [ref=f23e52]: نمط المجوّد الملوّن (الافتراضي) يعمل دون إنترنت تلقائياً لأنه مدمج داخل التطبيق. أنماط الصور تُحمَّل من الإنترنت عند العرض، ويمكنك حفظها كلها لتتصفّحها بلا إنترنت.
+      - generic [ref=f23e53]:
+        - generic [ref=f23e56]:
+          - heading "مصحف المدينة مجوّد ملون (خط عثمان طه)" [level=3] [ref=f23e57]
+          - paragraph [ref=f23e58]: يعمل دون إنترنت — مدمج داخل التطبيق
+        - generic [ref=f23e67]:
+          - generic [ref=f23e68]:
+            - heading "مصحف المدينة (مجمع الملك فهد)" [level=3] [ref=f23e69]
+            - paragraph [ref=f23e70]: "خط عثماني كبير وواضح — جامعة الملك سعود · محفوظ: ٠ صفحة"
+          - button "تنزيل كل الصفحات" [ref=f23e75] [cursor=pointer]
+        - generic [ref=f23e77]:
+          - generic [ref=f23e78]:
+            - heading "مصحف المدينة — نسخة خفيفة" [level=3] [ref=f23e79]
+            - paragraph [ref=f23e80]: "أسرع تحميل، مناسب للاتصال البطيء · محفوظ: ٠ صفحة"
+          - button "تنزيل كل الصفحات" [ref=f23e85] [cursor=pointer]
+        - generic [ref=f23e87]:
+          - generic [ref=f23e88]:
+            - heading "مصحف المدينة — دقة عالية" [level=3] [ref=f23e89]
+            - paragraph [ref=f23e90]: "أوضح خط عند التكبير · محفوظ: ٠ صفحة"
+          - button "تنزيل كل الصفحات" [ref=f23e95] [cursor=pointer]
+    - paragraph [ref=f23e96]: التحميلات تُحفظ على جهازك ولا تحتاج إنترنت بعد اكتمالها.

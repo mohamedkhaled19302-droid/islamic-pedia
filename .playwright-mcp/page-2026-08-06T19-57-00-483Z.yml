@@ -1,0 +1,154 @@
+- generic [active] [ref=f13e1]:
+  - main [ref=f13e136]:
+    - generic [ref=f13e137]:
+      - generic [ref=f13e139]:
+        - button "الوضع الليلي" [ref=f13e140]
+        - button "تغيير شكل التطبيق" [ref=f13e144]
+      - link "أرسل رأيك" [ref=f13e151] [cursor=pointer]:
+        - /url: /feedback
+      - generic [ref=f13e155]:
+        - paragraph [ref=f13e156]: بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ
+        - heading "الموسوعة الإسلامية" [level=1] [ref=f13e157]
+        - paragraph [ref=f13e158]: قرآن كريم وتفسير وحديث وسيرة وأذكار ومواقيت صلاة وأدوات إسلامية — في واجهة واحدة موحّدة.
+    - generic [ref=f13e160]:
+      - generic [ref=f13e161]:
+        - heading "متابعة القراءة" [level=2] [ref=f13e162]
+        - link "الصفحة ١ صفحة صفحة" [ref=f13e168] [cursor=pointer]:
+          - /url: /page?p=1
+          - generic [ref=f13e172]:
+            - generic [ref=f13e173]: الصفحة ١
+            - generic [ref=f13e174]: صفحة صفحة
+      - link "العلامات المرجعية احفظ الآيات والصفحات للعودة إليها لاحقاً" [ref=f13e177] [cursor=pointer]:
+        - /url: /bookmarks
+        - generic [ref=f13e182]:
+          - generic [ref=f13e183]: العلامات المرجعية
+          - generic [ref=f13e184]: احفظ الآيات والصفحات للعودة إليها لاحقاً
+      - generic [ref=f13e187]:
+        - link [ref=f13e188] [cursor=pointer]:
+          - /url: /read
+          - generic [ref=f13e193]:
+            - heading "الوضع المستمر" [level=2] [ref=f13e194]
+            - paragraph [ref=f13e195]: Continuous Mode
+          - paragraph [ref=f13e196]: تصفّح القرآن كاملاً في شريط مستمر مع الترجمة والصوت والتمرير التلقائي.
+          - generic [ref=f13e197]: ابدأ الآن
+        - link [ref=f13e200] [cursor=pointer]:
+          - /url: /page
+          - generic [ref=f13e206]:
+            - heading "صفحة صفحة" [level=2] [ref=f13e207]
+            - paragraph [ref=f13e208]: Page by Page
+          - paragraph [ref=f13e209]: اقرأ كما في المصحف المطبوع، من الصفحة ١ إلى ٦٠٤ مع تكرار الآيات.
+          - generic [ref=f13e210]: ابدأ الآن
+        - link [ref=f13e213] [cursor=pointer]:
+          - /url: /radio
+          - generic [ref=f13e222]:
+            - heading "إذاعات القرآن" [level=2] [ref=f13e223]
+            - paragraph [ref=f13e224]: World Radio
+          - paragraph [ref=f13e225]: اختر الدولة واستمع لبث مباشر لإذاعة القرآن الكريم من كل أنحاء العالم.
+          - generic [ref=f13e226]: ابدأ الآن
+        - link [ref=f13e229] [cursor=pointer]:
+          - /url: /contest
+          - generic [ref=f13e238]:
+            - heading "المسابقة القرآنية" [level=2] [ref=f13e239]
+            - paragraph [ref=f13e240]: Quran Contest
+          - paragraph [ref=f13e241]: اختبر معرفتك مع سجل للنتائج وشاشة مراجعة تعرض الإجابات الصحيحة.
+          - generic [ref=f13e242]: ابدأ الآن
+        - link [ref=f13e245] [cursor=pointer]:
+          - /url: /memorize
+          - generic [ref=f13e253]:
+            - heading "التكرار للحفظ" [level=2] [ref=f13e254]
+            - paragraph [ref=f13e255]: Memorization
+          - paragraph [ref=f13e256]: اختر السورة ونطاق الآيات وعدد التكرارات ودع التطبيق يعينك على الحفظ.
+          - generic [ref=f13e257]: ابدأ الآن
+        - link [ref=f13e260] [cursor=pointer]:
+          - /url: /recite
+          - generic [ref=f13e266]:
+            - heading "اختبار التسميع" [level=2] [ref=f13e267]
+            - paragraph [ref=f13e268]: Recitation Test
+          - paragraph [ref=f13e269]: حدّد النطاق (صفحات أو أجزاء أو سور) وسمّع بالميكروفون كلمة كلمة، أو سمّع بنفسك واكشف الآية.
+          - generic [ref=f13e270]: ابدأ الآن
+        - link [ref=f13e273] [cursor=pointer]:
+          - /url: /tafsir
+          - generic [ref=f13e279]:
+            - heading "المصحف المجوّد والتفسير" [level=2] [ref=f13e280]
+            - paragraph [ref=f13e281]: Tajweed & Tafsir
+          - paragraph [ref=f13e282]: مصحف ملوّن بأحكام التجويد في الأعلى وتفسير الآية في الأسفل يتغيّر مع تلاوة الشيخ.
+          - generic [ref=f13e283]: ابدأ الآن
+        - link [ref=f13e286] [cursor=pointer]:
+          - /url: /hadith
+          - generic [ref=f13e291]:
+            - heading "مكتبة الحديث" [level=2] [ref=f13e292]
+            - paragraph [ref=f13e293]: Hadith Library
+          - paragraph [ref=f13e294]: البخاري ومسلم والسنن في أجزاء مرتبة، مع باب للأحاديث الضعيفة والموضوعة وبيان حكمها.
+          - generic [ref=f13e295]: ابدأ الآن
+        - link [ref=f13e298] [cursor=pointer]:
+          - /url: /athkar
+          - generic [ref=f13e304]:
+            - heading "الأذكار" [level=2] [ref=f13e305]
+            - paragraph [ref=f13e306]: Daily Athkar
+          - paragraph [ref=f13e307]: أذكار الصباح والمساء والنوم وأدبار الصلوات ورمضان والحج — موثقة بمصادرها مع عدّاد.
+          - generic [ref=f13e308]: ابدأ الآن
+        - link [ref=f13e311] [cursor=pointer]:
+          - /url: /tasbih
+          - generic [ref=f13e317]:
+            - heading "السبحة" [level=2] [ref=f13e318]
+            - paragraph [ref=f13e319]: Tasbih Counter
+          - paragraph [ref=f13e320]: سبّح واحفظ عدّك تلقائياً بأهداف ٣٣ و٩٩ و١٠٠ وإحصائيات يومية بلا تسجيل دخول.
+          - generic [ref=f13e321]: ابدأ الآن
+        - link [ref=f13e324] [cursor=pointer]:
+          - /url: /prayer
+          - generic [ref=f13e330]:
+            - heading "مواقيت الصلاة" [level=2] [ref=f13e331]
+            - paragraph [ref=f13e332]: Prayer Times
+          - paragraph [ref=f13e333]: اختر دولتك ومدينتك لترى مواقيت اليوم مع عدٍّ تنازلي للصلاة القادمة.
+          - generic [ref=f13e334]: ابدأ الآن
+        - link [ref=f13e337] [cursor=pointer]:
+          - /url: /search
+          - generic [ref=f13e343]:
+            - heading "البحث في الآيات" [level=2] [ref=f13e344]
+            - paragraph [ref=f13e345]: Verse Search
+          - paragraph [ref=f13e346]: ابحث عن أي كلمة أو عبارة في المصحف كاملاً وانتقل مباشرة إلى موضعها.
+          - generic [ref=f13e347]: ابدأ الآن
+        - link [ref=f13e350] [cursor=pointer]:
+          - /url: /sira
+          - generic [ref=f13e356]:
+            - heading "السيرة النبوية الشريفة" [level=2] [ref=f13e357]
+            - paragraph [ref=f13e358]: Prophetic Biography
+          - paragraph [ref=f13e359]: فصول السيرة من المولد إلى الرفيق الأعلى مع بحث داخل النصوص.
+          - generic [ref=f13e360]: ابدأ الآن
+        - link [ref=f13e363] [cursor=pointer]:
+          - /url: /tools
+          - generic [ref=f13e369]:
+            - heading "أدوات إسلامية" [level=2] [ref=f13e370]
+            - paragraph [ref=f13e371]: Islamic Tools
+          - paragraph [ref=f13e372]: أسماء الله الحسنى، التقويم الهجري، المناسبات، حاسبة الزكاة، الآيات المتشابهات، وآية اليوم.
+          - generic [ref=f13e373]: ابدأ الآن
+        - link [ref=f13e376] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=f13e383]:
+            - heading "لوحة تقدّم الحفظ" [level=2] [ref=f13e384]
+            - paragraph [ref=f13e385]: Progress
+          - paragraph [ref=f13e386]: تابع نطاقات الحفظ المكتملة وسجل التكرار وكل ملاحظاتك على الآيات.
+          - generic [ref=f13e387]: ابدأ الآن
+        - link [ref=f13e390] [cursor=pointer]:
+          - /url: /downloads
+          - generic [ref=f13e396]:
+            - heading "التحميلات والعمل دون إنترنت" [level=2] [ref=f13e397]
+            - paragraph [ref=f13e398]: Offline & Downloads
+          - paragraph [ref=f13e399]: حمّل تلاوات القرّاء وصفحات المصاحف لتستمع وتقرأ بلا اتصال، واعرف ما يعمل دون إنترنت تلقائياً.
+          - generic [ref=f13e400]: ابدأ الآن
+      - paragraph [ref=f13e403]: المصحف والتلاوات من مصادر مفتوحة — نسأل الله القبول والإخلاص.
+    - generic [ref=f13e404]:
+      - heading "لمحة عن التطبيق" [level=2] [ref=f13e405]
+      - generic [ref=f13e407]:
+        - paragraph [ref=f13e408]: "باحث كتاب الله رفيقٌ واحد لكتاب الله: تقرأ فيه القرآن كاملاً بوضع مستمر أو صفحة صفحة كما في المصحف المطبوع، وتستمع لتلاوات مختارة مع إمكانية تنزيلها والاستماع دون إنترنت، وتحفظ بالتكرار الذكي، وتسمّع ما حفظت بالميكروفون كلمةً كلمة مع مراجعة لأخطائك، وتحفظ علاماتك المرجعية وملاحظاتك، وتتابع مواقيت الصلاة في مدينتك، وتلازم أذكارك الموثقة من الكتاب والسنة، وتُسبّح بسبحة إلكترونية تحفظ عدّك، وتختبر معرفتك بمسابقة قرآنية ممتعة — كل ذلك بواجهة عربية هادئة تُشعرك بأنك تجلس مع مصحفك لا مع شاشة."
+        - paragraph [ref=f13e409]: "باحث كتاب الله رفيقٌ واحد لكتاب الله: تقرأ فيه القرآن كاملاً بوضع مستمر أو صفحة صفحة كما في المصحف المطبوع، وتستمع لتلاوات مختارة مع إمكانية تنزيلها والاستماع دون إنترنت، وتحفظ بالتكرار الذكي، وتسمّع ما حفظت بالميكروفون كلمةً كلمة مع مراجعة لأخطائك، وتحفظ علاماتك المرجعية وملاحظاتك، وتتابع مواقيت الصلاة في مدينتك، وتلازم أذكارك الموثقة من الكتاب والسنة، وتُسبّح بسبحة إلكترونية تحفظ عدّك، وتختبر معرفتك بمسابقة قرآنية ممتعة — كل ذلك بواجهة عربية هادئة تُشعرك بأنك تجلس مع مصحفك لا مع شاشة."
+      - link "لمحة عن التطبيق" [ref=f13e411] [cursor=pointer]:
+        - /url: /about
+  - generic [ref=f13e121]:
+    - button "متابعة التلاوة" [ref=f13e414]
+    - generic [ref=f13e126]:
+      - link "سورة سُورَةُ ٱلْفَاتِحَةِ" [ref=f13e127] [cursor=pointer]:
+        - /url: /tafsir
+      - paragraph [ref=f13e128]: الآية ٢ — مشاري العفاسي
+    - generic [ref=f13e129]: مشغّل مشترك
+    - button "إغلاق المشغّل" [ref=f13e132]

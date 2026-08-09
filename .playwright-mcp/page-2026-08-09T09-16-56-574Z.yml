@@ -1,0 +1,22 @@
+- generic [active] [ref=e1]:
+  - main [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "الرئيسية" [ref=e6] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e10]:
+          - heading "الوضع المستمر" [level=1] [ref=e11]
+          - paragraph [ref=e12]: Continuous Mode
+        - button "تغيير شكل التطبيق" [ref=e14]
+      - generic [ref=e22]:
+        - button "السور والأجزاء" [ref=e23] [cursor=pointer]
+        - combobox "اختيار القارئ" [ref=e24] [cursor=pointer]:
+          - generic: مشاري العفاسي
+        - button "الترجمة" [ref=e27] [cursor=pointer]
+        - button "الوضع الليلي" [ref=e28] [cursor=pointer]
+        - generic [ref=e29]:
+          - button "تصغير الخط" [ref=e30] [cursor=pointer]
+          - generic [ref=e31]: "26"
+          - button "تكبير الخط" [ref=e32] [cursor=pointer]
+    - generic [ref=e33]: جاري تحميل السورة…
+  - region "Notifications alt+T"

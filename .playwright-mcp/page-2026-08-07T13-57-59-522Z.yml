@@ -1,0 +1,23 @@
+- generic [ref=f8e1]:
+  - main [ref=f8e2]:
+    - generic [ref=f8e3]:
+      - generic [ref=f8e4]:
+        - generic [ref=f8e5]:
+          - generic [ref=f8e6]: بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ
+          - generic [ref=f8e7]: شكل التطبيق · 2/4
+        - generic [ref=f8e30]:
+          - heading "اختر شكل التطبيق" [level=2] [ref=f8e31]
+          - paragraph [ref=f8e32]: يمكنك تغيير هذا لاحقاً من صفحة الإعدادات.
+          - generic [ref=f8e33]:
+            - button "قوس قزح المتحرك" [ref=f8e34]
+            - button "الزمرد الكلاسيكي" [ref=f8e39]
+            - button "أزرق المحيط" [ref=f8e42]
+            - button "العنّاب الوردي" [ref=f8e45]
+            - button "بنفسج الليل" [ref=f8e48]
+            - button "رمال الصحراء" [ref=f8e51]
+            - button "الحبر والورق" [ref=f8e54]
+        - generic [ref=f8e16]:
+          - button "رجوع" [ref=f8e17]
+          - button "التالي" [active] [ref=f8e25]
+      - paragraph [ref=f8e28]: المصحف والتلاوات من مصادر مفتوحة — لا توجد حسابات ولا جمع بيانات.
+  - region "Notifications alt+T"

@@ -1,0 +1,7 @@
+- generic [ref=f7e2]:
+  - heading "This page didn't load" [level=1] [ref=f7e3]
+  - paragraph [ref=f7e4]: Something went wrong on our end. You can try refreshing or head back home.
+  - generic [ref=f7e5]:
+    - button "Try again" [ref=f7e6] [cursor=pointer]
+    - link "Go home" [ref=f7e7] [cursor=pointer]:
+      - /url: /
