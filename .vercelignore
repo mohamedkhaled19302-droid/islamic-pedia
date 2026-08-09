@@ -1,0 +1,14 @@
+.output
+.vercel
+node_modules
+android
+release
+desktop
+resources
+build
+scripts
+electron
+dist
+*.apk
+*.exe
+.playwright-mcp
