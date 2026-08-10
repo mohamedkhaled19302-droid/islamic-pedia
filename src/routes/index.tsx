@@ -31,6 +31,8 @@ import { FeedbackLink } from "@/components/quran/FeedbackLink";
 import { getBookmarks, getProgress, type Bookmark, type Progress } from "@/lib/storage";
 import { AboutMarquee } from "@/components/quran/AboutMarquee";
 import { useLang } from "@/lib/i18n";
+import { isPackagedApp } from "@/lib/app-downloads";
+import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -213,6 +215,14 @@ function Splash() {
   const progress = useLocalStore<Record<string, Progress>>(getProgress, {});
   const bookmarks = useLocalStore<Bookmark[]>(getBookmarks, []);
   const { t, num, lang } = useLang();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const packaged = mounted && isPackagedApp();
+  const visibleModes = MODES.filter((m) => packaged || m.to !== "/downloads");
 
   const resume = Object.values(progress).sort((a, b) => b.at - a.at);
 
@@ -327,7 +337,7 @@ function Splash() {
         </Link>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-          {MODES.map((m, i) => (
+          {visibleModes.map((m, i) => (
             <Link
               key={m.to}
               to={m.to}

@@ -28,6 +28,7 @@ import {
   saveAudioBlob,
   type DownloadedAudio,
 } from "@/lib/audioDownloads";
+import { isPackagedApp } from "@/lib/app-downloads";
 
 export const Route = createFileRoute("/downloads")({
   head: () => ({
@@ -84,6 +85,7 @@ function runPool<T>(
 
 function Downloads() {
   const { t } = useLang();
+  const [mounted, setMounted] = useState(false);
   const [reciter, setReciter] = useState("ar.alafasy");
   const [scope, setScope] = useState<Scope>("surah");
   const [scopeValue, setScopeValue] = useState(1);
@@ -99,6 +101,12 @@ function Downloads() {
   const [scopeAyahs, setScopeAyahs] = useState<number[]>([]);
 
   const surahs = useQuery({ queryKey: ["surahs"], queryFn: fetchSurahs, staleTime: Infinity });
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const packaged = mounted && isPackagedApp();
 
   const refreshDownloads = () => {
     void getAllAudioDownloads().then(setDownloaded);
@@ -271,6 +279,20 @@ function Downloads() {
     <main className="min-h-screen pb-16">
       <ModeHeader title={t("downloads.title")} subtitle={t("downloads.subtitle")} />
 
+      {!packaged ? (
+        <div className="mx-auto max-w-2xl px-4 py-10">
+          <section className="rounded-2xl border border-border bg-card p-6 text-center shadow-soft">
+            <CloudDownload className="mx-auto size-10 text-gold" />
+            <h2 className="mt-3 text-base font-bold text-foreground">
+              تحميل الصوت غير متاح في المتصفح
+            </h2>
+            <p className="mx-auto mt-2 max-w-md text-sm leading-7 text-muted-foreground">
+              لتحميل التلاوات والمصاحف للعمل دون إنترنت، ثبّت التطبيق على جهازك (Android أو
+              Windows). في النسخة المثبّتة ستجد صفحة التحميلات كاملة داخل التطبيق.
+            </p>
+          </section>
+        </div>
+      ) : (
       <div className="mx-auto max-w-2xl space-y-6 px-4 py-6">
         {/* حالة التخزين */}
         <section className="rounded-2xl border border-border bg-card p-4 shadow-soft">
@@ -510,6 +532,7 @@ function Downloads() {
           <Loader2 className="size-3.5" /> التحميلات تُحفظ على جهازك ولا تحتاج إنترنت بعد اكتمالها.
         </p>
       </div>
+      )}
     </main>
   );
 }

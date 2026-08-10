@@ -4,7 +4,6 @@ import { Home } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { ThemePicker } from "./ThemePicker";
-import { InstallAppButton } from "./InstallAppButton";
 import { cn } from "@/lib/utils";
 import { useLang } from "@/lib/i18n";
 
@@ -60,7 +59,6 @@ export function ModeHeader({
           </h1>
           {subtitle ? <p className="truncate text-xs opacity-75">{subtitle}</p> : null}
         </div>
-        <InstallAppButton variant="icon" className="size-9" />
         <ThemePicker className="shrink-0 [&>button]:size-9" />
         {right}
 

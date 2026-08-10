@@ -2,7 +2,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { BookText, Loader2, Pause, Play, ScrollText } from "lucide-react";
+import { BookText, Loader2, Maximize2, Minimize2, Pause, Play, ScrollText } from "lucide-react";
 import { ModeHeader } from "@/components/quran/ModeHeader";
 import { ReciterSelect } from "@/components/quran/ReciterSelect";
 import { QuranNav } from "@/components/quran/QuranNav";
@@ -16,6 +16,7 @@ import { DEFAULT_TAFSIR, fetchTafsir, TAFSIRS } from "@/lib/tafsir";
 import { getMushafPrefs, saveMushafPrefs } from "@/lib/storage";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/tafsir")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -51,6 +52,7 @@ function TafsirMode() {
   const [tafsirId, setTafsirId] = useState(DEFAULT_TAFSIR);
   const [styleId, setStyleId] = useState(() => getMushafPrefs().style);
   const [active, setActive] = useState<number | null>(null);
+  const [expand, setExpand] = useState(false);
 
   const audio = useGlobalAudio();
   const indexRef = useRef(0);
@@ -100,7 +102,7 @@ function TafsirMode() {
     window.scrollTo({ top: 0 });
   }, [page]);
 
-  const playIndex = async (i: number) => {
+  const playIndex = async (i: number, scrollToTafsir = false) => {
     const ayah = ayahs[i];
     if (!ayah) {
       setActive(null);
@@ -122,6 +124,11 @@ function TafsirMode() {
       { onEnded: onEndedRef.current },
     );
     document.getElementById(`t-ayah-${i}`)?.scrollIntoView({ block: "center", behavior: "smooth" });
+    if (scrollToTafsir) {
+      window.setTimeout(() => {
+        document.getElementById("tafsir-panel")?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      }, 350);
+    }
   };
 
   onEndedRef.current = () => {
@@ -137,7 +144,7 @@ function TafsirMode() {
     } else if (playingSrc && audio.current?.src === playingSrc) {
       globalAudio.resume();
     } else {
-      void playIndex(0);
+      void playIndex(0, true);
     }
   };
 
@@ -194,11 +201,21 @@ function TafsirMode() {
               </option>
             ))}
           </select>
+          <Button
+            size="sm"
+            variant={expand ? "default" : "secondary"}
+            onClick={() => setExpand((v) => !v)}
+            aria-label="توسيع العرض"
+            className="gap-1"
+          >
+            {expand ? <Minimize2 className="size-4" /> : <Maximize2 className="size-4" />}
+            {expand ? "تصغير" : "توسيع"}
+          </Button>
         </div>
       </ModeHeader>
 
       {/* المصحف في الأعلى */}
-      <section className="mx-auto max-w-2xl px-3 pt-4">
+      <section className={cn("mx-auto px-3 pt-4", expand ? "max-w-4xl" : "max-w-2xl")}>
         <article
           className="rounded-3xl border-2 border-gold/50 p-5 shadow-soft"
           style={{ background: styleId === "v4" ? V4_PAPER(night) : mushafStyle.paper }}
@@ -215,7 +232,7 @@ function TafsirMode() {
               activeNumber={active !== null ? (ayahs[active]?.number ?? null) : null}
               onWordClick={(n) => {
                 const i = ayahs.findIndex((a) => a.number === n);
-                if (i >= 0) playIndex(i);
+                if (i >= 0) playIndex(i, true);
               }}
             />
           ) : (
@@ -232,9 +249,9 @@ function TafsirMode() {
         </article>
       </section>
 
-      {/* التفسير في الأسفل */}
-      <section className="sticky bottom-0 z-20 mx-auto mt-4 max-w-2xl px-3 pb-4">
-        <div className="rounded-2xl border border-border bg-card/95 p-4 shadow-soft backdrop-blur">
+      {/* التفسير في الأسفل (لا يغطي المصحف) */}
+      <section id="tafsir-panel" className={cn("mx-auto mt-4 px-3 pb-8", expand ? "max-w-4xl" : "max-w-2xl")}>
+        <div className="rounded-2xl border border-border bg-card p-4 shadow-soft">
           <div className="mb-2 flex items-center justify-between gap-2">
             <h2 className="flex items-center gap-2 text-sm font-bold text-foreground">
               <ScrollText className="size-4 text-gold" />
@@ -250,9 +267,9 @@ function TafsirMode() {
               {playing ? <Pause className="size-4" /> : <Play className="size-4" />}
             </button>
           </div>
-          <div className="max-h-52 overflow-y-auto text-sm leading-7 text-muted-foreground">
+          <div className="max-h-[65dvh] overflow-y-auto text-sm leading-7 text-foreground">
             {!ref ? (
-              <p className="flex items-center gap-2 py-4 text-xs">
+              <p className="flex items-center gap-2 py-4 text-xs text-muted-foreground">
                 <BookText className="size-4" />{" "}
                 {styleId === "v4"
                   ? "اختر آية من المصحف بالأعلى، أو شغّل التلاوة ليتغيّر التفسير مع كل آية يقرؤها الشيخ."
@@ -264,7 +281,7 @@ function TafsirMode() {
               <p className="text-destructive">تعذّر تحميل التفسير، حاول مرة أخرى.</p>
             ) : (
               <div
-                className="tafsir-body space-y-2 [&_h2]:font-bold [&_h2]:text-foreground"
+                className="tafsir-body space-y-2 [&_h2]:font-bold [&_h2]:text-foreground [&_p]:text-foreground"
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{ __html: tafsir.data || "لا يوجد نص لهذه الآية." }}
               />

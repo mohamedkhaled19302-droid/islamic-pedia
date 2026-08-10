@@ -19,7 +19,7 @@ import { LanguageProvider } from "@/lib/i18n";
 import { toast } from "sonner";
 import { getOnboarding } from "@/lib/storage";
 
-const PRE_PAINT_SCRIPT = `(function(){try{var l=localStorage.getItem('bkl-lang'),t=localStorage.getItem('bkl-theme'),n=localStorage.getItem('bkl-night'),d=document.documentElement;if(l==='en'){d.lang='en';d.dir='ltr';}else{d.lang='ar';d.dir='rtl';}if(t){d.setAttribute('data-theme',t);}if(n==='1'){d.classList.add('dark');}}catch(e){}})();`;
+const PRE_PAINT_SCRIPT = `(function(){try{var K=['classic','modern','heritage','cool','futuristic'],l=localStorage.getItem('bkl-lang'),t=localStorage.getItem('bkl-theme'),n=localStorage.getItem('bkl-night'),d=document.documentElement;if(l==='en'){d.lang='en';d.dir='ltr';}else{d.lang='ar';d.dir='rtl';}if(t&&K.indexOf(t)>=0){d.setAttribute('data-theme',t);}else{d.setAttribute('data-theme','classic');}if(n==='1'){d.classList.add('dark');}}catch(e){}})();`;
 
 function NotFoundComponent() {
   return (

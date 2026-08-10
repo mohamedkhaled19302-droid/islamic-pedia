@@ -2,7 +2,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Languages, Loader2, Minus, Moon, Plus, Sun } from "lucide-react";
+import { Languages, Loader2, Maximize2, Minus, Minimize2, Moon, Plus, Sun } from "lucide-react";
 import { ModeHeader } from "@/components/quran/ModeHeader";
 import { ReciterSelect } from "@/components/quran/ReciterSelect";
 import { SurahBlock } from "@/components/quran/SurahBlock";
@@ -11,6 +11,7 @@ import { useNightMode } from "@/components/quran/use-night-mode";
 import { fetchSurahs } from "@/lib/quran";
 import { saveProgress } from "@/lib/storage";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/read")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -41,7 +42,8 @@ function ContinuousMode() {
   const { night, toggle } = useNightMode();
   const { s: startSurah, a: startAyah } = Route.useSearch();
   const [reciter, setReciter] = useState("ar.alafasy");
-  const [fontSize, setFontSize] = useState(26);
+  const [fontSize, setFontSize] = useState(32);
+  const [expand, setExpand] = useState(false);
   const [showTranslation, setShowTranslation] = useState(false);
   const [loaded, setLoaded] = useState<number[]>([Math.min(114, Math.max(1, startSurah || 1))]);
   const [active, setActive] = useState<number | null>(null);
@@ -113,7 +115,7 @@ function ContinuousMode() {
 
   return (
     <main className="min-h-screen pb-24">
-      <ModeHeader title="الوضع المستمر" subtitle="Continuous Mode" hideOnScroll>
+      <ModeHeader title="الوضع المستمر" subtitle="Continuous Mode">
         <div className="flex flex-wrap items-center gap-2">
           <QuranNav label="السور والأجزاء" onSelect={(t) => jumpTo(t.surah, t.ayah)} />
 
@@ -127,6 +129,22 @@ function ContinuousMode() {
           >
             <Languages className="size-4" /> الترجمة
           </Button>
+          <Button
+            size="sm"
+            variant={expand ? "default" : "secondary"}
+            onClick={() => {
+              setExpand((v) => {
+                const next = !v;
+                if (next) setFontSize((f) => Math.max(f, 42));
+                return next;
+              });
+            }}
+            aria-label="توسيع النص"
+            className="gap-1"
+          >
+            {expand ? <Minimize2 className="size-4" /> : <Maximize2 className="size-4" />}
+            {expand ? "تصغير" : "توسيع"}
+          </Button>
           <Button size="sm" variant="secondary" onClick={toggle} aria-label="الوضع الليلي">
             {night ? <Sun className="size-4" /> : <Moon className="size-4" />}
           </Button>
@@ -136,7 +154,7 @@ function ContinuousMode() {
               variant="ghost"
               className="size-7"
               aria-label="تصغير الخط"
-              onClick={() => setFontSize((f) => Math.max(18, f - 2))}
+              onClick={() => setFontSize((f) => Math.max(20, f - 2))}
             >
               <Minus className="size-3.5" />
             </Button>
@@ -146,7 +164,7 @@ function ContinuousMode() {
               variant="ghost"
               className="size-7"
               aria-label="تكبير الخط"
-              onClick={() => setFontSize((f) => Math.min(48, f + 2))}
+              onClick={() => setFontSize((f) => Math.min(64, f + 2))}
             >
               <Plus className="size-3.5" />
             </Button>
@@ -154,7 +172,7 @@ function ContinuousMode() {
         </div>
       </ModeHeader>
 
-      <div className="mx-auto max-w-3xl">
+      <div className={cn("mx-auto", expand ? "max-w-4xl" : "max-w-3xl")}>
         {surahs.isLoading ? (
           <div className="flex justify-center py-8">
             <Loader2 className="size-5 animate-spin text-muted-foreground" />

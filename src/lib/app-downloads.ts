@@ -1,8 +1,8 @@
-export const APP_VERSION = "1.3.2";
+export const APP_VERSION = "1.3.3";
 
 export const APP_SITE = "https://islamic-pedia.vercel.app";
 
-export const APP_RELEASE_TAG = "1.3.2";
+export const APP_RELEASE_TAG = "1.3.3";
 
 export const APP_BINARY_URLS = {
   windows: `https://github.com/mohamedkhaled19302-droid/islamic-pedia/releases/download/${APP_RELEASE_TAG}/Islamic-Pedia-Setup-${APP_VERSION}.exe`,

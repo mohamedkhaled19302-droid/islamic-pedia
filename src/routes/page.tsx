@@ -2,7 +2,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { BookImage, ChevronDown, ChevronUp, Gauge, Globe, LayoutList, Loader2, Moon, Pause, Play, Sun } from "lucide-react";
+import { BookImage, ChevronDown, ChevronUp, Gauge, Globe, LayoutList, Loader2, Maximize2, Minus, Minimize2, Moon, Pause, Play, Plus, Sun } from "lucide-react";
 import { QuranNav } from "@/components/quran/QuranNav";
 import { ModeHeader } from "@/components/quran/ModeHeader";
 import { ReciterSelect } from "@/components/quran/ReciterSelect";
@@ -19,6 +19,7 @@ import { resolvePlayableUrl } from "@/lib/audioDownloads";
 import { getMushafPrefs, saveMushafPrefs, saveProgress } from "@/lib/storage";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/page")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -59,6 +60,10 @@ function PageMode() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [view, setView] = useState<"mushaf" | "ayah" | "searchtruth">("mushaf");
   const [styleId, setStyleId] = useState("v4");
+  const [expand, setExpand] = useState(false);
+  const [fontSize, setFontSize] = useState(30);
+  const touchX = useRef<number | null>(null);
+  const touchY = useRef<number | null>(null);
 
 
 
@@ -264,6 +269,37 @@ function PageMode() {
               ))}
             </select>
           ) : null}
+          <Button
+            size="sm"
+            variant={expand ? "default" : "secondary"}
+            onClick={() => setExpand((v) => !v)}
+            aria-label="توسيع العرض"
+            className="gap-1"
+          >
+            {expand ? <Minimize2 className="size-4" /> : <Maximize2 className="size-4" />}
+            {expand ? "تصغير" : "توسيع"}
+          </Button>
+          <div className="flex items-center gap-1 rounded-lg bg-secondary px-1">
+            <Button
+              size="icon"
+              variant="ghost"
+              className="size-7"
+              aria-label="تصغير الخط"
+              onClick={() => setFontSize((f) => Math.max(20, f - 2))}
+            >
+              <Minus className="size-3.5" />
+            </Button>
+            <span className="text-xs text-secondary-foreground">{fontSize}</span>
+            <Button
+              size="icon"
+              variant="ghost"
+              className="size-7"
+              aria-label="تكبير الخط"
+              onClick={() => setFontSize((f) => Math.min(64, f + 2))}
+            >
+              <Plus className="size-3.5" />
+            </Button>
+          </div>
           <Button size="sm" variant="secondary" onClick={toggle} aria-label="الوضع الليلي">
             {night ? <Sun className="size-4" /> : <Moon className="size-4" />}
           </Button>
@@ -284,7 +320,7 @@ function PageMode() {
         </section>
       ) : null}
 
-      <div className={`mx-auto max-w-2xl px-4 py-6 ${view === "searchtruth" ? "hidden" : ""}`}>
+      <div className={cn("mx-auto px-4 py-6", expand ? "max-w-4xl" : "max-w-2xl", view === "searchtruth" ? "hidden" : "")}>
 
         {isLoading ? (
           <div className="flex justify-center py-16">
@@ -294,7 +330,21 @@ function PageMode() {
           <p className="py-16 text-center text-sm text-destructive">تعذّر تحميل الصفحة.</p>
         ) : view === "mushaf" ? (
           <article
-            className="overflow-hidden rounded-3xl border-2 border-gold/50 p-3 shadow-soft"
+            onTouchStart={(e) => {
+              touchX.current = e.touches[0].clientX;
+              touchY.current = e.touches[0].clientY;
+            }}
+            onTouchEnd={(e) => {
+              if (touchX.current === null || touchY.current === null) return;
+              const dx = e.changedTouches[0].clientX - touchX.current;
+              const dy = e.changedTouches[0].clientY - touchY.current;
+              touchX.current = null;
+              touchY.current = null;
+              if (Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy)) return;
+              if (dx > 0) go(page + 1);
+              else go(page - 1);
+            }}
+            className="mushaf-swipe overflow-hidden rounded-3xl border-2 border-gold/50 p-3 shadow-soft"
             style={{ background: styleId === "v4" ? V4_PAPER(night) : mushafStyle.paper }}
           >
             {styleId === "v4" ? (
@@ -353,11 +403,12 @@ function PageMode() {
                         : void playIndex(i)
                     }
                     onKeyDown={(e) => e.key === "Enter" && playIndex(i)}
-                    className={`font-quran cursor-pointer text-[26px] leading-[2.6] transition-colors ${
+                    className={`font-quran cursor-pointer leading-[2.6] transition-colors ${
                       activeIndex === i
                         ? "rounded-md bg-accent text-accent-foreground"
                         : "text-foreground hover:text-primary"
                     }`}
+                    style={{ fontSize }}
                   >
                     {stripBasmala(a.text, a.surah?.number ?? 0, a.numberInSurah)}
                     <span className="mx-1 inline-grid size-7 place-items-center rounded-full bg-gold-gradient align-middle text-[11px] font-bold text-gold-foreground">

@@ -1,10 +1,11 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, CloudDownload, Globe, Moon, Sun, Sparkles } from "lucide-react";
 import { useTheme, THEMES } from "@/components/quran/use-theme";
 import { useNightMode } from "@/components/quran/use-night-mode";
 import { saveOnboarding } from "@/lib/storage";
 import { LANGS, useLang, type Lang } from "@/lib/i18n";
+import { isPackagedApp } from "@/lib/app-downloads";
 
 export const Route = createFileRoute("/onboarding")({
   head: () => ({
@@ -27,6 +28,13 @@ function Onboarding() {
   const [nightChoice, setNightChoice] = useState<boolean | null>(night);
   const [downloadNow, setDownloadNow] = useState(false);
   const [langChoice, setLangChoice] = useState<Lang>(lang);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const packaged = mounted && isPackagedApp();
 
   const steps = [
     t("onb.stepWelcome"),
@@ -108,23 +116,30 @@ function Onboarding() {
               <div>
                 <h2 className="text-center text-xl font-bold">{t("onb.chooseTheme")}</h2>
                 <p className="mt-1 text-center text-sm text-muted-foreground">{t("onb.chooseThemeHint")}</p>
-                <div className="mt-5 grid grid-cols-2 gap-3">
+                <div className="mt-5 grid grid-cols-1 gap-3">
                   {THEMES.map((th) => (
                     <button
                       key={th.id}
                       onClick={() => setTheme(th.id)}
-                      className={`flex items-center gap-3 rounded-2xl border p-3 transition-all ${
+                      className={`flex items-center gap-3 rounded-2xl border p-3 text-right transition-all ltr:text-left ${
                         theme === th.id
                           ? "border-gold bg-secondary shadow-glow"
                           : "border-border bg-card hover:border-gold/50"
                       }`}
                     >
                       <span
-                        className="size-9 shrink-0 rounded-full border border-border shadow-soft"
+                        className="size-10 shrink-0 rounded-full border border-border shadow-soft"
                         style={{ backgroundImage: th.swatch }}
                       />
-                      <span className="flex-1 text-sm font-bold text-foreground">{th.name}</span>
-                      {theme === th.id ? <Check className="size-4 text-gold" /> : null}
+                      <span className="min-w-0 flex-1">
+                        <span className="block truncate text-sm font-bold text-foreground">
+                          {langChoice === "ar" ? th.name : th.nameEn}
+                        </span>
+                        <span className="block text-[11px] leading-tight text-muted-foreground">
+                          {langChoice === "ar" ? th.desc : th.descEn}
+                        </span>
+                      </span>
+                      {theme === th.id ? <Check className="size-4 shrink-0 text-gold" /> : null}
                     </button>
                   ))}
                 </div>
@@ -166,23 +181,25 @@ function Onboarding() {
                 <h2 className="text-center text-xl font-bold">{t("onb.downloadAudio")}</h2>
                 <p className="mt-1 text-center text-sm text-muted-foreground">{t("onb.downloadAudioHint")}</p>
                 <div className="mt-5 grid gap-3">
-                  <button
-                    onClick={() => {
-                      setDownloadNow(true);
-                      finish(true);
-                    }}
-                    className="flex items-center gap-3 rounded-2xl border border-gold bg-secondary p-4 text-right shadow-glow transition-all ltr:text-left hover:border-gold"
-                  >
-                    <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-gold-gradient text-gold-foreground">
-                      <CloudDownload className="size-5" />
-                    </span>
-                    <span className="flex-1">
-                      <span className="block font-bold text-foreground">{t("onb.downloadNow")}</span>
-                      <span className="block text-xs text-muted-foreground">{t("onb.downloadNowDesc")}</span>
-                    </span>
-                    <ArrowLeft className="size-4 text-primary rtl:block ltr:hidden" />
-                    <ArrowRight className="size-4 text-primary rtl:hidden ltr:block" />
-                  </button>
+                  {packaged && (
+                    <button
+                      onClick={() => {
+                        setDownloadNow(true);
+                        finish(true);
+                      }}
+                      className="flex items-center gap-3 rounded-2xl border border-gold bg-secondary p-4 text-right shadow-glow transition-all ltr:text-left hover:border-gold"
+                    >
+                      <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-gold-gradient text-gold-foreground">
+                        <CloudDownload className="size-5" />
+                      </span>
+                      <span className="flex-1">
+                        <span className="block font-bold text-foreground">{t("onb.downloadNow")}</span>
+                        <span className="block text-xs text-muted-foreground">{t("onb.downloadNowDesc")}</span>
+                      </span>
+                      <ArrowLeft className="size-4 text-primary rtl:block ltr:hidden" />
+                      <ArrowRight className="size-4 text-primary rtl:hidden ltr:block" />
+                    </button>
+                  )}
                   <button
                     onClick={() => {
                       setDownloadNow(false);

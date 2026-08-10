@@ -4,19 +4,57 @@ import { useCallback, useEffect, useState } from "react";
 export interface AppTheme {
   id: string;
   name: string;
+  nameEn: string;
   /** لون تعريفي يُعرض في زر الاختيار */
   swatch: string;
+  desc: string;
+  descEn: string;
 }
 
 export const THEMES: AppTheme[] = [
-  { id: "rainbow", name: "قوس قزح المتحرك", swatch: "linear-gradient(90deg,#f56a6a,#f0a35c,#d9d45c,#6ac86a,#5ca8e8,#a06ae8,#f56a6a)" },
-  { id: "classic", name: "الزمرد الكلاسيكي", swatch: "linear-gradient(135deg,#1f5c4a,#d9b063)" },
-  { id: "ocean", name: "أزرق المحيط", swatch: "linear-gradient(135deg,#123a5c,#7fc4e8)" },
-  { id: "rose", name: "العنّاب الوردي", swatch: "linear-gradient(135deg,#5c1f33,#e0a1b4)" },
-  { id: "midnight", name: "بنفسج الليل", swatch: "linear-gradient(135deg,#2b2150,#a892e8)" },
-  { id: "sand", name: "رمال الصحراء", swatch: "linear-gradient(135deg,#6b4b21,#e8cf9a)" },
-  { id: "mono", name: "الحبر والورق", swatch: "linear-gradient(135deg,#2a2a2a,#c9c9c9)" },
+  {
+    id: "classic",
+    name: "الكلاسيكي",
+    nameEn: "Classic",
+    swatch: "linear-gradient(135deg,#1f5c4a,#d9b063)",
+    desc: "الزمرد والذهب — التصميم الأصلي المريح للعين.",
+    descEn: "Emerald and gold — the original easy-on-the-eyes design.",
+  },
+  {
+    id: "modern",
+    name: "العصري",
+    nameEn: "Modern",
+    swatch: "linear-gradient(135deg,#4338ca,#38bdf8)",
+    desc: "بسيط ونظيف مع مساحات مفتوحة وظلال ناعمة.",
+    descEn: "Clean and minimal with open space and soft shadows.",
+  },
+  {
+    id: "heritage",
+    name: "التراثي",
+    nameEn: "Heritage",
+    swatch: "linear-gradient(135deg,#2f5d46,#c9a14f)",
+    desc: "أجواء المخطوطات القديمة بالورق العتيق والبرونز.",
+    descEn: "Old manuscript feel with aged paper and bronze accents.",
+  },
+  {
+    id: "cool",
+    name: "البارد",
+    nameEn: "Cool",
+    swatch: "linear-gradient(135deg,#0e7490,#22d3ee)",
+    desc: "زجاج داكن ولمسات سيان باردة متوهجة.",
+    descEn: "Dark glass with cool glowing cyan accents.",
+  },
+  {
+    id: "futuristic",
+    name: "المستقبلي",
+    nameEn: "Futuristic",
+    swatch: "linear-gradient(135deg,#6d28d9,#22d3ee)",
+    desc: "فضاء داكن ونيون بنفسجي سماوي — مظهر تقني.",
+    descEn: "Dark space with violet-cyan neon — a techy look.",
+  },
 ];
+
+export const THEME_IDS = new Set(THEMES.map((t) => t.id));
 
 const KEY = "bkl-theme";
 const DEFAULT_THEME = "classic";
@@ -30,7 +68,13 @@ export function useTheme() {
   const [theme, setThemeState] = useState(DEFAULT_THEME);
 
   useEffect(() => {
-    const stored = (typeof window !== "undefined" && localStorage.getItem(KEY)) || DEFAULT_THEME;
+    let stored = DEFAULT_THEME;
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (raw && THEME_IDS.has(raw)) stored = raw;
+    } catch {
+      /* ignore */
+    }
     setThemeState(stored);
     applyTheme(stored);
   }, []);
@@ -47,5 +91,3 @@ export function useTheme() {
 
   return { theme, setTheme, themes: THEMES };
 }
-
-

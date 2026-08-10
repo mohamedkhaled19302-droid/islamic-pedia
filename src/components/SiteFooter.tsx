@@ -63,9 +63,11 @@ export function SiteFooter() {
             <Link to="/about" className="transition-colors hover:text-foreground">
               {t("footer.about")}
             </Link>
-            <Link to="/downloads" className="transition-colors hover:text-foreground">
-              {t("footer.downloads")}
-            </Link>
+            {packaged && (
+              <Link to="/downloads" className="transition-colors hover:text-foreground">
+                {t("footer.downloads")}
+              </Link>
+            )}
             <FeedbackLink to="/feedback" className="transition-colors hover:text-foreground">
               {t("footer.feedback")}
             </FeedbackLink>

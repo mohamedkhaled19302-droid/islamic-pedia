@@ -4,10 +4,10 @@ import { Palette, Check } from "lucide-react";
 import { useTheme } from "./use-theme";
 import { useLang } from "@/lib/i18n";
 
-/** زر اختيار شكل التطبيق (ألوان متعددة) يوضع بجانب زر الوضع الليلي. */
+/** زر اختيار شكل التطبيق (5 تصاميم) يوضع بجانب زر الوضع الليلي. */
 export function ThemePicker({ className = "" }: { className?: string }) {
   const { theme, setTheme, themes } = useTheme();
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [open, setOpen] = useState(false);
 
   return (
@@ -28,7 +28,7 @@ export function ThemePicker({ className = "" }: { className?: string }) {
             className="fixed inset-0 z-40 cursor-default"
             onClick={() => setOpen(false)}
           />
-          <div className="absolute z-50 mt-2 w-56 rounded-2xl border border-border bg-card p-2 shadow-glow ltr:left-0 rtl:right-0">
+          <div className="absolute z-50 mt-2 w-72 rounded-2xl border border-border bg-card p-2 shadow-glow ltr:left-0 rtl:right-0">
             <p className="px-2 py-1 text-xs font-bold text-muted-foreground">{t("theme.choose")}</p>
             {themes.map((t) => (
               <button
@@ -37,14 +37,21 @@ export function ThemePicker({ className = "" }: { className?: string }) {
                   setTheme(t.id);
                   setOpen(false);
                 }}
-                className="flex w-full items-center gap-2 rounded-xl px-2 py-2 text-right text-sm text-foreground transition-colors hover:bg-secondary"
+                className="flex w-full items-center gap-2 rounded-xl px-2 py-2 text-right text-foreground transition-colors hover:bg-secondary"
               >
                 <span
-                  className="size-5 shrink-0 rounded-full border border-border"
+                  className="size-6 shrink-0 rounded-full border border-border"
                   style={{ backgroundImage: t.swatch }}
                 />
-                <span className="flex-1">{t.name}</span>
-                {theme === t.id ? <Check className="size-4 text-primary" /> : null}
+                <span className="flex-1">
+                  <span className="block text-sm font-semibold">
+                    {lang === "ar" ? t.name : t.nameEn}
+                  </span>
+                  <span className="block text-[11px] leading-tight text-muted-foreground">
+                    {lang === "ar" ? t.desc : t.descEn}
+                  </span>
+                </span>
+                {theme === t.id ? <Check className="size-4 shrink-0 text-primary" /> : null}
               </button>
             ))}
           </div>
