@@ -2,6 +2,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, BookOpen, HelpCircle, Heart, Info, Library } from "lucide-react";
 import { ModeHeader } from "@/components/quran/ModeHeader";
+import { FeedbackLink } from "@/components/quran/FeedbackLink";
 import { APP_BLURB, APP_BLURB_EN, APP_SECTIONS, FAQS, SOURCES } from "@/lib/about";
 import { useLang } from "@/lib/i18n";
 
@@ -105,12 +106,12 @@ function AboutPage() {
           ))}
         </div>
 
-        <Link
+        <FeedbackLink
           to="/feedback"
           className="mt-8 flex items-center justify-center gap-2 rounded-2xl bg-gold-gradient px-5 py-3 text-sm font-bold text-gold-foreground shadow-soft transition-transform hover:-translate-y-0.5"
         >
           {t("about.share")}
-        </Link>
+        </FeedbackLink>
 
         <p className="mt-8 text-center text-xs leading-7 text-muted-foreground">{t("about.thanks")}</p>
       </section>

@@ -1,6 +1,6 @@
 {
   "name": "islamic-pedia",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -46,6 +46,7 @@
     }
   },
   "dependencies": {
+    "@capacitor/browser": "^8.0.4",
     "@radix-ui/react-accordion": "^1.2.20",
     "@radix-ui/react-alert-dialog": "^1.1.23",
     "@radix-ui/react-aspect-ratio": "^1.1.15",

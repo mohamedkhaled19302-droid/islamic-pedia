@@ -6,8 +6,8 @@
  * IndexedDB download feature so playback works everywhere.
  */
 
-const SHELL = "shell-v1";
-const RUNTIME = "runtime-v1";
+const SHELL = "shell-v2";
+const RUNTIME = "runtime-v2";
 const MUSHAF_IMAGES = "mushaf-images";
 const IMAGE_HOSTS = ["files.quran.app", "quran.ksu.edu.sa"];
 const SHELL_ASSET = /\.(js|css|woff2?|ttf|png|jpe?g|webp|svg|ico|json)$/;
@@ -75,8 +75,11 @@ self.addEventListener("fetch", (event) => {
   /* cross-origin audio/anything else: pass through untouched */
   if (url.origin !== self.location.origin) return;
 
-  /* bundled data + static assets: cache-first */
-  if (pathname.startsWith("/data/") || SHELL_ASSET.test(pathname) || pathname === "/") {
+  /* bundled data + static assets: cache-first.
+   * The root document (/) is intentionally NOT cached here so it always
+   * falls through to the network-first navigation handler below — otherwise a
+   * stale shell would be served forever after an update. */
+  if (pathname.startsWith("/data/") || SHELL_ASSET.test(pathname)) {
     event.respondWith(
       caches.open(SHELL).then(async (cache) => {
         const hit = await cache.match(req);

@@ -27,6 +27,7 @@ import {
 import heroPattern from "@/assets/hero-pattern.jpg";
 import { useLocalStore } from "@/components/quran/use-local-store";
 import { InstallAppButton } from "@/components/quran/InstallAppButton";
+import { FeedbackLink } from "@/components/quran/FeedbackLink";
 import { getBookmarks, getProgress, type Bookmark, type Progress } from "@/lib/storage";
 import { AboutMarquee } from "@/components/quran/AboutMarquee";
 import { useLang } from "@/lib/i18n";
@@ -237,14 +238,14 @@ function Splash() {
             <Settings className="size-4" />
           </Link>
         </div>
-        <Link
+        <FeedbackLink
           to="/feedback"
           aria-label="أرسل رأيك"
           title="أرسل رأيك"
           className="absolute right-4 top-4 z-10 grid size-10 place-items-center rounded-full border border-gold/50 bg-background/10 text-gold backdrop-blur transition-all hover:scale-105 hover:bg-background/20"
         >
           <MessageSquareHeart className="size-4" />
-        </Link>
+        </FeedbackLink>
         <div className="relative mx-auto max-w-3xl px-6 pb-16 pt-14 text-center sm:pt-16">
           <p className="font-quran animate-pop text-lg text-gold">
             بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ

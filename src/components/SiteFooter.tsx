@@ -3,6 +3,7 @@ import { MonitorDown, Smartphone } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLang } from "@/lib/i18n";
 import { APP_VERSION, isPackagedApp } from "@/lib/app-downloads";
+import { FeedbackLink } from "@/components/quran/FeedbackLink";
 import { cn } from "@/lib/utils";
 
 export function SiteFooter() {
@@ -64,9 +65,9 @@ export function SiteFooter() {
             <Link to="/downloads" className="transition-colors hover:text-foreground">
               {t("footer.downloads")}
             </Link>
-            <Link to="/feedback" className="transition-colors hover:text-foreground">
+            <FeedbackLink to="/feedback" className="transition-colors hover:text-foreground">
               {t("footer.feedback")}
-            </Link>
+            </FeedbackLink>
             <Link to="/settings" className="transition-colors hover:text-foreground">
               {t("common.settings")}
             </Link>
