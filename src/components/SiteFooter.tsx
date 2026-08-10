@@ -2,7 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { MonitorDown, Smartphone } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLang } from "@/lib/i18n";
-import { APP_VERSION, isPackagedApp } from "@/lib/app-downloads";
+import { isPackagedApp } from "@/lib/app-downloads";
+import { VersionBadge } from "@/components/quran/VersionBadge";
 import { FeedbackLink } from "@/components/quran/FeedbackLink";
 import { cn } from "@/lib/utils";
 
@@ -30,7 +31,7 @@ export function SiteFooter() {
           </p>
           <p className="mt-2 text-sm leading-7 text-muted-foreground">{t("footer.tagline")}</p>
           <p className="mt-3 text-xs text-muted-foreground">
-            {t("common.version")} {APP_VERSION}
+            <VersionBadge />
           </p>
         </div>
 

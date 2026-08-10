@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import {
   Check,
   CloudDownload,
-  Info,
   Languages,
   Moon,
   Palette,
@@ -13,12 +12,12 @@ import {
   Trash2,
 } from "lucide-react";
 import { ModeHeader } from "@/components/quran/ModeHeader";
+import { VersionBadge } from "@/components/quran/VersionBadge";
 import { THEMES, useTheme } from "@/components/quran/use-theme";
 import { useNightMode } from "@/components/quran/use-night-mode";
 import { LANGS, useLang, type Lang } from "@/lib/i18n";
 import { clearAllData } from "@/lib/storage";
 import { countDownloadedAudio } from "@/lib/audioDownloads";
-import { APP_VERSION } from "@/lib/app-downloads";
 
 export const Route = createFileRoute("/settings")({
   head: () => ({
@@ -150,8 +149,8 @@ function Settings() {
             <ShieldCheck className="size-5 text-gold" /> {t("settings.aboutTitle")}
           </h2>
           <p className="mt-3 text-sm leading-7 text-muted-foreground">{t("settings.aboutText")}</p>
-          <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
-            <Info className="size-4" /> {t("common.version")} {APP_VERSION}
+          <div className="mt-3 text-xs text-muted-foreground">
+            <VersionBadge />
           </div>
         </section>
 
