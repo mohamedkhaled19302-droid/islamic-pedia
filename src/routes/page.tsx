@@ -378,7 +378,23 @@ function PageMode() {
             </div>
           </article>
         ) : (
-          <article className="rounded-3xl border-2 border-gold/50 bg-card p-5 shadow-soft">
+          <article
+            onTouchStart={(e) => {
+              touchX.current = e.touches[0].clientX;
+              touchY.current = e.touches[0].clientY;
+            }}
+            onTouchEnd={(e) => {
+              if (touchX.current === null || touchY.current === null) return;
+              const dx = e.changedTouches[0].clientX - touchX.current;
+              const dy = e.changedTouches[0].clientY - touchY.current;
+              touchX.current = null;
+              touchY.current = null;
+              if (Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy)) return;
+              if (dx > 0) go(page + 1);
+              else go(page - 1);
+            }}
+            className="rounded-3xl border-2 border-gold/50 bg-card p-5 shadow-soft"
+          >
             {ayahs.map((a, i) => {
               const isFirst = a.numberInSurah === 1;
               return (

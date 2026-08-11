@@ -173,7 +173,7 @@ function RootComponent() {
           <Outlet />
         </div>
         <MiniPlayer />
-        <SiteFooter />
+        {pathname === "/" ? <SiteFooter /> : null}
         <Toaster richColors position="bottom-center" />
       </QueryClientProvider>
     </LanguageProvider>

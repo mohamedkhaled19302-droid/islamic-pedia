@@ -1,6 +1,6 @@
 
 import { Link } from "@tanstack/react-router";
-import { Headphones, Pause, Play, X } from "lucide-react";
+import { Headphones, Home, Pause, Play, X } from "lucide-react";
 import { globalAudio, useGlobalAudio } from "@/lib/audio";
 
 /** Small floating bar shown while a track is loaded, available in every mode. */
@@ -40,6 +40,14 @@ export function MiniPlayer() {
         <span className="flex items-center gap-1 text-[10px] text-muted-foreground">
           <Headphones className="size-3.5" /> مشغّل مشترك
         </span>
+        <Link
+          to="/"
+          aria-label="العودة إلى الرئيسية"
+          title="العودة إلى الرئيسية"
+          className="grid size-8 shrink-0 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+        >
+          <Home className="size-4" />
+        </Link>
         <button
           onClick={() => globalAudio.stop()}
           aria-label="إغلاق المشغّل"
