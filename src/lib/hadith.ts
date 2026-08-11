@@ -145,7 +145,7 @@ interface SectionPayload {
 }
 
 /** Chapter titles for a book (English titles from the source dataset). */
-export async function fetchBookInfo(slug: string) {
+export async function fetchBookInfo(edition: string) {
   let json: Record<
     string,
     { metadata: { name: string; sections: Record<string, string> } }
@@ -159,11 +159,11 @@ export async function fetchBookInfo(slug: string) {
     if (!res.ok) throw new Error("تعذّر تحميل فهرس الكتاب");
     json = (await res.json()) as typeof json;
   }
-  const meta = json[slug]?.metadata;
+  const meta = json[edition]?.metadata;
   const sections = Object.entries(meta?.sections ?? {})
     .filter(([n, title]) => Number(n) > 0 && title)
     .map(([n, title]) => ({ n: Number(n), title }));
-  return { name: meta?.name ?? slug, sections };
+  return { name: meta?.name ?? edition, sections };
 }
 
 export async function fetchSection(edition: string, section: number) {

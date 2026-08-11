@@ -18,12 +18,18 @@ import {
   type RuledHadith,
 } from "@/lib/hadith";
 import { CHAPTER_TITLES_AR } from "@/lib/hadith-chapters";
+import { saveProgress } from "@/lib/storage";
 
 import { toArabicNumber } from "@/lib/quran";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/hadith")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    b: typeof search.b === "string" && search.b ? search.b : undefined,
+    s: search.s != null ? Number(search.s) : undefined,
+    p: search.p != null ? Number(search.p) : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "مكتبة الحديث — البخاري ومسلم والسنن والضعيف والموضوع" },
@@ -131,18 +137,35 @@ function HadithSearch() {
 }
 
 function HadithLibrary() {
-  const [shelf, setShelf] = useState<Shelf>("bukhari");
-  const [section, setSection] = useState(1);
-  const [page, setPage] = useState(0);
+  const navigate = Route.useNavigate();
+  const { b, s, p } = Route.useSearch();
+  const [shelf, setShelf] = useState<Shelf>(() => {
+    if (b && (ALL_BOOKS.some((x) => x.slug === b) || b === "weak" || b === "fabricated")) {
+      return b as Shelf;
+    }
+    return "bukhari";
+  });
+  const [section, setSection] = useState<number>(() =>
+    typeof s === "number" && Number.isFinite(s) && s >= 1 ? s : 1,
+  );
+  const [page, setPage] = useState<number>(() =>
+    typeof p === "number" && Number.isFinite(p) && p >= 0 ? p : 0,
+  );
   const [flip, setFlip] = useState<"next" | "prev" | null>(null);
 
   const isRuled = shelf === "weak" || shelf === "fabricated";
   const book = useMemo(() => (isRuled ? null : findBook(shelf)), [shelf, isRuled]);
 
+  useEffect(() => {
+    void navigate({
+      replace: true,
+      search: { b: shelf, s: section, p: page },
+    });
+  }, [shelf, section, page, navigate]);
 
   const info = useQuery({
-    queryKey: ["hadith-info", book?.slug],
-    queryFn: () => fetchBookInfo(book!.slug),
+    queryKey: ["hadith-info", book?.edition],
+    queryFn: () => fetchBookInfo(book!.edition),
     enabled: !!book,
     staleTime: Infinity,
   });
@@ -176,6 +199,18 @@ function HadithLibrary() {
 
   const arTitles = book ? (CHAPTER_TITLES_AR[book.slug] ?? {}) : {};
   const sectionTitle = arTitles[String(section)] ?? `الباب ${toArabicNumber(section)}`;
+
+  useEffect(() => {
+    if (isRuled || !book) return;
+    saveProgress({
+      mode: "hadith",
+      label: `${book.name} — ${sectionTitle}`,
+      value: section,
+      book: book.slug,
+      page,
+      at: Date.now(),
+    });
+  }, [isRuled, book?.slug, section, page, sectionTitle]);
 
   return (
     <main className="min-h-screen pb-24">

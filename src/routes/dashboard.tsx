@@ -68,6 +68,7 @@ const MODE_TO: Record<string, string> = {
   read: "/read",
   page: "/page",
   memorize: "/memorize",
+  hadith: "/hadith",
 };
 
 function Section({

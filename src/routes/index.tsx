@@ -209,6 +209,7 @@ const MODE_LABEL: Record<string, { title: string; titleEn: string; to: string }>
   read: { title: "الوضع المستمر", titleEn: "Continuous Mode", to: "/read" },
   page: { title: "صفحة صفحة", titleEn: "Page by Page", to: "/page" },
   memorize: { title: "التكرار للحفظ", titleEn: "Memorization", to: "/memorize" },
+  hadith: { title: "قراءة الحديث", titleEn: "Hadith Reading", to: "/hadith" },
 };
 
 function Splash() {
@@ -296,7 +297,9 @@ function Splash() {
                       ? { p: p.value }
                       : p.mode === "read"
                         ? { s: p.value, a: p.ayah }
-                        : { s: p.value }
+                        : p.mode === "hadith"
+                          ? { b: p.book, s: p.value, p: p.page }
+                          : { s: p.value }
                   }
                   className="flex items-center gap-3 rounded-xl bg-secondary/70 p-3 transition-all hover:translate-x-[-4px] hover:bg-secondary"
                 >

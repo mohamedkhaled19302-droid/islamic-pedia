@@ -1,15 +1,19 @@
 
 /** Local persistence for reading progress, bookmarks and contest history. */
 
-export type ModeKey = "read" | "page" | "memorize";
+export type ModeKey = "read" | "page" | "memorize" | "hadith";
 
 export interface Progress {
   mode: ModeKey;
   label: string;
-  /** surah number (read/memorize) or page number (page mode) */
+  /** surah number (read/memorize), page number (page mode) or hadith section */
   value: number;
   ayah?: number;
   at: number;
+  /** hadith: book slug (e.g. "bukhari") */
+  book?: string;
+  /** hadith: page inside the section */
+  page?: number;
 }
 
 export interface Bookmark {

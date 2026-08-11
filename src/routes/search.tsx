@@ -1,6 +1,6 @@
 
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2, Search as SearchIcon } from "lucide-react";
 import { ModeHeader } from "@/components/quran/ModeHeader";
@@ -37,11 +37,16 @@ interface Row {
   page: number;
   text: string;
   norm: string;
+  normAlt: string;
 }
 
-const normalize = (s: string) =>
-  s
-    .replace(/[\u064B-\u0652\u0670\u0640\u06D6-\u06ED]/g, "")
+/** Normalizes for matching. Returns two forms:
+ *  [strip dagger-alef → keeps "الله" from اللّٰه] and
+ *  [dagger-alef → ا → keeps "العالمين" from العٰلمين]. */
+const normForms = (s: string): [string, string] => {
+  const base = s
+    .replace(/^\uFEFF/, "")
+    .replace(/[\u064B-\u0652\u0640\u06D6-\u06ED]/g, "")
     .replace(/[أإآٱ]/g, "ا")
     .replace(/ى/g, "ي")
     .replace(/ؤ/g, "و")
@@ -49,6 +54,8 @@ const normalize = (s: string) =>
     .replace(/ة/g, "ه")
     .replace(/\s+/g, " ")
     .trim();
+  return [base.replace(/\u0670/g, ""), base.replace(/\u0670/g, "ا")];
+};
 
 async function loadIndex(): Promise<Row[]> {
   let surahs: Array<{
@@ -68,13 +75,15 @@ async function loadIndex(): Promise<Row[]> {
   const rows: Row[] = [];
   for (const s of surahs) {
     for (const a of s.ayahs) {
+      const [norm, normAlt] = normForms(a.text);
       rows.push({
         surah: s.number,
         surahName: s.name,
         ayah: a.numberInSurah,
         page: a.page,
         text: a.text,
-        norm: normalize(a.text),
+        norm,
+        normAlt,
       });
     }
   }
@@ -83,13 +92,23 @@ async function loadIndex(): Promise<Row[]> {
 
 function SearchMode() {
   const [q, setQ] = useState("");
+  const [limit, setLimit] = useState(100);
   const index = useQuery({ queryKey: ["quran-index"], queryFn: loadIndex, staleTime: Infinity });
 
-  const results = useMemo(() => {
-    const needle = normalize(q);
+  const matches = useMemo(() => {
+    const [needle, needleAlt] = normForms(q);
     if (needle.length < 2 || !index.data) return [];
-    return index.data.filter((r) => r.norm.includes(needle)).slice(0, 300);
+    return index.data.filter((r) => r.norm.includes(needle) || r.normAlt.includes(needleAlt));
   }, [q, index.data]);
+
+  useEffect(() => {
+    setLimit(100);
+  }, [q]);
+
+  const total = matches.length;
+  const visible = matches.slice(0, limit);
+  const hidden = total - limit;
+  const STEP = 200;
 
   return (
     <main className="min-h-screen pb-20">
@@ -113,19 +132,19 @@ function SearchMode() {
           </div>
         ) : index.isError ? (
           <p className="py-16 text-center text-sm text-destructive">تعذّر تحميل نص المصحف.</p>
-        ) : normalize(q).length < 2 ? (
+        ) : normForms(q)[0].length < 2 ? (
           <p className="py-16 text-center text-sm text-muted-foreground">
             اكتب حرفين على الأقل لبدء البحث في ٦٢٣٦ آية.
           </p>
-        ) : results.length === 0 ? (
+        ) : total === 0 ? (
           <p className="py-16 text-center text-sm text-muted-foreground">لا توجد نتائج مطابقة.</p>
         ) : (
           <>
             <p className="mb-4 text-center text-xs text-muted-foreground">
-              {toArabicNumber(results.length)} نتيجة
+              {toArabicNumber(total)} نتيجة
             </p>
             <ul className="space-y-3">
-              {results.map((r) => (
+              {visible.map((r) => (
                 <li key={`${r.surah}-${r.ayah}`} className="ayah-frame px-4 py-3">
                   <div className="mb-2 flex items-center gap-2 text-[11px] text-muted-foreground">
                     <span className="font-quran text-sm text-primary">{r.surahName}</span>
@@ -168,6 +187,15 @@ function SearchMode() {
                 </li>
               ))}
             </ul>
+            {hidden > 0 ? (
+              <button
+                type="button"
+                onClick={() => setLimit((l) => l + STEP)}
+                className="mx-auto mt-6 block rounded-xl border border-gold/50 bg-card px-6 py-2.5 text-sm font-bold text-primary shadow-soft transition-colors hover:border-gold"
+              >
+                عرض المزيد — تبقّى {toArabicNumber(hidden)} آية
+              </button>
+            ) : null}
           </>
         )}
       </div>
