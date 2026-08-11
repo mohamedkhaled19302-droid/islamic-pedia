@@ -610,16 +610,208 @@ html, body, #root { min-height: 100dvh; width: 100%; }
   --chart-5: oklch(0.8 0.14 220);
 }
 
-/* ===== لمسات شكلية لكل تصميم ===== */
-[data-theme="modern"] .rounded-3xl { border-radius: 1.25rem; }
-[data-theme="modern"] .rounded-2xl { border-radius: 1.1rem; }
+/* ===== هيكل كل تصميم — المظهر لا يقتصر على الألوان ===== */
 
-[data-theme="heritage"] .rounded-3xl { border-radius: 0.9rem; }
-[data-theme="heritage"] .rounded-2xl { border-radius: 0.7rem; }
-[data-theme="heritage"] .border { border-color: var(--border); }
+/* ----- العصري Modern — شريط مسطح، بطاقات بلا حدود، تقسيم نظيف ----- */
+[data-theme="modern"] {
+  --radius: 0.8rem;
+  --font-display: "Cairo", ui-sans-serif, system-ui, sans-serif;
+}
+[data-theme="modern"] body { background-image: none; }
 
-[data-theme="cool"] .rounded-3xl { border-radius: 1.8rem; }
-[data-theme="cool"] .rounded-2xl { border-radius: 1.5rem; }
+[data-theme="modern"] .theme-header {
+  background: var(--card);
+  color: var(--foreground);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 0 var(--border);
+}
+[data-theme="modern"] .theme-header h1 {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+[data-theme="modern"] .theme-header .rounded-full { border-radius: 0.5rem; }
 
-[data-theme="futuristic"] .rounded-3xl { border-radius: 1rem; }
-[data-theme="futuristic"] .rounded-2xl { border-radius: 0.8rem; }
+[data-theme="modern"] .theme-hero {
+  background-image: none;
+  background-color: var(--background);
+  color: var(--foreground);
+  border-bottom: 1px solid var(--border);
+}
+[data-theme="modern"] .theme-hero h1 { color: var(--foreground); filter: none; }
+[data-theme="modern"] .theme-hero p { color: var(--muted-foreground); }
+[data-theme="modern"] .theme-hero .text-gold { color: var(--primary); }
+[data-theme="modern"] .theme-hero .bg-gold-gradient { background-image: linear-gradient(135deg, var(--primary), var(--ring)); }
+
+[data-theme="modern"] .theme-card {
+  background: transparent;
+  border-color: transparent;
+  border-top-color: var(--border);
+  border-radius: 0;
+  box-shadow: none;
+  padding-inline: 0.25rem;
+}
+[data-theme="modern"] .theme-card:hover { background: var(--secondary); }
+[data-theme="modern"] .theme-card .bg-gold-gradient {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  box-shadow: none;
+}
+
+/* ----- التراثي Heritage — إطار مخطوط، زوايا قائمة، خط يد ----- */
+[data-theme="heritage"] {
+  --radius: 0.3rem;
+  --font-display: "Aref Ruqaa", "Amiri", serif;
+}
+[data-theme="heritage"] body {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--gold) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--gold) 4%, transparent) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+[data-theme="heritage"] .theme-header {
+  background: var(--background);
+  color: var(--foreground);
+  border-bottom: 0;
+  box-shadow: none;
+}
+[data-theme="heritage"] .theme-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold) 25%, var(--gold) 75%, transparent);
+}
+[data-theme="heritage"] .theme-header h1 { font-family: var(--font-hand); font-weight: 700; }
+[data-theme="heritage"] .theme-header .rounded-full { border-radius: 0; }
+[data-theme="heritage"] .theme-hero .relative::before {
+  content: "";
+  position: absolute;
+  inset: 0.45rem;
+  border: 1px solid color-mix(in oklab, var(--gold) 45%, transparent);
+  pointer-events: none;
+}
+[data-theme="heritage"] .theme-hero .font-quran { font-family: var(--font-hand); }
+[data-theme="heritage"] .theme-card {
+  position: relative;
+  border-radius: 0;
+  border: 1px solid var(--gold);
+  background: color-mix(in oklab, var(--card) 97%, var(--gold) 3%);
+}
+[data-theme="heritage"] .theme-card::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid color-mix(in oklab, var(--gold) 30%, transparent);
+  pointer-events: none;
+}
+[data-theme="heritage"] .theme-card:hover {
+  border-color: var(--gold);
+  background: color-mix(in oklab, var(--gold) 7%, var(--card));
+}
+[data-theme="heritage"] .theme-card .bg-gold-gradient {
+  background: color-mix(in oklab, var(--gold) 15%, var(--card));
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 0;
+  box-shadow: none;
+}
+[data-theme="heritage"] .theme-card h2 { font-family: var(--font-hand); }
+
+/* ----- البارد Cool — زجاج عائم، زوايا كبيرة، فقاعات ناعمة ----- */
+[data-theme="cool"] {
+  --radius: 1.6rem;
+}
+[data-theme="cool"] .theme-header {
+  background: transparent;
+  color: var(--foreground);
+  border-bottom: 0;
+  box-shadow: none;
+}
+[data-theme="cool"] .theme-header > div:first-child {
+  background: color-mix(in oklab, var(--card) 60%, transparent);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
+  border-radius: 999px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  box-shadow: var(--shadow-soft);
+}
+[data-theme="cool"] .theme-hero {
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+[data-theme="cool"] .theme-card {
+  background: color-mix(in oklab, var(--card) 55%, transparent);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+  box-shadow: 0 18px 40px -28px color-mix(in oklab, var(--primary) 60%, transparent);
+}
+[data-theme="cool"] .theme-card:hover { border-color: var(--primary); }
+[data-theme="cool"] .theme-card .bg-gold-gradient {
+  background-image: linear-gradient(135deg, color-mix(in oklab, var(--primary) 18%, var(--card)), color-mix(in oklab, var(--gold) 14%, var(--card)));
+  color: var(--primary);
+  border: 1px solid color-mix(in oklab, var(--primary) 30%, transparent);
+  box-shadow: none;
+}
+
+/* ----- المستقبلي Futuristic — حواف مائلة، توهج نيون، زوايا مقطوعة ----- */
+[data-theme="futuristic"] {
+  --radius: 0.55rem;
+  --font-display: "Cairo", ui-sans-serif, system-ui, sans-serif;
+}
+[data-theme="futuristic"] .theme-header {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
+}
+[data-theme="futuristic"] .theme-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), var(--gold), transparent);
+}
+[data-theme="futuristic"] .theme-header h1 {
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+[data-theme="futuristic"] .theme-header .rounded-full { border-radius: 0.4rem; }
+[data-theme="futuristic"] .theme-hero {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2rem), 0 100%);
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--gold) 12%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--gold) 12%, transparent) 1px, transparent 1px),
+    var(--gradient-hero);
+  background-size: 46px 46px, 46px 46px, auto;
+}
+[data-theme="futuristic"] .theme-hero h1 {
+  text-shadow: 0 0 28px color-mix(in oklab, var(--gold) 65%, transparent);
+}
+[data-theme="futuristic"] .theme-card {
+  border: 1px solid color-mix(in oklab, var(--primary) 35%, transparent);
+  background-image: linear-gradient(160deg, var(--card), color-mix(in oklab, var(--primary) 6%, var(--card)));
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+}
+[data-theme="futuristic"] .theme-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 60%, transparent), 0 16px 34px -20px color-mix(in oklab, var(--primary) 80%, transparent);
+}
+[data-theme="futuristic"] .theme-card .bg-gold-gradient {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid color-mix(in oklab, var(--gold) 50%, transparent);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 14px -4px color-mix(in oklab, var(--gold) 75%, transparent);
+}

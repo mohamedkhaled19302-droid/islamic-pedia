@@ -18,6 +18,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { LanguageProvider } from "@/lib/i18n";
 import { toast } from "sonner";
 import { getOnboarding } from "@/lib/storage";
+import { isPackagedApp } from "@/lib/app-downloads";
 
 const PRE_PAINT_SCRIPT = `(function(){try{var K=['classic','modern','heritage','cool','futuristic'],l=localStorage.getItem('bkl-lang'),t=localStorage.getItem('bkl-theme'),n=localStorage.getItem('bkl-night'),d=document.documentElement;if(l==='en'){d.lang='en';d.dir='ltr';}else{d.lang='ar';d.dir='rtl';}if(t&&K.indexOf(t)>=0){d.setAttribute('data-theme',t);}else{d.setAttribute('data-theme','classic');}if(n==='1'){d.classList.add('dark');}}catch(e){}})();`;
 
@@ -141,7 +142,11 @@ function RootComponent() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
-    if ("serviceWorker" in navigator && !import.meta.env.DEV) {
+    /* The service worker is only useful for offline caching on the web. In the
+     * packaged apps the content is bundled locally (Electron serves it from a
+     * local server, Capacitor from local assets), so the SW would only cache a
+     * stale shell and delay the new version — skip it there entirely. */
+    if ("serviceWorker" in navigator && !import.meta.env.DEV && !isPackagedApp()) {
       navigator.serviceWorker
         .register(`${import.meta.env.BASE_URL}sw.js`)
         .catch(() => {});

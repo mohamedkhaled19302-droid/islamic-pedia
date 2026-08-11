@@ -41,7 +41,7 @@ export function ModeHeader({
   return (
     <header
       className={cn(
-        "sticky top-0 z-30 border-b border-border/70 bg-hero text-hero-foreground shadow-soft transition-transform duration-300 ease-out",
+        "theme-header sticky top-0 z-30 border-b border-border/70 bg-hero text-hero-foreground shadow-soft transition-transform duration-300 ease-out",
         hidden && hideOnScroll && "-translate-y-full",
       )}
     >

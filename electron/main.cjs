@@ -58,6 +58,42 @@ async function createWindow() {
   win.webContents.on('did-fail-load', (_e, code, desc) => {
     console.error('did-fail-load', code, desc);
   });
+
+  /* A service worker from a previous version can keep serving a stale cached
+   * shell on the local origin (http://127.0.0.1:PORT), so the app would show
+   * the old version on launch. The packaged app bundles its own content and
+   * does not need a service worker at all — on every startup we purge any
+   * existing registrations and caches, then reload once to guarantee the
+   * freshly bundled version is shown immediately. */
+  let swPurged = false;
+  win.webContents.on('did-finish-load', async () => {
+    if (swPurged) return;
+    swPurged = true;
+    try {
+      const changed = await win.webContents.executeJavaScript(`
+        (async () => {
+          let changed = false;
+          if ('serviceWorker' in navigator) {
+            const regs = await navigator.serviceWorker.getRegistrations();
+            for (const reg of regs) {
+              if (reg.active || reg.waiting || reg.installing) changed = true;
+              await reg.unregister();
+            }
+          }
+          if (typeof caches !== 'undefined') {
+            const keys = await caches.keys();
+            if (keys.length) changed = true;
+            await Promise.all(keys.map((k) => caches.delete(k)));
+          }
+          return changed;
+        })()
+      `);
+      if (changed) win.webContents.reload();
+    } catch (err) {
+      console.error('sw-purge failed', err && err.message ? err.message : err);
+    }
+  });
+
   win.once('ready-to-show', () => win.show());
   win.on('closed', () => {
     /* handled by window-all-closed */

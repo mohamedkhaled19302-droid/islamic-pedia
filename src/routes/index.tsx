@@ -228,7 +228,7 @@ function Splash() {
 
   return (
     <main className="min-h-screen overflow-x-hidden">
-      <section className="relative overflow-hidden bg-hero text-hero-foreground">
+      <section className="theme-hero relative overflow-hidden bg-hero text-hero-foreground">
         <img
           src={heroPattern}
           alt=""
@@ -282,7 +282,7 @@ function Splash() {
       <section className="mx-auto w-full max-w-[1600px] px-4 pb-16 pt-6 sm:px-6 lg:px-10">
 
         {resume.length ? (
-          <div className="animate-rise mb-6 rounded-2xl border border-gold/40 bg-card p-4 shadow-glow">
+          <div className="theme-card animate-rise mb-6 rounded-2xl border border-gold/40 bg-card p-4 shadow-glow">
             <h2 className="flex items-center gap-2 text-sm font-bold text-foreground">
               <History className="size-4 text-gold" /> {t("home.resume")}
             </h2>
@@ -320,7 +320,7 @@ function Splash() {
 
         <Link
           to="/bookmarks"
-          className="animate-rise mb-6 flex items-center gap-3 rounded-2xl border border-border bg-card p-4 shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-glow"
+          className="theme-card animate-rise mb-6 flex items-center gap-3 rounded-2xl border border-border bg-card p-4 shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-glow"
         >
           <span className="grid size-10 place-items-center rounded-xl bg-gold-gradient text-gold-foreground">
             <BookMarked className="size-5" />
@@ -336,13 +336,13 @@ function Splash() {
           <ArrowLeft className="size-4 text-primary" />
         </Link>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+        <div className="theme-grid grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {visibleModes.map((m, i) => (
             <Link
               key={m.to}
               to={m.to}
               style={{ animationDelay: `${i * 70}ms` }}
-              className="group animate-rise rounded-2xl border border-border bg-card p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-glow"
+              className="theme-card group animate-rise rounded-2xl border border-border bg-card p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-glow"
             >
               <div className="flex items-center gap-3">
                 <span className="grid size-11 place-items-center rounded-xl bg-gold-gradient text-gold-foreground shadow-soft transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
