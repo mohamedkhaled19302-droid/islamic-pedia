@@ -1,12 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Download, MonitorDown, ShieldCheck, Smartphone, CheckCircle2, Code2, Puzzle } from "lucide-react";
+import { Download, CheckCircle2, Code2, Puzzle, ShieldCheck } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ModeHeader } from "@/components/quran/ModeHeader";
 import { useLang } from "@/lib/i18n";
-import { APP_BINARY_URLS, APP_VERSION, GITHUB_REPO, isPackagedApp } from "@/lib/app-downloads";
+import { GITHUB_REPO, isPackagedApp } from "@/lib/app-downloads";
 
 const CHROME_EXT_URL = "/chrome-extension.zip";
-const CHROME_EXT_FOLDER_URL = "/chrome-extension/";
 
 export const Route = createFileRoute("/app")({
   head: () => ({
@@ -66,73 +65,6 @@ function DownloadAppPage() {
       <ModeHeader title={t("app.title")} subtitle={t("app.subtitle")} />
 
       <div className="mx-auto max-w-2xl space-y-5 px-4 py-6">
-
-        {/* ── ويندوز ── */}
-        <section className="animate-rise overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
-          <div className="flex items-center gap-3 border-b border-border/60 bg-secondary/40 px-5 py-3">
-            <MonitorDown className="size-5 text-gold" />
-            <h2 className="font-bold text-foreground">{t("app.windowsTitle")}</h2>
-          </div>
-          <div className="px-5 py-4">
-            <p className="text-sm leading-7 text-muted-foreground">{t("app.windowsDesc")}</p>
-
-            <a
-              href={APP_BINARY_URLS.windows}
-              className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-gold-gradient px-5 py-3 text-sm font-bold text-gold-foreground shadow-glow transition-transform hover:scale-[1.02]"
-            >
-              <Download className="size-4" />
-              {t("app.download")} · {t("install.windows")} {APP_VERSION}
-            </a>
-
-            <div className="mt-4 rounded-xl border border-gold/30 bg-gold/5 p-4">
-              <p className="flex items-center gap-2 text-sm font-bold text-foreground">
-                <ShieldCheck className="size-4 text-gold" /> {t("app.windowsWarnTitle")}
-              </p>
-              <p className="mt-1 text-xs text-muted-foreground">{t("app.windowsWarnDesc")}</p>
-              <ol className="mt-2 space-y-1.5">
-                <Step n={1}>{t("app.windowsWarnStep1")}</Step>
-                <Step n={2}>{t("app.windowsWarnStep2")}</Step>
-                <Step n={3}>{t("app.windowsWarnStep3")}</Step>
-              </ol>
-            </div>
-          </div>
-        </section>
-
-        {/* ── أندرويد ── */}
-        <section className="animate-rise overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
-          <div className="flex items-center gap-3 border-b border-border/60 bg-secondary/40 px-5 py-3">
-            <Smartphone className="size-5 text-gold" />
-            <h2 className="font-bold text-foreground">{t("app.androidTitle")}</h2>
-          </div>
-          <div className="px-5 py-4">
-            <p className="text-sm leading-7 text-muted-foreground">{t("app.androidDesc")}</p>
-
-            <a
-              href={APP_BINARY_URLS.apk}
-              className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-gold-gradient px-5 py-3 text-sm font-bold text-gold-foreground shadow-glow transition-transform hover:scale-[1.02]"
-            >
-              <Download className="size-4" />
-              {t("app.download")} · APK {APP_VERSION}
-            </a>
-
-            <div className="mt-4 rounded-xl border border-border bg-background p-4">
-              <p className="flex items-center gap-2 text-sm font-bold text-foreground">
-                <ShieldCheck className="size-4 text-gold" /> {t("app.androidSteps")}
-              </p>
-              <ol className="mt-2 space-y-1.5">
-                <Step n={1}>{t("app.androidStep1")}</Step>
-                <Step n={2}>{t("app.androidStep2")}</Step>
-                <Step n={3}>{t("app.androidStep3")}</Step>
-                <Step n={4}>{t("app.androidStep4")}</Step>
-              </ol>
-            </div>
-
-            <div className="mt-3 rounded-xl border border-green-500/30 bg-green-500/5 p-3">
-              <p className="text-xs font-bold text-green-700 dark:text-green-400">{t("app.androidSafe")}</p>
-              <p className="mt-0.5 text-xs text-muted-foreground">{t("app.androidSafeDesc")}</p>
-            </div>
-          </div>
-        </section>
 
         {/* ── إضافة المتصفح ── */}
         <section className="animate-rise overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
