@@ -2,7 +2,6 @@
 export interface RadioStation {
   id: string;
   country: string;
-  countryEn: string;
   flag: string;
   station: string;
   url: string;
@@ -14,7 +13,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "sa-makkah",
     country: "السعودية",
-    countryEn: "Saudi Arabia",
     flag: "🇸🇦",
     station: "إذاعة القرآن الكريم — مكة المكرمة",
     url: "https://stream.radiojar.com/4wqre23fytzuv",
@@ -22,7 +20,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "sa-tarateel",
     country: "السعودية",
-    countryEn: "Saudi Arabia",
     flag: "🇸🇦",
     station: "إذاعة ترتيل",
     url: "https://qurango.net/radio/tarateel",
@@ -30,7 +27,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "eg-cairo",
     country: "مصر",
-    countryEn: "Egypt",
     flag: "🇪🇬",
     station: "إذاعة القرآن الكريم — القاهرة",
     url: "https://stream.radiojar.com/8s5u5tpdtwzuv",
@@ -38,7 +34,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "ae-sharjah",
     country: "الإمارات",
-    countryEn: "United Arab Emirates",
     flag: "🇦🇪",
     station: "إذاعة القرآن الكريم — الشارقة",
     url: "https://l3.itworkscdn.net/smcquranlive/quranradiolive/icecast.audio",
@@ -46,7 +41,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "om-quran",
     country: "عُمان",
-    countryEn: "Oman",
     flag: "🇴🇲",
     station: "إذاعة القرآن الكريم — سلطنة عُمان",
     url: "https://partwota.cdn.mgmlcdn.com/quranrdoorg/quranrdo.stream_aac/chunklist.m3u8",
@@ -55,7 +49,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "bh-quran",
     country: "البحرين",
-    countryEn: "Bahrain",
     flag: "🇧🇭",
     station: "إذاعة القرآن الكريم — البحرين ١٠٦٫١",
     url: "https://5c7b683162943.streamlock.net/live/ngrp:radio-106-1_all/playlist.m3u8",
@@ -64,7 +57,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "kw-minshawi",
     country: "تلاوات مختارة",
-    countryEn: "Recitations",
     flag: "🎧",
     station: "محمد صديق المنشاوي",
     url: "https://serverkw.quran-uni.com:8018/;*.mp3",
@@ -72,7 +64,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "kw-sudais",
     country: "تلاوات مختارة",
-    countryEn: "Recitations",
     flag: "🎧",
     station: "عبد الرحمن السديس",
     url: "https://serverkw.quran-uni.com:8196/;*.mp3",
@@ -80,7 +71,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "kw-abdulbasit",
     country: "تلاوات مختارة",
-    countryEn: "Recitations",
     flag: "🎧",
     station: "عبد الباسط عبد الصمد",
     url: "https://serverkw.quran-uni.com:8004/;*.mp3",
@@ -88,7 +78,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "kw-husary",
     country: "تلاوات مختارة",
-    countryEn: "Recitations",
     flag: "🎧",
     station: "محمود خليل الحصري",
     url: "https://serverkw.quran-uni.com:8002/;*.mp3",
@@ -96,7 +85,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "kw-shuraym",
     country: "تلاوات مختارة",
-    countryEn: "Recitations",
     flag: "🎧",
     station: "سعود الشريم",
     url: "https://serverkw.quran-uni.com:8194/;*.mp3",
@@ -104,7 +92,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "kw-muaiqly",
     country: "تلاوات مختارة",
-    countryEn: "Recitations",
     flag: "🎧",
     station: "ماهر المعيقلي",
     url: "https://serverkw.quran-uni.com:8014/;*.mp3",
@@ -112,7 +99,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "kw-mustafaismail",
     country: "تلاوات مختارة",
-    countryEn: "Recitations",
     flag: "🎧",
     station: "مصطفى إسماعيل",
     url: "https://serverkw.quran-uni.com:8024/;*.mp3",
@@ -120,7 +106,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "kw-tablawi",
     country: "تلاوات مختارة",
-    countryEn: "Recitations",
     flag: "🎧",
     station: "محمد الطبلاوي",
     url: "https://serverkw.quran-uni.com:8078/;*.mp3",
@@ -128,7 +113,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "kw-ghamadi",
     country: "تلاوات مختارة",
-    countryEn: "Recitations",
     flag: "🎧",
     station: "سعد الغامدي",
     url: "https://serverkw.quran-uni.com:8026/;*.mp3",
@@ -136,7 +120,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "kw-albanna",
     country: "تلاوات مختارة",
-    countryEn: "Recitations",
     flag: "🎧",
     station: "محمود علي البنا",
     url: "https://serverkw.quran-uni.com:8022/;*.mp3",
@@ -144,7 +127,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "kw-alafasy",
     country: "تلاوات مختارة",
-    countryEn: "Recitations",
     flag: "🎧",
     station: "مشاري العفاسي",
     url: "https://serverkw.quran-uni.com:8168/;*.mp3",
@@ -152,7 +134,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "kw-qatami",
     country: "تلاوات مختارة",
-    countryEn: "Recitations",
     flag: "🎧",
     station: "ناصر القطامي",
     url: "https://serverkw.quran-uni.com:8162/;*.mp3",
@@ -160,7 +141,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "kw-dossari",
     country: "تلاوات مختارة",
-    countryEn: "Recitations",
     flag: "🎧",
     station: "ياسر الدوسري",
     url: "https://serverkw.quran-uni.com:8166/;*.mp3",
@@ -168,7 +148,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "kw-ayyoub",
     country: "تلاوات مختارة",
-    countryEn: "Recitations",
     flag: "🎧",
     station: "محمد أيوب",
     url: "https://serverkw.quran-uni.com:8154/;*.mp3",
@@ -176,7 +155,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "kw-jibreel",
     country: "تلاوات مختارة",
-    countryEn: "Recitations",
     flag: "🎧",
     station: "محمد جبريل",
     url: "https://serverkw.quran-uni.com:8158/;*.mp3",
@@ -184,7 +162,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "kw-basfar",
     country: "تلاوات مختارة",
-    countryEn: "Recitations",
     flag: "🎧",
     station: "عبد الله بصفر",
     url: "https://serverkw.quran-uni.com:8182/;*.mp3",
@@ -192,7 +169,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "kw-alajmy",
     country: "تلاوات مختارة",
-    countryEn: "Recitations",
     flag: "🎧",
     station: "أحمد بن علي العجمي",
     url: "https://serverkw.quran-uni.com:8184/;*.mp3",
@@ -200,7 +176,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "kw-hudhaify",
     country: "تلاوات مختارة",
-    countryEn: "Recitations",
     flag: "🎧",
     station: "علي الحذيفي",
     url: "https://serverkw.quran-uni.com:8186/;*.mp3",
@@ -208,7 +183,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "kw-shaatree",
     country: "تلاوات مختارة",
-    countryEn: "Recitations",
     flag: "🎧",
     station: "أبو بكر الشاطري",
     url: "https://serverkw.quran-uni.com:8160/;*.mp3",
@@ -216,7 +190,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "ye-sanaa",
     country: "اليمن",
-    countryEn: "Yemen",
     flag: "🇾🇪",
     station: "إذاعة القرآن الكريم — صنعاء",
     url: "https://halo.streamerr.co/listen/quran_kareem/radio.mp3",
@@ -224,7 +197,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "dz-coran",
     country: "الجزائر",
-    countryEn: "Algeria",
     flag: "🇩🇿",
     station: "إذاعة القرآن الكريم الجزائرية",
     url: "https://radiocoran.ice.infomaniak.ch/coran.mp3",
@@ -232,7 +204,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "pk-soutul",
     country: "باكستان",
-    countryEn: "Pakistan",
     flag: "🇵🇰",
     station: "صوت القرآن — إسلام آباد",
     url: "https://whmsonic.radio.gov.pk:7002/stream?type=http&nocache=12",
@@ -240,7 +211,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "id-sayang",
     country: "إندونيسيا",
-    countryEn: "Indonesia",
     flag: "🇮🇩",
     station: "راديو سايانغ قرآن",
     url: "https://radio.sayangquran.com/listen/radiosq/radio.mp3",
@@ -248,7 +218,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "za-husnaa",
     country: "جنوب أفريقيا",
-    countryEn: "South Africa",
     flag: "🇿🇦",
     station: "إذاعة الحسنى للقرآن",
     url: "https://stream.zeno.fm/pyc8kax6f2zuv",
@@ -256,7 +225,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "us-soul",
     country: "الولايات المتحدة",
-    countryEn: "United States",
     flag: "🇺🇸",
     station: "Quran for the Soul",
     url: "https://islamicbulletin.site:8102/stream",
@@ -264,7 +232,6 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: "world-mix",
     country: "إذاعات عالمية",
-    countryEn: "Worldwide",
     flag: "🌍",
     station: "تلاوات مختارة — بث متنوع",
     url: "https://backup.qurango.net/radio/mix",
@@ -273,7 +240,7 @@ export const RADIO_STATIONS: RadioStation[] = [
 
 export const RADIO_COUNTRIES = Array.from(
   new Map(
-    RADIO_STATIONS.map((s) => [s.country, { country: s.country, flag: s.flag, en: s.countryEn }]),
+    RADIO_STATIONS.map((s) => [s.country, { country: s.country, flag: s.flag }]),
   ).values(),
 );
 

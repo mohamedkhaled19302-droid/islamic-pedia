@@ -26,25 +26,18 @@ import {
   fetchRandomMutashabih,
   fetchUpcomingEvents,
 } from "@/lib/islamic";
+import { seoHead } from "@/lib/seo";
+import { SeoIntro } from "@/components/SeoIntro";
 
 export const Route = createFileRoute("/tools")({
-  head: () => ({
-    meta: [
-      { title: "أدوات إسلامية — أسماء الله الحسنى والزكاة والتقويم والمناسبات" },
-      {
-        name: "description",
-        content:
-          "أسماء الله الحسنى بمعانيها العربية مع بحث وفلترة، حاسبة زكاة، تحويل التاريخ الهجري والميلادي، المناسبات الإسلامية، والآيات المتشابهات.",
-      },
-      { property: "og:title", content: "أدوات إسلامية — باحث كتاب الله" },
-      {
-        property: "og:description",
-        content: "أسماء الله الحسنى، الزكاة، التقويم، والمناسبات في مكان واحد.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "أدوات إسلامية — أسماء الله الحسنى والزكاة والتقويم والمناسبات",
+      description:
+        "أسماء الله الحسنى بمعانيها العربية مع بحث وفلترة، حاسبة زكاة، تحويل التاريخ الهجري والميلادي، المناسبات الإسلامية، والآيات المتشابهات.",
+      path: "/tools",
+      crumbs: [{ name: "أدوات إسلامية", path: "/tools" }],
+    }),
   component: Tools,
 });
 
@@ -474,6 +467,17 @@ function Tools() {
       </ModeHeader>
 
       <div className="mx-auto max-w-3xl px-4 py-6">
+        <SeoIntro
+          title="أدوات إسلامية متنوعة"
+          links={[
+            { to: "/prayer", label: "مواقيت الصلاة" },
+            { to: "/athkar", label: "الأذكار الموثقة" },
+          ]}
+        >
+          أسماء الله الحسنى بمعانيها مع بحث وفلترة، وحاسبة الزكاة، والتقويم الهجري
+          وتحويل التاريخ، والمناسبات الإسلامية القادمة، والآيات المتشابهات، وآية
+          للتدبّر اليومي.
+        </SeoIntro>
         {tab === "asma" ? (
           <AsmaPanel />
         ) : tab === "hijri" ? (

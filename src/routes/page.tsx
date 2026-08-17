@@ -17,6 +17,8 @@ import { globalAudio, useGlobalAudio } from "@/lib/audio";
 import { resolvePlayableUrl } from "@/lib/audioDownloads";
 
 import { getMushafPrefs, saveMushafPrefs, saveProgress } from "@/lib/storage";
+import { seoHead } from "@/lib/seo";
+import { SeoIntro } from "@/components/SeoIntro";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -25,23 +27,14 @@ export const Route = createFileRoute("/page")({
   validateSearch: (search: Record<string, unknown>) => ({
     p: search.p ? Number(search.p) : undefined,
   }),
-  head: () => ({
-    meta: [
-      { title: "وضع صفحة صفحة — تصفّح المصحف الشريف" },
-      {
-        name: "description",
-        content:
-          "اقرأ القرآن الكريم كما في المصحف المطبوع من الصفحة ١ إلى ٦٠٤، مع تشغيل الآيات وتكرارها والتحكم بسرعة التلاوة.",
-      },
-      { property: "og:title", content: "صفحة صفحة — باحث كتاب الله" },
-      {
-        property: "og:description",
-        content: "تجربة المصحف الورقي على الشاشة مع تلاوة وتكرار للآيات.",
-      },
-      { property: "og:type", content: "article" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "وضع صفحة صفحة — تصفّح المصحف الشريف",
+      description:
+        "اقرأ القرآن الكريم كما في المصحف المطبوع من الصفحة ١ إلى ٦٠٤، مع تشغيل الآيات وتكرارها والتحكم بسرعة التلاوة.",
+      path: "/page",
+      crumbs: [{ name: "المصحف صفحة صفحة", path: "/page" }],
+    }),
   component: PageMode,
 });
 
@@ -321,6 +314,18 @@ function PageMode() {
       ) : null}
 
       <div className={cn("mx-auto px-4 py-6", expand ? "max-w-4xl" : "max-w-2xl", view === "searchtruth" ? "hidden" : "")}>
+        <SeoIntro
+          title="المصحف الشريف صفحة صفحة"
+          links={[
+            { to: "/read", label: "القراءة المستمرة" },
+            { to: "/tafsir", label: "المصحف مع التفسير" },
+            { to: "/search", label: "البحث في القرآن" },
+          ]}
+        >
+          اقرأ القرآن الكريم كما في المصحف المطبوع — من الصفحة ١ إلى ٦٠٤ — مع
+          ألوان التجويد، وتشغيل الآيات وتكرارها، وتلاوة القرّاء، والتحكم بسرعة
+          التلاوة وحجم الخط.
+        </SeoIntro>
 
         {isLoading ? (
           <div className="flex justify-center py-16">

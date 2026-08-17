@@ -36,25 +36,18 @@ import {
   type Sensitivity,
   type SpeechLike,
 } from "@/lib/recite";
+import { seoHead } from "@/lib/seo";
+import { SeoIntro } from "@/components/SeoIntro";
 
 export const Route = createFileRoute("/recite")({
-  head: () => ({
-    meta: [
-      { title: "اختبار التسميع — اقرأ من حفظك بالميكروفون" },
-      {
-        name: "description",
-        content:
-          "اختر نطاقاً من الصفحات أو الأجزاء أو السور، وسمّع الآيات من حفظك: الميكروفون يكشف الكلمات كلمة كلمة ويُنبّهك عند الخطأ، أو سمّع بنفسك واكشف الآية للمراجعة.",
-      },
-      { property: "og:title", content: "اختبار التسميع — باحث كتاب الله" },
-      {
-        property: "og:description",
-        content: "تسميع تفاعلي بالميكروفون مع كشف الكلمات كلمة كلمة وتنبيه الأخطاء.",
-      },
-      { property: "og:type", content: "article" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "اختبار التسميع — اقرأ من حفظك بالميكروفون",
+      description:
+        "اختر نطاقاً من الصفحات أو الأجزاء أو السور، وسمّع الآيات من حفظك: الميكروفون يكشف الكلمات كلمة كلمة ويُنبّهك عند الخطأ، أو سمّع بنفسك واكشف الآية للمراجعة.",
+      path: "/recite",
+      crumbs: [{ name: "اختبار التسميع", path: "/recite" }],
+    }),
   component: RecitePage,
 });
 
@@ -623,8 +616,19 @@ function RecitePage() {
   if (!pages) {
     return (
       <main className="min-h-screen pb-24">
-        <ModeHeader title="اختبار التسميع" subtitle="Recitation Test" />
+        <ModeHeader title="اختبار التسميع" subtitle="اقرأ من حفظك بالميكروفون" />
         <div className="mx-auto max-w-2xl px-4 py-6">
+          <SeoIntro
+            title="سمّع القرآن من حفظك"
+            links={[
+              { to: "/memorize", label: "التكرار للحفظ" },
+              { to: "/read", label: "قراءة القرآن الكريم" },
+            ]}
+          >
+            اختر نطاقاً من الصفحات أو الأجزاء أو السور، وسمّع الآيات من حفظك: في
+            وضع الميكروفون يكشف التطبيق الكلمات كلمة كلمة ويُنبهك عند الخطأ، أو
+            سمّع بنفسك واكشف الآية للمراجعة.
+          </SeoIntro>
           <div className="animate-rise space-y-6 rounded-3xl border border-border bg-card p-5 shadow-soft">
             <div>
               <h2 className="mb-3 font-bold text-foreground">اختر النطاق</h2>

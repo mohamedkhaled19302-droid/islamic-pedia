@@ -1,21 +1,21 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ArrowLeft, ArrowRight, Check, CloudDownload, Globe, Moon, Sun, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, CloudDownload, Moon, Sun, Sparkles } from "lucide-react";
 import { useTheme, THEMES } from "@/components/quran/use-theme";
 import { useNightMode } from "@/components/quran/use-night-mode";
 import { saveOnboarding } from "@/lib/storage";
-import { LANGS, useLang, type Lang } from "@/lib/i18n";
+import { useLang } from "@/lib/i18n";
+import { seoHead } from "@/lib/seo";
 import { isPackagedApp } from "@/lib/app-downloads";
 
 export const Route = createFileRoute("/onboarding")({
-  head: () => ({
-    meta: [
-      { title: "مرحباً بك — الموسوعة الإسلامية" },
-      { name: "description", content: "اختر شكل تطبيقك وفضّل تحميل التلاوات في أول خطوة." },
-      { property: "og:title", content: "مرحباً بك — الموسوعة الإسلامية" },
-      { property: "og:type", content: "website" },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "مرحباً بك — الموسوعة الإسلامية",
+      description: "اختر شكل تطبيقك وفضّل تحميل التلاوات في أول خطوة.",
+      path: "/onboarding",
+      noIndex: true,
+    }),
   component: Onboarding,
 });
 
@@ -23,11 +23,10 @@ function Onboarding() {
   const navigate = useNavigate();
   const { theme, setTheme } = useTheme();
   const { night, set } = useNightMode();
-  const { lang, setLang, t, dir } = useLang();
+  const { t } = useLang();
   const [step, setStep] = useState(0);
   const [nightChoice, setNightChoice] = useState<boolean | null>(night);
   const [downloadNow, setDownloadNow] = useState(false);
-  const [langChoice, setLangChoice] = useState<Lang>(lang);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -38,7 +37,6 @@ function Onboarding() {
 
   const steps = [
     t("onb.stepWelcome"),
-    t("onb.stepLang"),
     t("onb.stepTheme"),
     t("onb.stepLook"),
     t("onb.stepAudio"),
@@ -50,13 +48,9 @@ function Onboarding() {
       theme,
       night: nightChoice ?? false,
       downloadNow: dl,
-      lang: langChoice,
     });
     void navigate({ to: dl ? "/downloads" : "/" });
   };
-
-  const NextIcon = dir === "rtl" ? ArrowLeft : ArrowRight;
-  const BackIcon = dir === "rtl" ? ArrowRight : ArrowLeft;
 
   return (
     <main className="flex min-h-screen items-center justify-center overflow-hidden bg-hero px-4 py-10 text-hero-foreground">
@@ -87,33 +81,6 @@ function Onboarding() {
 
             {step === 1 ? (
               <div>
-                <h2 className="text-center text-xl font-bold">{t("onb.chooseLang")}</h2>
-                <p className="mt-1 text-center text-sm text-muted-foreground">{t("onb.chooseLangHint")}</p>
-                <div className="mt-5 grid grid-cols-2 gap-3">
-                  {LANGS.map((l) => (
-                    <button
-                      key={l.id}
-                      onClick={() => {
-                        setLangChoice(l.id);
-                        setLang(l.id);
-                      }}
-                      className={`flex items-center justify-center gap-2 rounded-2xl border p-5 transition-all ${
-                        langChoice === l.id
-                          ? "border-gold bg-secondary shadow-glow"
-                          : "border-border bg-card hover:border-gold/50"
-                      }`}
-                    >
-                      <Globe className={`size-5 ${langChoice === l.id ? "text-gold" : "text-muted-foreground"}`} />
-                      <span className="font-bold text-foreground">{l.label}</span>
-                      {langChoice === l.id ? <Check className="size-4 text-gold" /> : null}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            ) : null}
-
-            {step === 2 ? (
-              <div>
                 <h2 className="text-center text-xl font-bold">{t("onb.chooseTheme")}</h2>
                 <p className="mt-1 text-center text-sm text-muted-foreground">{t("onb.chooseThemeHint")}</p>
                 <div className="mt-5 grid grid-cols-1 gap-3">
@@ -133,10 +100,10 @@ function Onboarding() {
                       />
                       <span className="min-w-0 flex-1">
                         <span className="block truncate text-sm font-bold text-foreground">
-                          {langChoice === "ar" ? th.name : th.nameEn}
+                          {th.name}
                         </span>
                         <span className="block text-[11px] leading-tight text-muted-foreground">
-                          {langChoice === "ar" ? th.desc : th.descEn}
+                          {th.desc}
                         </span>
                       </span>
                       {theme === th.id ? <Check className="size-4 shrink-0 text-gold" /> : null}
@@ -146,7 +113,7 @@ function Onboarding() {
               </div>
             ) : null}
 
-            {step === 3 ? (
+            {step === 2 ? (
               <div>
                 <h2 className="text-center text-xl font-bold">{t("onb.chooseLook")}</h2>
                 <p className="mt-1 text-center text-sm text-muted-foreground">{t("onb.chooseLookHint")}</p>
@@ -176,7 +143,7 @@ function Onboarding() {
               </div>
             ) : null}
 
-            {step === 4 ? (
+            {step === 3 ? (
               <div>
                 <h2 className="text-center text-xl font-bold">{t("onb.downloadAudio")}</h2>
                 <p className="mt-1 text-center text-sm text-muted-foreground">{t("onb.downloadAudioHint")}</p>
@@ -228,7 +195,7 @@ function Onboarding() {
               disabled={step === 0}
               className="flex items-center gap-1 rounded-full border border-border px-4 py-2 text-sm font-bold text-muted-foreground transition-all hover:bg-secondary disabled:opacity-30"
             >
-              <BackIcon className="size-4" /> {t("common.back")}
+              <ArrowRight className="size-4" /> {t("common.back")}
             </button>
 
             <div className="flex items-center gap-1.5">
@@ -247,7 +214,7 @@ function Onboarding() {
                 onClick={() => setStep((s) => Math.min(steps.length - 1, s + 1))}
                 className="flex items-center gap-1 rounded-full bg-gold-gradient px-5 py-2 text-sm font-bold text-gold-foreground shadow-glow transition-transform hover:scale-105"
               >
-                {t("common.next")} <NextIcon className="size-4" />
+                {t("common.next")} <ArrowLeft className="size-4" />
               </button>
             ) : (
               <span className="px-2" />

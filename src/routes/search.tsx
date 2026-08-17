@@ -7,26 +7,22 @@ import { ModeHeader } from "@/components/quran/ModeHeader";
 import { BookmarkButton } from "@/components/quran/BookmarkButton";
 import { NoteButton } from "@/components/quran/NoteButton";
 import { API, toArabicNumber } from "@/lib/quran";
+import { seoHead } from "@/lib/seo";
+import { SeoIntro } from "@/components/SeoIntro";
 import { Input } from "@/components/ui/input";
 
 export const Route = createFileRoute("/search")({
-  head: () => ({
-    meta: [
-      { title: "بحث في آيات القرآن الكريم — كلمة أو عبارة" },
-      {
-        name: "description",
-        content:
-          "ابحث عن أي كلمة أو عبارة في القرآن الكريم كاملاً، واحصل على الآيات مع اسم السورة ورقم الآية وروابط القراءة والاستماع.",
-      },
-      { property: "og:title", content: "البحث في الآيات — باحث كتاب الله" },
-      {
-        property: "og:description",
-        content: "بحث فوري على مستوى الآية في المصحف كاملاً دون إنترنت بعد أول تحميل.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
+  validateSearch: (search: Record<string, unknown>) => ({
+    q: typeof search.q === "string" && search.q ? search.q : undefined,
   }),
+  head: () =>
+    seoHead({
+      title: "البحث في القرآن الكريم",
+      description:
+        "ابحث في القرآن الكريم كاملاً (٦٢٣٦ آية) عن أي كلمة أو عبارة بالعربية، واحصل على الآية مع اسم السورة ورقمها وروابط القراءة والاستماع.",
+      path: "/search",
+      crumbs: [{ name: "البحث في القرآن", path: "/search" }],
+    }),
   component: SearchMode,
 });
 
@@ -91,9 +87,19 @@ async function loadIndex(): Promise<Row[]> {
 }
 
 function SearchMode() {
-  const [q, setQ] = useState("");
+  const { q: initialQ } = Route.useSearch();
+  const navigate = Route.useNavigate();
+  const [q, setQ] = useState(initialQ ?? "");
   const [limit, setLimit] = useState(100);
   const index = useQuery({ queryKey: ["quran-index"], queryFn: loadIndex, staleTime: Infinity });
+
+  const setQuery = (v: string) => {
+    setQ(v);
+    void navigate({
+      replace: true,
+      search: (prev) => ({ ...prev, q: v.trim() ? v : undefined }),
+    });
+  };
 
   const matches = useMemo(() => {
     const [needle, needleAlt] = normForms(q);
@@ -117,7 +123,7 @@ function SearchMode() {
           <SearchIcon className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             value={q}
-            onChange={(e) => setQ(e.target.value)}
+            onChange={(e) => setQuery(e.target.value)}
             placeholder="مثال: الحمد لله رب العالمين"
             className="h-11 bg-card pr-9 text-card-foreground"
             aria-label="كلمة البحث"
@@ -126,6 +132,18 @@ function SearchMode() {
       </ModeHeader>
 
       <div className="mx-auto max-w-3xl px-4 py-6">
+        <SeoIntro
+          title="البحث في القرآن الكريم"
+          links={[
+            { to: "/read", label: "قراءة القرآن الكريم" },
+            { to: "/page", label: "المصحف صفحة صفحة" },
+            { to: "/tafsir", label: "تفسير الآيات" },
+          ]}
+        >
+          اكتب أي كلمة أو عبارة عربية لتبحث في المصحف كاملاً — من الفاتحة إلى الناس —
+          وتحصل على الآيات المطابقة مع اسم السورة ورقم الآية ورقم الصفحة، ثم افتح
+          الآية في وضع القراءة أو المصحف أو استمع إليها.
+        </SeoIntro>
         {index.isLoading ? (
           <div className="flex items-center justify-center gap-2 py-16 text-muted-foreground">
             <Loader2 className="size-4 animate-spin" /> جاري تجهيز فهرس المصحف…

@@ -1,13 +1,15 @@
-export const APP_VERSION = "1.3.6";
+export const APP_VERSION = "1.0.0";
 
 export const APP_SITE = "https://islamic-pedia.vercel.app";
 
-export const APP_RELEASE_TAG = "1.3.6";
+export const APP_RELEASE_TAG = "1.0.0";
+
+export const GITHUB_REPO = "https://github.com/mohamedkhaled19302-droid/islamic-pedia";
 
 export const APP_BINARY_URLS = {
-  windows: `https://github.com/mohamedkhaled19302-droid/islamic-pedia/releases/download/${APP_RELEASE_TAG}/Islamic-Pedia-Setup-${APP_VERSION}.exe`,
-  windowsPortable: `https://github.com/mohamedkhaled19302-droid/islamic-pedia/releases/download/${APP_RELEASE_TAG}/Islamic-Pedia-${APP_VERSION}.exe`,
-  apk: `https://github.com/mohamedkhaled19302-droid/islamic-pedia/releases/download/${APP_RELEASE_TAG}/islamic-pedia-${APP_VERSION}.apk`,
+  windows: `${GITHUB_REPO}/releases/download/${APP_RELEASE_TAG}/Islamic-Pedia-Setup-${APP_VERSION}.exe`,
+  windowsPortable: `${GITHUB_REPO}/releases/download/${APP_RELEASE_TAG}/Islamic-Pedia-${APP_VERSION}.exe`,
+  apk: `${GITHUB_REPO}/releases/download/${APP_RELEASE_TAG}/islamic-pedia-${APP_VERSION}.apk`,
 };
 
 export function isWindows() {

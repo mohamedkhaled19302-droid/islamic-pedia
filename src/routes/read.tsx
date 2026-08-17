@@ -10,6 +10,8 @@ import { QuranNav } from "@/components/quran/QuranNav";
 import { useNightMode } from "@/components/quran/use-night-mode";
 import { fetchSurahs } from "@/lib/quran";
 import { saveProgress } from "@/lib/storage";
+import { seoHead } from "@/lib/seo";
+import { SeoIntro } from "@/components/SeoIntro";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -18,23 +20,14 @@ export const Route = createFileRoute("/read")({
     s: search.s ? Number(search.s) : undefined,
     a: search.a ? Number(search.a) : undefined,
   }),
-  head: () => ({
-    meta: [
-      { title: "الوضع المستمر — قراءة القرآن الكريم كاملاً" },
-      {
-        name: "description",
-        content:
-          "تصفّح القرآن الكريم في شريط مستمر مع النص العثماني والترجمة الإنجليزية وتلاوات ستة عشر قارئاً، وتنقّل سريع بالسورة أو الجزء أو الصفحة.",
-      },
-      { property: "og:title", content: "الوضع المستمر — باحث كتاب الله" },
-      {
-        property: "og:description",
-        content: "قراءة متواصلة للقرآن الكريم مع الصوت والترجمة والتحكم بحجم الخط.",
-      },
-      { property: "og:type", content: "article" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "الوضع المستمر — قراءة القرآن الكريم كاملاً",
+      description:
+        "تصفّح القرآن الكريم في شريط مستمر مع النص العثماني والترجمة الإنجليزية وتلاوات ستة عشر قارئاً، وتنقّل سريع بالسورة أو الجزء أو الصفحة.",
+      path: "/read",
+      crumbs: [{ name: "القراءة المستمرة", path: "/read" }],
+    }),
   component: ContinuousMode,
 });
 
@@ -115,7 +108,7 @@ function ContinuousMode() {
 
   return (
     <main className="min-h-screen pb-24">
-      <ModeHeader title="الوضع المستمر" subtitle="Continuous Mode">
+      <ModeHeader title="الوضع المستمر" subtitle="قراءة متواصلة للقرآن الكريم كاملاً">
         <div className="flex flex-wrap items-center gap-2">
           <QuranNav label="السور والأجزاء" onSelect={(t) => jumpTo(t.surah, t.ayah)} />
 
@@ -173,6 +166,18 @@ function ContinuousMode() {
       </ModeHeader>
 
       <div className={cn("mx-auto", expand ? "max-w-4xl" : "max-w-3xl")}>
+        <SeoIntro
+          title="اقرأ القرآن الكريم كاملاً"
+          links={[
+            { to: "/page", label: "المصحف صفحة صفحة" },
+            { to: "/search", label: "البحث في القرآن" },
+            { to: "/tafsir", label: "التفسير" },
+          ]}
+        >
+          تصفّح المصحف كاملاً من الفاتحة إلى الناس في شريط مستمر، مع النص العثماني
+          والترجمة الإنجليزية وتلاوة أي قارئ من ستة عشر قارئاً، والتنقل السريع بين
+          السور والأجزاء والصفحات.
+        </SeoIntro>
         {surahs.isLoading ? (
           <div className="flex justify-center py-8">
             <Loader2 className="size-5 animate-spin text-muted-foreground" />

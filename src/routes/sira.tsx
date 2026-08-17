@@ -5,27 +5,20 @@ import { BookOpen, Search as SearchIcon, Sparkles } from "lucide-react";
 import { ModeHeader } from "@/components/quran/ModeHeader";
 import { SIRA_CHAPTERS } from "@/lib/sira";
 import { toArabicNumber } from "@/lib/quran";
+import { seoHead } from "@/lib/seo";
+import { SeoIntro } from "@/components/SeoIntro";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/sira")({
-  head: () => ({
-    meta: [
-      { title: "السيرة النبوية الشريفة — من المولد إلى الرفيق الأعلى" },
-      {
-        name: "description",
-        content:
-          "اقرأ السيرة النبوية الشريفة مرتّبة في فصول: النسب والمولد وبدء الوحي والدعوة والهجرة والغزوات وحجة الوداع ووفاته ﷺ، بأسلوب ميسّر مع بحث في الفصول.",
-      },
-      { property: "og:title", content: "السيرة النبوية الشريفة — باحث كتاب الله" },
-      {
-        property: "og:description",
-        content: "فصول السيرة النبوية مرتّبة زمنياً مع بحث سريع داخل النصوص.",
-      },
-      { property: "og:type", content: "article" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "السيرة النبوية الشريفة — من المولد إلى الرفيق الأعلى",
+      description:
+        "اقرأ السيرة النبوية الشريفة مرتّبة في فصول: النسب والمولد وبدء الوحي والدعوة والهجرة والغزوات وحجة الوداع ووفاته ﷺ، بأسلوب ميسّر مع بحث في الفصول.",
+      path: "/sira",
+      crumbs: [{ name: "السيرة النبوية", path: "/sira" }],
+    }),
   component: SiraPage,
 });
 
@@ -57,6 +50,17 @@ function SiraPage() {
       </ModeHeader>
 
       <div className="mx-auto max-w-3xl px-4 py-6">
+        <SeoIntro
+          title="السيرة النبوية الشريفة"
+          links={[
+            { to: "/hadith", label: "مكتبة الحديث" },
+            { to: "/read", label: "قراءة القرآن الكريم" },
+          ]}
+        >
+          اقرأ السيرة النبوية العطرة مرتّبة في فصول زمنية: النسب والمولد وبدء
+          الوحي والدعوة والهجرة والغزوات وحجة الوداع ووفاته ﷺ، بأسلوب ميسّر مع
+          بحث سريع في جميع الفصول.
+        </SeoIntro>
         <div className="mb-5 rounded-2xl border border-gold/40 bg-card p-4 text-sm leading-7 text-muted-foreground shadow-soft">
           <h2 className="mb-1 flex items-center gap-2 font-bold text-foreground">
             <Sparkles className="size-4 text-gold" /> لمحة

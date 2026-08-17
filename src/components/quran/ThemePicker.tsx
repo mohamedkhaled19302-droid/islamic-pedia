@@ -7,7 +7,7 @@ import { useLang } from "@/lib/i18n";
 /** زر اختيار شكل التطبيق (5 تصاميم) يوضع بجانب زر الوضع الليلي. */
 export function ThemePicker({ className = "" }: { className?: string }) {
   const { theme, setTheme, themes } = useTheme();
-  const { t, lang } = useLang();
+  const { t } = useLang();
   const [open, setOpen] = useState(false);
 
   return (
@@ -45,10 +45,10 @@ export function ThemePicker({ className = "" }: { className?: string }) {
                 />
                 <span className="flex-1">
                   <span className="block text-sm font-semibold">
-                    {lang === "ar" ? t.name : t.nameEn}
+                    {t.name}
                   </span>
                   <span className="block text-[11px] leading-tight text-muted-foreground">
-                    {lang === "ar" ? t.desc : t.descEn}
+                    {t.desc}
                   </span>
                 </span>
                 {theme === t.id ? <Check className="size-4 shrink-0 text-primary" /> : null}

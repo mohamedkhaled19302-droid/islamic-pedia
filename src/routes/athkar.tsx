@@ -6,25 +6,18 @@ import { ModeHeader } from "@/components/quran/ModeHeader";
 import { ATHKAR } from "@/lib/athkar";
 import { getAthkarState, saveAthkarState } from "@/lib/storage";
 import { toArabicNumber } from "@/lib/quran";
+import { seoHead } from "@/lib/seo";
+import { SeoIntro } from "@/components/SeoIntro";
 
 export const Route = createFileRoute("/athkar")({
-  head: () => ({
-    meta: [
-      { title: "الأذكار الموثقة — أذكار الصباح والمساء والنوم | باحث كتاب الله" },
-      {
-        name: "description",
-        content:
-          "أذكار الصباح والمساء والنوم والاستيقاظ وأدبار الصلوات ورمضان والحج والسفر، بنصوص موثقة من القرآن والسنة الصحيحة مع ذكر المصدر وعدّاد لكل ذكر.",
-      },
-      { property: "og:title", content: "الأذكار الموثقة — باحث كتاب الله" },
-      {
-        property: "og:description",
-        content: "أذكار موثقة من الكتاب والسنة مع عدّاد لكل ذكر وحفظ تلقائي لتقدّمك اليومي.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "الأذكار الموثقة — أذكار الصباح والمساء والنوم",
+      description:
+        "أذكار الصباح والمساء والنوم والاستيقاظ وأدبار الصلوات ورمضان والحج والسفر، بنصوص موثقة من القرآن والسنة الصحيحة مع ذكر المصدر وعدّاد لكل ذكر.",
+      path: "/athkar",
+      crumbs: [{ name: "الأذكار الموثقة", path: "/athkar" }],
+    }),
   component: AthkarPage,
 });
 
@@ -85,6 +78,17 @@ function AthkarPage() {
       </ModeHeader>
 
       <section className="mx-auto max-w-3xl px-4 pt-4">
+        <SeoIntro
+          title="الأذكار الموثقة من القرآن والسنة"
+          links={[
+            { to: "/tasbih", label: "السبحة الإلكترونية" },
+            { to: "/read", label: "قراءة القرآن الكريم" },
+          ]}
+        >
+          أذكار الصباح والمساء والنوم والاستيقاظ وأدبار الصلوات ورمضان والحج
+          والسفر، بنصوص موثقة من الكتاب والسنة الصحيحة، مع ذكر المصدر وعدّاد لكل
+          ذكر وحفظ تلقائي لتقدّمك اليومي.
+        </SeoIntro>
         <div className="flex items-center gap-3 rounded-2xl border border-border bg-card p-3 shadow-soft">
           <span className="grid size-10 place-items-center rounded-xl bg-gold-gradient text-gold-foreground">
             <Sparkles className="size-5" />

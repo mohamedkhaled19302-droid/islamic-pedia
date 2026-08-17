@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Download, MonitorDown, ShieldCheck, Smartphone, Globe, CheckCircle2 } from "lucide-react";
+import { Download, MonitorDown, ShieldCheck, Smartphone, Globe, CheckCircle2, Code2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ModeHeader } from "@/components/quran/ModeHeader";
 import { useLang } from "@/lib/i18n";
-import { APP_BINARY_URLS, APP_VERSION, isPackagedApp } from "@/lib/app-downloads";
+import { APP_BINARY_URLS, APP_VERSION, GITHUB_REPO, isPackagedApp } from "@/lib/app-downloads";
 
 export const Route = createFileRoute("/app")({
   head: () => ({
@@ -116,6 +116,24 @@ function DownloadAppPage() {
             </p>
             <p className="mt-1 text-sm leading-7 text-muted-foreground">{t("app.playStoreDesc")}</p>
           </div>
+        </section>
+
+        <section className="animate-rise rounded-2xl border border-border bg-card p-5 shadow-soft">
+          <h2 className="flex items-center gap-2 font-bold text-foreground">
+            <Code2 className="size-5 text-gold" /> الكود المصدري
+          </h2>
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">
+            المشروع مفتوح المصدر بالكامل على GitHub. يمكنك الاطلاع على الكود أو المساهمة أو تحميل أحدث إصدار مباشرة.
+          </p>
+          <a
+            href={GITHUB_REPO}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex items-center gap-2 rounded-xl bg-foreground px-5 py-2.5 text-sm font-bold text-background shadow-soft transition-transform hover:scale-105"
+          >
+            <Code2 className="size-4" />
+            فتح على GitHub
+          </a>
         </section>
 
         <p className="rounded-2xl border border-border bg-card p-4 text-center text-xs leading-7 text-muted-foreground">

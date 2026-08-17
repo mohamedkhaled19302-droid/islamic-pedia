@@ -1,0 +1,249 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 380px;
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  background: #0a0f1a;
+  color: #e8e8e8;
+  direction: rtl;
+  overflow-x: hidden;
+}
+
+.hero {
+  text-align: center;
+  padding: 20px 16px 12px;
+  background: linear-gradient(180deg, #0d3b2e 0%, #0a0f1a 100%);
+}
+.hero-icon { font-size: 32px; margin-bottom: 4px; }
+.hero h1 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #4ade80;
+  letter-spacing: 0.3px;
+}
+.hero .subtitle {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+.prayer-card {
+  margin: 0 12px 10px;
+  background: #111827;
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid #1f2937;
+}
+.prayer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.prayer-label {
+  font-size: 12px;
+  color: #9ca3af;
+}
+.prayer-countdown {
+  font-size: 20px;
+  font-weight: 700;
+  color: #4ade80;
+  font-variant-numeric: tabular-nums;
+}
+.prayer-times {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.prayer-time {
+  text-align: center;
+  background: #1f2937;
+  border-radius: 8px;
+  padding: 6px 2px;
+}
+.prayer-time .name {
+  font-size: 10px;
+  color: #9ca3af;
+  display: block;
+}
+.prayer-time .time {
+  font-size: 11px;
+  font-weight: 600;
+  color: #e5e7eb;
+  margin-top: 2px;
+  display: block;
+}
+.prayer-time.active {
+  background: #064e3b;
+  border: 1px solid #059669;
+}
+.prayer-time.active .name { color: #34d399; }
+.prayer-time.active .time { color: #6ee7b7; }
+.prayer-place {
+  text-align: center;
+  font-size: 11px;
+  color: #6b7280;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.prayer-place:hover { color: #4ade80; }
+
+.settings { margin: 0 12px 10px; }
+.settings-toggle {
+  width: 100%;
+  padding: 8px;
+  font-size: 12px;
+  color: #9ca3af;
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.settings-toggle:hover { color: #4ade80; border-color: #059669; }
+.settings-body {
+  display: none;
+  margin-top: 6px;
+  background: #111827;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #1f2937;
+}
+.settings-body.open { display: block; }
+.settings-label {
+  display: block;
+  font-size: 11px;
+  color: #9ca3af;
+  margin-bottom: 6px;
+}
+.settings-select {
+  display: block;
+  width: 100%;
+  margin-top: 3px;
+  padding: 7px 8px;
+  font-size: 12px;
+  color: #e5e7eb;
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 7px;
+  direction: rtl;
+  font-family: inherit;
+  -webkit-appearance: none;
+}
+.settings-select:focus { outline: none; border-color: #059669; }
+.settings-save {
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0a0f1a;
+  background: linear-gradient(135deg, #059669, #34d399);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.15s;
+}
+.settings-save:hover { opacity: 0.9; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: 0 12px 10px;
+}
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: #111827;
+  border-radius: 10px;
+  padding: 10px 4px;
+  text-decoration: none;
+  color: #d1d5db;
+  font-size: 11px;
+  border: 1px solid #1f2937;
+  transition: all 0.15s;
+}
+.grid-item:hover {
+  background: #1f2937;
+  border-color: #059669;
+  color: #4ade80;
+}
+.grid-icon { font-size: 20px; }
+
+.tasbih {
+  margin: 0 12px 10px;
+  background: #111827;
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+  border: 1px solid #1f2937;
+}
+.tasbih-display {
+  font-size: 40px;
+  font-weight: 700;
+  color: #4ade80;
+  line-height: 1;
+  margin-bottom: 10px;
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+}
+.tasbih-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0a0f1a;
+  background: linear-gradient(135deg, #059669, #34d399);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.1s, opacity 0.15s;
+  font-family: inherit;
+}
+.tasbih-btn:active { transform: scale(0.96); opacity: 0.9; }
+.tasbih-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+.tasbih-reset, .tasbih-select {
+  font-size: 11px;
+  padding: 4px 10px;
+  background: #1f2937;
+  color: #9ca3af;
+  border: 1px solid #374151;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.tasbih-select {
+  -webkit-appearance: none;
+  direction: rtl;
+}
+.tasbih-reset:hover { color: #ef4444; border-color: #ef4444; }
+
+.open-app {
+  display: block;
+  text-align: center;
+  margin: 0 12px 14px;
+  padding: 10px;
+  background: #0d3b2e;
+  color: #4ade80;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid #059669;
+  transition: background 0.15s;
+}
+.open-app:hover { background: #064e3b; }
+
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+.loading { animation: pulse 1.2s ease infinite; }

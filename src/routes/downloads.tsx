@@ -29,20 +29,18 @@ import {
   type DownloadedAudio,
 } from "@/lib/audioDownloads";
 import { isPackagedApp } from "@/lib/app-downloads";
+import { seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/downloads")({
-  head: () => ({
-    meta: [
-      { title: "التحميلات والعمل دون إنترنت — الموسوعة الإسلامية" },
-      {
-        name: "description",
-        content:
-          "حمّل تلاوات القراء وصفحات المصاحف للاستخدام دون اتصال، واعرف أي أجزاء التطبيق تعمل أصلاً دون إنترنت.",
-      },
-      { property: "og:title", content: "التحميلات والعمل دون إنترنت" },
-      { property: "og:type", content: "website" },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "التحميلات والعمل دون إنترنت — الموسوعة الإسلامية",
+      description:
+        "حمّل تلاوات القراء وصفحات المصاحف للاستخدام دون اتصال، واعرف أي أجزاء التطبيق تعمل أصلاً دون إنترنت.",
+      path: "/downloads",
+      crumbs: [{ name: "التحميلات", path: "/downloads" }],
+      noIndex: true,
+    }),
   component: Downloads,
 });
 

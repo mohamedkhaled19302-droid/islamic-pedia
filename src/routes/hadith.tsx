@@ -21,6 +21,8 @@ import { CHAPTER_TITLES_AR } from "@/lib/hadith-chapters";
 import { saveProgress } from "@/lib/storage";
 
 import { toArabicNumber } from "@/lib/quran";
+import { seoHead } from "@/lib/seo";
+import { SeoIntro } from "@/components/SeoIntro";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -30,23 +32,14 @@ export const Route = createFileRoute("/hadith")({
     s: search.s != null ? Number(search.s) : undefined,
     p: search.p != null ? Number(search.p) : undefined,
   }),
-  head: () => ({
-    meta: [
-      { title: "مكتبة الحديث — البخاري ومسلم والسنن والضعيف والموضوع" },
-      {
-        name: "description",
-        content:
-          "مكتبة حديثية مقسّمة إلى أجزاء: صحيح البخاري، صحيح مسلم، السنن الأربعة، مع أبواب الأحاديث الضعيفة والموضوعة وبيان حكم كل حديث، بتصفّح على شكل كتاب.",
-      },
-      { property: "og:title", content: "مكتبة الحديث — باحث كتاب الله" },
-      {
-        property: "og:description",
-        content: "كتب السنة في مكان واحد مع تقليب الصفحات وبيان درجة كل حديث.",
-      },
-      { property: "og:type", content: "article" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "مكتبة الحديث — البخاري ومسلم والسنن والضعيف والموضوع",
+      description:
+        "مكتبة حديثية مقسّمة إلى أجزاء: صحيح البخاري، صحيح مسلم، السنن الأربعة، مع أبواب الأحاديث الضعيفة والموضوعة وبيان حكم كل حديث، بتصفّح على شكل كتاب.",
+      path: "/hadith",
+      crumbs: [{ name: "مكتبة الحديث", path: "/hadith" }],
+    }),
   component: HadithLibrary,
 });
 
@@ -156,12 +149,9 @@ function HadithLibrary() {
   const isRuled = shelf === "weak" || shelf === "fabricated";
   const book = useMemo(() => (isRuled ? null : findBook(shelf)), [shelf, isRuled]);
 
-  useEffect(() => {
-    void navigate({
-      replace: true,
-      search: { b: shelf, s: section, p: page },
-    });
-  }, [shelf, section, page, navigate]);
+  const syncUrl = (sh: Shelf, sec: number, pg: number) => {
+    void navigate({ replace: true, search: { b: sh, s: sec, p: pg } });
+  };
 
   const info = useQuery({
     queryKey: ["hadith-info", book?.edition],
@@ -234,6 +224,17 @@ function HadithLibrary() {
       </ModeHeader>
 
       <div className="mx-auto max-w-3xl px-4 py-6">
+        <SeoIntro
+          title="مكتبة الحديث النبوي"
+          links={[
+            { to: "/read", label: "قراءة القرآن الكريم" },
+            { to: "/sira", label: "السيرة النبوية" },
+          ]}
+        >
+          تصفّح صحيح البخاري وصحيح مسلم والسنن الأربعة على شكل كتاب مع تقليب
+          الصفحات، واطّلع على أبواب الأحاديث الضعيفة والموضوعة مع بيان حكم كل حديث
+          وبحث في جميع الكتب.
+        </SeoIntro>
         <HadithSearch />
 
         {/* الأجزاء */}

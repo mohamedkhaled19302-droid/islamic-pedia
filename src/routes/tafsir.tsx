@@ -14,6 +14,8 @@ import { globalAudio, useGlobalAudio } from "@/lib/audio";
 import { resolvePlayableUrl } from "@/lib/audioDownloads";
 import { DEFAULT_TAFSIR, fetchTafsir, TAFSIRS } from "@/lib/tafsir";
 import { getMushafPrefs, saveMushafPrefs } from "@/lib/storage";
+import { seoHead } from "@/lib/seo";
+import { SeoIntro } from "@/components/SeoIntro";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -22,23 +24,14 @@ export const Route = createFileRoute("/tafsir")({
   validateSearch: (search: Record<string, unknown>) => ({
     p: search.p ? Number(search.p) : undefined,
   }),
-  head: () => ({
-    meta: [
-      { title: "المصحف المجوّد مع التفسير — تفاسير متعددة لكل آية" },
-      {
-        name: "description",
-        content:
-          "اقرأ المصحف بألوان التجويد صفحة صفحة، واستمع للتلاوة مع تتبّع الآية الحالية، وشاهد تفسيرها في الأسفل من الميسر والسعدي وابن كثير والطبري والقرطبي.",
-      },
-      { property: "og:title", content: "المصحف المجوّد مع التفسير — باحث كتاب الله" },
-      {
-        property: "og:description",
-        content: "مصحف ملوّن بأحكام التجويد وتفسير متزامن مع الآية التي يقرؤها الشيخ.",
-      },
-      { property: "og:type", content: "article" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "المصحف المجوّد مع التفسير — تفاسير متعددة لكل آية",
+      description:
+        "اقرأ المصحف بألوان التجويد صفحة صفحة، واستمع للتلاوة مع تتبّع الآية الحالية، وشاهد تفسيرها في الأسفل من الميسر والسعدي وابن كثير والطبري والقرطبي.",
+      path: "/tafsir",
+      crumbs: [{ name: "المصحف مع التفسير", path: "/tafsir" }],
+    }),
   component: TafsirMode,
 });
 
@@ -215,6 +208,17 @@ function TafsirMode() {
       </ModeHeader>
 
       {/* المصحف في الأعلى */}
+      <SeoIntro
+        title="المصحف المجوّد مع التفسير"
+        links={[
+          { to: "/read", label: "القراءة المستمرة" },
+          { to: "/page", label: "المصحف صفحة صفحة" },
+          { to: "/search", label: "البحث في القرآن" },
+        ]}
+      >
+        اقرأ المصحف بألوان أحكام التجويد صفحة صفحة، واستمع للتلاوة مع تتبّع الآية
+        الحالية، واقرأ تفسيرها من الميسّر والسعدي وابن كثير والطبري والقرطبي.
+      </SeoIntro>
       <section className={cn("mx-auto px-3 pt-4", expand ? "max-w-4xl" : "max-w-2xl")}>
         <article
           className="rounded-3xl border-2 border-gold/50 p-5 shadow-soft"

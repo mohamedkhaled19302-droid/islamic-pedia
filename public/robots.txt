@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://islamic-pedia.vercel.app/sitemap.xml

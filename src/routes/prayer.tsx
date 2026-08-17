@@ -5,25 +5,18 @@ import { Clock, Loader2, MapPin, Search } from "lucide-react";
 import { ModeHeader } from "@/components/quran/ModeHeader";
 import { getPrayerPlace, savePrayerPlace, type PrayerPlace } from "@/lib/storage";
 import { toArabicNumber } from "@/lib/quran";
+import { seoHead } from "@/lib/seo";
+import { SeoIntro } from "@/components/SeoIntro";
 
 export const Route = createFileRoute("/prayer")({
-  head: () => ({
-    meta: [
-      { title: "مواقيت الصلاة — اختر دولتك ومدينتك | باحث كتاب الله" },
-      {
-        name: "description",
-        content:
-          "اعرف مواقيت الصلاة اليوم في أي دولة ومدينة: الفجر والشروق والظهر والعصر والمغرب والعشاء، مع العدّ التنازلي للصلاة القادمة.",
-      },
-      { property: "og:title", content: "مواقيت الصلاة — باحث كتاب الله" },
-      {
-        property: "og:description",
-        content: "مواقيت الصلاة اليومية لأي مدينة في العالم مع العدّ التنازلي للصلاة القادمة.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "مواقيت الصلاة — اختر دولتك ومدينتك",
+      description:
+        "اعرف مواقيت الصلاة اليوم في أي دولة ومدينة: الفجر والشروق والظهر والعصر والمغرب والعشاء، مع العدّ التنازلي للصلاة القادمة.",
+      path: "/prayer",
+      crumbs: [{ name: "مواقيت الصلاة", path: "/prayer" }],
+    }),
   component: PrayerPage,
 });
 
@@ -173,6 +166,17 @@ function PrayerPage() {
       <ModeHeader title="مواقيت الصلاة" subtitle={meta ? `${meta.hijri} — ${meta.gregorian}` : "اختر دولتك ومدينتك"} />
 
       <section className="mx-auto max-w-3xl px-4 pt-4">
+        <SeoIntro
+          title="مواقيت الصلاة في أي مدينة"
+          links={[
+            { to: "/athkar", label: "الأذكار الموثقة" },
+            { to: "/tools", label: "التقويم الهجري والمناسبات" },
+          ]}
+        >
+          اعرف مواقيت الصلاة اليوم في أي دولة ومدينة — الفجر والشروق والظهر والعصر
+          والمغرب والعشاء — مع العدّ التنازلي للصلاة القادمة والتاريخين الهجري
+          والميلادي.
+        </SeoIntro>
         <div className="grid gap-3 rounded-2xl border border-border bg-card p-4 shadow-soft sm:grid-cols-3">
           <label className="block">
             <span className="mb-1 block text-[11px] font-bold text-muted-foreground">الدولة</span>

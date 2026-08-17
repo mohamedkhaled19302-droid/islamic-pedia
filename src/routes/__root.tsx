@@ -16,27 +16,28 @@ import { MiniPlayer } from "@/components/quran/MiniPlayer";
 import { Toaster } from "@/components/ui/sonner";
 import { SiteFooter } from "@/components/SiteFooter";
 import { LanguageProvider } from "@/lib/i18n";
+import { SITE_NAME_AR, SITE_NAME_EN, SITE_URL } from "@/lib/seo";
 import { toast } from "sonner";
 import { getOnboarding } from "@/lib/storage";
 import { isPackagedApp } from "@/lib/app-downloads";
 
-const PRE_PAINT_SCRIPT = `(function(){try{var K=['classic','modern','heritage','cool','futuristic'],l=localStorage.getItem('bkl-lang'),t=localStorage.getItem('bkl-theme'),n=localStorage.getItem('bkl-night'),d=document.documentElement;if(l==='en'){d.lang='en';d.dir='ltr';}else{d.lang='ar';d.dir='rtl';}if(t&&K.indexOf(t)>=0){d.setAttribute('data-theme',t);}else{d.setAttribute('data-theme','classic');}if(n==='1'){d.classList.add('dark');}}catch(e){}})();`;
+const PRE_PAINT_SCRIPT = `(function(){try{var K=['classic','modern','heritage','cool','futuristic'],t=localStorage.getItem('bkl-theme'),n=localStorage.getItem('bkl-night'),d=document.documentElement;d.lang='ar';d.dir='rtl';if(t&&K.indexOf(t)>=0){d.setAttribute('data-theme',t);}else{d.setAttribute('data-theme','classic');}if(n==='1'){d.classList.add('dark');}}catch(e){}})();`;
 
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">الصفحة غير موجودة</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          الصفحة التي تبحث عنها غير موجودة أو تم نقلها.
         </p>
         <div className="mt-6">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Go home
+            العودة للرئيسية
           </Link>
         </div>
       </div>
@@ -52,10 +53,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+          لم تتحمّل الصفحة
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+          حدث خطأ غير متوقع. يمكنك تحديث الصفحة أو العودة للرئيسية.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -65,13 +66,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             }}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Try again
+            إعادة المحاولة
           </button>
           <a
             href="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
-            Go home
+            العودة للرئيسية
           </a>
         </div>
       </div>
@@ -84,6 +85,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "google-site-verification", content: "zKJFvXerbeIdiJcFWerqzCedw6vmkr-ete0cYhpxzxo" },
       { title: "الموسوعة الإسلامية — قرآن وحديث وأذكار ومواقيت الصلاة" },
       {
         name: "description",
@@ -100,6 +102,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "الموسوعة الإسلامية — Islamic Pedia" },
       { name: "twitter:description", content: "قرآن كريم وتفسير وحديث وسيرة وأذكار ومواقيت صلاة وأدوات إسلامية في تطبيق واحد." },
+      {
+        "script:ld+json": {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: SITE_NAME_EN,
+          alternateName: SITE_NAME_AR,
+          url: SITE_URL,
+          inLanguage: "ar",
+          potentialAction: {
+            "@type": "SearchAction",
+            target: {
+              "@type": "EntryPoint",
+              urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
+            },
+            "query-input": "required name=search_term_string",
+          },
+        },
+      },
     ],
     links: [
       {

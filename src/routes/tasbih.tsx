@@ -6,25 +6,18 @@ import { ModeHeader } from "@/components/quran/ModeHeader";
 import { TASBIH_PHRASES } from "@/lib/athkar";
 import { getTasbih, saveTasbih, type TasbihState } from "@/lib/storage";
 import { toArabicNumber } from "@/lib/quran";
+import { seoHead } from "@/lib/seo";
+import { SeoIntro } from "@/components/SeoIntro";
 
 export const Route = createFileRoute("/tasbih")({
-  head: () => ({
-    meta: [
-      { title: "السبحة الإلكترونية — عدّاد التسبيح | باحث كتاب الله" },
-      {
-        name: "description",
-        content:
-          "سبحة إلكترونية بعدّاد لكل ذكر، مع أهداف ٣٣ و٩٩ و١٠٠، وإحصائيات يومية وإجمالية تُحفظ تلقائياً على جهازك دون تسجيل دخول.",
-      },
-      { property: "og:title", content: "السبحة الإلكترونية — باحث كتاب الله" },
-      {
-        property: "og:description",
-        content: "عدّاد تسبيح أنيق مع حفظ تلقائي لإحصائياتك اليومية والإجمالية.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "السبحة الإلكترونية — عدّاد التسبيح",
+      description:
+        "سبحة إلكترونية بعدّاد لكل ذكر، مع أهداف ٣٣ و٩٩ و١٠٠، وإحصائيات يومية وإجمالية تُحفظ تلقائياً على جهازك دون تسجيل دخول.",
+      path: "/tasbih",
+      crumbs: [{ name: "السبحة الإلكترونية", path: "/tasbih" }],
+    }),
   component: TasbihPage,
 });
 
@@ -73,6 +66,17 @@ function TasbihPage() {
       <ModeHeader title="السبحة" subtitle="سبّح واحفظ عدّك تلقائياً — بلا تسجيل دخول" />
 
       <section className="mx-auto max-w-3xl px-4 pt-4">
+        <SeoIntro
+          title="السبحة الإلكترونية"
+          links={[
+            { to: "/athkar", label: "الأذكار الموثقة" },
+            { to: "/dashboard", label: "لوحة التقدّم" },
+          ]}
+        >
+          سبحة إلكترونية بعدّاد لكل ذكر من أذكار التسبيح والتحميد والتهليل
+          والتكبير، مع أهداف ٣٣ و٩٩ و١٠٠ وإحصائيات يومية وإجمالية تُحفظ تلقائياً
+          على جهازك دون تسجيل دخول.
+        </SeoIntro>
         <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-2">
           {TASBIH_PHRASES.map((p) => (
             <button

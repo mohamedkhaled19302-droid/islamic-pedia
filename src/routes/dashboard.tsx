@@ -38,26 +38,19 @@ import {
   type TasbihState,
 } from "@/lib/storage";
 import { toArabicNumber } from "@/lib/quran";
+import { seoHead } from "@/lib/seo";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/dashboard")({
-  head: () => ({
-    meta: [
-      { title: "لوحة التقدّم — الحفظ والتسميع والمسابقة والأذكار" },
-      {
-        name: "description",
-        content:
-          "لوحة شاملة لكل نشاطك: القراءة والحفظ واختبار التسميع والمسابقة القرآنية والسبحة والأذكار والعلامات والملاحظات في مكان واحد.",
-      },
-      { property: "og:title", content: "لوحة التقدّم — باحث كتاب الله" },
-      {
-        property: "og:description",
-        content: "كل إحصاءاتك: الحفظ، التسميع، المسابقة، السبحة، الأذكار، الملاحظات.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "لوحة التقدّم — الحفظ والتسميع والمسابقة والأذكار",
+      description:
+        "لوحة شاملة لكل نشاطك: القراءة والحفظ واختبار التسميع والمسابقة القرآنية والسبحة والأذكار والعلامات والملاحظات في مكان واحد.",
+      path: "/dashboard",
+      crumbs: [{ name: "لوحة التقدّم", path: "/dashboard" }],
+      noIndex: true,
+    }),
   component: Dashboard,
 });
 

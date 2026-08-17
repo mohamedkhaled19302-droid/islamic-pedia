@@ -11,26 +11,19 @@ import { resolvePlayableUrl } from "@/lib/audioDownloads";
 
 
 import { bumpMemoSession, startMemoSession } from "@/lib/storage";
+import { seoHead } from "@/lib/seo";
+import { SeoIntro } from "@/components/SeoIntro";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/memorize")({
-  head: () => ({
-    meta: [
-      { title: "التكرار للحفظ — أداة حفظ القرآن الكريم" },
-      {
-        name: "description",
-        content:
-          "اختر السورة ونطاق الآيات والقارئ وعدد التكرارات، ودع التطبيق يكرر كل آية قبل الانتقال للتالية لتثبيت الحفظ.",
-      },
-      { property: "og:title", content: "التكرار للحفظ — باحث كتاب الله" },
-      {
-        property: "og:description",
-        content: "أداة متخصصة للحفظ بالتكرار مع تلاوة كبار القراء.",
-      },
-      { property: "og:type", content: "article" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "التكرار للحفظ — أداة حفظ القرآن الكريم",
+      description:
+        "اختر السورة ونطاق الآيات والقارئ وعدد التكرارات، ودع التطبيق يكرر كل آية قبل الانتقال للتالية لتثبيت الحفظ.",
+      path: "/memorize",
+      crumbs: [{ name: "التكرار للحفظ", path: "/memorize" }],
+    }),
   component: Memorize,
 });
 
@@ -116,6 +109,16 @@ function Memorize() {
       <main className="min-h-screen pb-16">
         <ModeHeader title="التكرار للحفظ" subtitle="اختر السورة من الشبكة" />
         <div className="mx-auto max-w-3xl px-4 py-6">
+          <SeoIntro
+            title="احفظ القرآن الكريم بالتكرار"
+            links={[
+              { to: "/recite", label: "اختبار التسميع" },
+              { to: "/read", label: "قراءة القرآن الكريم" },
+            ]}
+          >
+            اختر السورة ونطاق الآيات والقارئ وعدد التكرارات، ودع التطبيق يكرر كل
+            آية قبل الانتقال إلى التي بعدها، لترسيخ الحفظ في زمن قصير.
+          </SeoIntro>
           {surahs.isLoading ? (
             <div className="flex justify-center py-20">
               <Loader2 className="size-6 animate-spin text-muted-foreground" />

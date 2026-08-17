@@ -5,26 +5,19 @@ import { ModeHeader } from "@/components/quran/ModeHeader";
 import { useLocalStore } from "@/components/quran/use-local-store";
 import { getBookmarks, removeBookmark, type Bookmark } from "@/lib/storage";
 import { toArabicNumber } from "@/lib/quran";
+import { seoHead } from "@/lib/seo";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/bookmarks")({
-  head: () => ({
-    meta: [
-      { title: "العلامات المرجعية — آياتي وصفحاتي المحفوظة" },
-      {
-        name: "description",
-        content:
-          "قائمة سريعة بكل الآيات والصفحات التي حفظتها في باحث كتاب الله، للعودة إليها فوراً في وضع القراءة أو المصحف.",
-      },
-      { property: "og:title", content: "العلامات المرجعية — باحث كتاب الله" },
-      {
-        property: "og:description",
-        content: "احفظ الآيات والصفحات وارجع إليها بضغطة واحدة.",
-      },
-      { property: "og:type", content: "article" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "العلامات المرجعية — آياتي وصفحاتي المحفوظة",
+      description:
+        "قائمة سريعة بكل الآيات والصفحات التي حفظتها في الموسوعة الإسلامية، للعودة إليها فوراً في وضع القراءة أو المصحف.",
+      path: "/bookmarks",
+      crumbs: [{ name: "العلامات المرجعية", path: "/bookmarks" }],
+      noIndex: true,
+    }),
   component: BookmarksPage,
 });
 

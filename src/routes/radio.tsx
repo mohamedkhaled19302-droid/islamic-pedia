@@ -7,25 +7,18 @@ import { RADIO_COUNTRIES, RADIO_STATIONS, type RadioStation } from "@/lib/radio"
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useLang } from "@/lib/i18n";
+import { seoHead } from "@/lib/seo";
+import { SeoIntro } from "@/components/SeoIntro";
 
 export const Route = createFileRoute("/radio")({
-  head: () => ({
-    meta: [
-      { title: "إذاعات القرآن الكريم حول العالم — بث مباشر" },
-      {
-        name: "description",
-        content:
-          "استمع لإذاعات القرآن الكريم من دول العالم: السعودية ومصر والإمارات والأردن وعُمان والكويت واليمن والجزائر وغيرها، بثّ مباشر بضغطة واحدة.",
-      },
-      { property: "og:title", content: "إذاعات القرآن — باحث كتاب الله" },
-      {
-        property: "og:description",
-        content: "اختر الدولة واستمع لإذاعة القرآن الكريم مباشرةً من أي مكان في العالم.",
-      },
-      { property: "og:type", content: "music.radio_station" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "إذاعات القرآن الكريم حول العالم — بث مباشر",
+      description:
+        "استمع لإذاعات القرآن الكريم من دول العالم: السعودية ومصر والإمارات والأردن وعُمان والكويت واليمن والجزائر وغيرها، بثّ مباشر بضغطة واحدة.",
+      path: "/radio",
+      crumbs: [{ name: "إذاعات القرآن", path: "/radio" }],
+    }),
   component: RadioMode,
 });
 
@@ -120,6 +113,17 @@ function RadioMode() {
       />
 
       <div className="mx-auto max-w-3xl px-4 py-6">
+        <SeoIntro
+          title="إذاعات القرآن الكريم بث مباشر"
+          links={[
+            { to: "/read", label: "قراءة القرآن الكريم" },
+            { to: "/memorize", label: "التكرار للحفظ" },
+          ]}
+        >
+          استمع إلى إذاعات القرآن الكريم من دول العالم: السعودية ومصر والإمارات
+          والأردن وعُمان والكويت واليمن والجزائر وغيرها — بثّ مباشر بضغطة واحدة من
+          أي مكان في العالم.
+        </SeoIntro>
         <h2 className="mb-3 text-sm font-bold text-muted-foreground">{t("radio.chooseCountry")}</h2>
         <div className="-mx-1 flex snap-x gap-2 overflow-x-auto px-1 pb-3">
           {RADIO_COUNTRIES.map((c, i) => {
@@ -177,7 +181,7 @@ function RadioMode() {
                 <span className="min-w-0 flex-1">
                   <span className="block truncate font-bold text-foreground">{s.station}</span>
                   <span className="block text-xs text-muted-foreground">
-                    {s.flag} {s.country} · {s.countryEn}
+                    {s.flag} {s.country}
                   </span>
                 </span>
                 {active && playing ? (

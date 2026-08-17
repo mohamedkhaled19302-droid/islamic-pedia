@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import {
   Check,
   CloudDownload,
-  Languages,
   Moon,
   Palette,
   ShieldCheck,
@@ -15,27 +14,28 @@ import { ModeHeader } from "@/components/quran/ModeHeader";
 import { VersionBadge } from "@/components/quran/VersionBadge";
 import { THEMES, useTheme } from "@/components/quran/use-theme";
 import { useNightMode } from "@/components/quran/use-night-mode";
-import { LANGS, useLang, type Lang } from "@/lib/i18n";
+import { useLang } from "@/lib/i18n";
 import { clearAllData } from "@/lib/storage";
 import { countDownloadedAudio } from "@/lib/audioDownloads";
 import { isPackagedApp } from "@/lib/app-downloads";
+import { seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/settings")({
-  head: () => ({
-    meta: [
-      { title: "الإعدادات — الموسوعة الإسلامية" },
-      { name: "description", content: "إعدادات شكل التطبيق والوضع الليلي والتحميلات والبيانات." },
-      { property: "og:title", content: "الإعدادات — الموسوعة الإسلامية" },
-      { property: "og:type", content: "website" },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "الإعدادات — الموسوعة الإسلامية",
+      description: "إعدادات شكل التطبيق والوضع الليلي والتحميلات والبيانات.",
+      path: "/settings",
+      crumbs: [{ name: "الإعدادات", path: "/settings" }],
+      noIndex: true,
+    }),
   component: Settings,
 });
 
 function Settings() {
   const { theme, setTheme } = useTheme();
   const { night, toggle } = useNightMode();
-  const { lang, setLang, t, num } = useLang();
+  const { t, num } = useLang();
   const [audioCount, setAudioCount] = useState(0);
   const [mounted, setMounted] = useState(false);
 
@@ -65,27 +65,6 @@ function Settings() {
       <div className="mx-auto max-w-2xl space-y-6 px-4 py-6">
         <section className="animate-rise rounded-2xl border border-border bg-card p-5 shadow-soft">
           <h2 className="flex items-center gap-2 font-bold text-foreground">
-            <Languages className="size-5 text-gold" /> {t("settings.langTitle")}
-          </h2>
-          <p className="mt-1 text-xs leading-6 text-muted-foreground">{t("settings.langHint")}</p>
-          <div className="mt-4 grid grid-cols-2 gap-3">
-            {LANGS.map((l) => (
-              <button
-                key={l.id}
-                onClick={() => setLang(l.id as Lang)}
-                className={`flex items-center justify-center gap-2 rounded-2xl border p-4 transition-all ${
-                  lang === l.id ? "border-gold bg-secondary shadow-glow" : "border-border bg-background hover:border-gold/50"
-                }`}
-              >
-                <span className="font-bold text-foreground">{l.label}</span>
-                {lang === l.id ? <Check className="size-4 text-gold" /> : null}
-              </button>
-            ))}
-          </div>
-        </section>
-
-        <section className="animate-rise rounded-2xl border border-border bg-card p-5 shadow-soft">
-          <h2 className="flex items-center gap-2 font-bold text-foreground">
             <Palette className="size-5 text-gold" /> {t("settings.themeTitle")}
           </h2>
           <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -103,10 +82,10 @@ function Settings() {
                 />
                 <span className="min-w-0 flex-1">
                   <span className="block truncate text-sm font-bold text-foreground">
-                    {lang === "ar" ? th.name : th.nameEn}
+                    {th.name}
                   </span>
                   <span className="block text-[11px] leading-tight text-muted-foreground">
-                    {lang === "ar" ? th.desc : th.descEn}
+                    {th.desc}
                   </span>
                 </span>
                 {theme === th.id ? <Check className="size-4 shrink-0 text-gold" /> : null}

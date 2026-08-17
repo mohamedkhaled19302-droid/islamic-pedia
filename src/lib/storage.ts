@@ -334,7 +334,6 @@ export interface OnboardingPrefs {
   theme: string;
   night: boolean;
   downloadNow: boolean;
-  lang?: string;
   at: number;
 }
 
@@ -360,7 +359,6 @@ export const ALL_KEYS = [
   MUSHAF_KEY,
   "bkl-theme",
   "bkl-night",
-  "bkl-lang",
   ONBOARD_KEY,
 ] as const;
 

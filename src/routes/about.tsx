@@ -3,32 +3,24 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, BookOpen, HelpCircle, Heart, Info, Library } from "lucide-react";
 import { ModeHeader } from "@/components/quran/ModeHeader";
 import { FeedbackLink } from "@/components/quran/FeedbackLink";
-import { APP_BLURB, APP_BLURB_EN, APP_SECTIONS, FAQS, SOURCES } from "@/lib/about";
+import { APP_BLURB, APP_SECTIONS, FAQS, SOURCES } from "@/lib/about";
 import { useLang } from "@/lib/i18n";
+import { seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "لمحة عن التطبيق ومصادره — باحث كتاب الله" },
-      {
-        name: "description",
-        content:
-          "تعرّف على أقسام تطبيق باحث كتاب الله: القراءة والمصحف صفحة صفحة والحفظ والتسميع والأذكار والسبحة ومواقيت الصلاة، ومصادر النص والتلاوات والتفاسير.",
-      },
-      { property: "og:title", content: "لمحة عن التطبيق ومصادره — باحث كتاب الله" },
-      {
-        property: "og:description",
-        content: "نبذة كاملة عن أقسام التطبيق ومصادر النص القرآني والتلاوات والتفاسير وصور المصحف.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "لمحة عن التطبيق ومصادره — الموسوعة الإسلامية",
+      description:
+        "تعرّف على أقسام تطبيق الموسوعة الإسلامية: القراءة والمصحف صفحة صفحة والحفظ والتسميع والأذكار والسبحة ومواقيت الصلاة، ومصادر النص والتلاوات والتفاسير.",
+      path: "/about",
+      crumbs: [{ name: "حول التطبيق", path: "/about" }],
+    }),
   component: AboutPage,
 });
 
 function AboutPage() {
-  const { t, lang } = useLang();
+  const { t } = useLang();
 
   return (
     <main className="min-h-screen pb-16">
@@ -42,7 +34,7 @@ function AboutPage() {
           <h2 className="mt-4 text-xl font-bold text-foreground" style={{ fontFamily: "var(--font-display)" }}>
             {t("app.name")}
           </h2>
-          <p className="mt-3 text-sm leading-8 text-muted-foreground">{lang === "ar" ? APP_BLURB : APP_BLURB_EN}</p>
+          <p className="mt-3 text-sm leading-8 text-muted-foreground">{APP_BLURB}</p>
         </div>
 
         <h3 className="mt-8 flex items-center gap-2 text-base font-bold text-foreground">
@@ -55,8 +47,8 @@ function AboutPage() {
               style={{ animationDelay: `${i * 50}ms` }}
               className="animate-rise rounded-2xl border border-border bg-card p-4 shadow-soft"
             >
-              <p className="font-bold text-foreground">{lang === "ar" ? s.title : s.titleEn}</p>
-              <p className="mt-1 text-sm leading-7 text-muted-foreground">{lang === "ar" ? s.desc : s.descEn}</p>
+              <p className="font-bold text-foreground">{s.title}</p>
+              <p className="mt-1 text-sm leading-7 text-muted-foreground">{s.desc}</p>
             </div>
           ))}
         </div>
@@ -71,12 +63,12 @@ function AboutPage() {
               className="group rounded-2xl border border-border bg-card p-4 shadow-soft transition-all open:border-gold/40"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-bold text-foreground [&::-webkit-details-marker]:hidden">
-                {lang === "ar" ? f.q : f.qEn}
+                {f.q}
                 <span className="grid size-6 shrink-0 place-items-center rounded-full bg-secondary text-muted-foreground transition-transform group-open:rotate-45">
                   +
                 </span>
               </summary>
-              <p className="mt-2 text-sm leading-7 text-muted-foreground">{lang === "ar" ? f.a : f.aEn}</p>
+              <p className="mt-2 text-sm leading-7 text-muted-foreground">{f.a}</p>
             </details>
           ))}
         </div>

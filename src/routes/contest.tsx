@@ -16,26 +16,19 @@ import {
   type Ayah,
 } from "@/lib/quran";
 import { saveContestRun, type ContestAnswer } from "@/lib/storage";
+import { seoHead } from "@/lib/seo";
+import { SeoIntro } from "@/components/SeoIntro";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/contest")({
-  head: () => ({
-    meta: [
-      { title: "المسابقة القرآنية — اختبر معرفتك بالقرآن" },
-      {
-        name: "description",
-        content:
-          "مسابقة تفاعلية بثلاثة أنواع من الأسئلة مع مراجعة بعد المسابقة تُظهر مواضع الخطأ وتشغّل تلاوة الآية الصحيحة.",
-      },
-      { property: "og:title", content: "المسابقة القرآنية — الموسوعة الإسلامية" },
-      {
-        property: "og:description",
-        content: "أسئلة متنوعة ونتيجة مباشرة ومراجعة صوتية لمواضع الخطأ.",
-      },
-      { property: "og:type", content: "article" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "المسابقة القرآنية — اختبر معرفتك بالقرآن",
+      description:
+        "مسابقة تفاعلية بثلاثة أنواع من الأسئلة مع مراجعة بعد المسابقة تُظهر مواضع الخطأ وتشغّل تلاوة الآية الصحيحة.",
+      path: "/contest",
+      crumbs: [{ name: "المسابقة القرآنية", path: "/contest" }],
+    }),
   component: Contest,
 });
 
@@ -268,7 +261,7 @@ function Contest() {
     <main className={`min-h-screen pb-24 ${flash}`}>
       <ModeHeader
         title="المسابقة القرآنية"
-        subtitle="Quran Contest"
+        subtitle="اختبر حفظك ومعرفتك بالقرآن الكريم"
         right={
           started ? (
             <div className="flex items-center gap-2 text-xs font-bold">
@@ -282,6 +275,17 @@ function Contest() {
       <audio ref={audioRef} onEnded={() => setPlaying(null)} onError={() => setPlaying(null)} className="hidden" />
 
       <div className="mx-auto max-w-2xl px-4 py-6">
+        <SeoIntro
+          title="المسابقة القرآنية"
+          links={[
+            { to: "/memorize", label: "التكرار للحفظ" },
+            { to: "/read", label: "قراءة القرآن الكريم" },
+          ]}
+        >
+          مسابقة تفاعلية بثلاثة أنواع من الأسئلة: من هذه السورة، ما الآية التالية،
+          وما الآية السابقة — مع نتيجة مباشرة ومراجعة تُظهر مواضع الخطأ وتشغّل
+          تلاوة الآية الصحيحة.
+        </SeoIntro>
         {!started && review ? (
           <div className="mb-6 space-y-4 rounded-3xl border-2 border-gold/50 bg-card p-5 shadow-soft">
             <div className="flex flex-wrap items-center justify-between gap-2">
