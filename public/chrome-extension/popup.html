@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=380">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-icon">☪</div>
+    <h1>الموسوعة الإسلامية</h1>
+    <p class="subtitle" id="hijri-date"></p>
+  </header>
+
+  <section class="prayer-card" id="prayer-card">
+    <div class="prayer-header">
+      <span class="prayer-label" id="next-prayer-label">الصلاة القادمة</span>
+      <span class="prayer-countdown" id="countdown">--:--</span>
+    </div>
+    <div class="prayer-times" id="prayer-times"></div>
+    <div class="prayer-place" id="prayer-place" title="انقر لتغيير الموقع">جاري تحديد الموقع...</div>
+  </section>
+
+  <section class="settings" id="settings">
+    <button class="settings-toggle" id="settings-toggle">⚙ تغيير الموقع</button>
+    <div class="settings-body" id="settings-body">
+      <label class="settings-label">الطريقة الحسابية
+        <select class="settings-select" id="sel-method">
+          <option value="4">أم القرى (مكة)</option>
+          <option value="5">الهيئة المصرية</option>
+          <option value="3">رابطة العالم الإسلامي</option>
+          <option value="2">الجمعية الإسلامية لأمريكا الشمالية</option>
+          <option value="1">جامعة كراتشي</option>
+          <option value="13">ديانة تركيا</option>
+        </select>
+      </label>
+      <label class="settings-label">الدولة
+        <select class="settings-select" id="sel-country"></select>
+      </label>
+      <label class="settings-label">المدينة
+        <select class="settings-select" id="sel-city"></select>
+      </label>
+      <button class="settings-save" id="settings-save">حفظ وتحديث</button>
+    </div>
+  </section>
+
+  <section class="grid">
+    <a class="grid-item" href="https://islamic-pedia.vercel.app/read" target="_blank">
+      <span class="grid-icon">📖</span>
+      <span>القرآن</span>
+    </a>
+    <a class="grid-item" href="https://islamic-pedia.vercel.app/tafsir" target="_blank">
+      <span class="grid-icon">📚</span>
+      <span>التفسير</span>
+    </a>
+    <a class="grid-item" href="https://islamic-pedia.vercel.app/hadith" target="_blank">
+      <span class="grid-icon">📜</span>
+      <span>الأحاديث</span>
+    </a>
+    <a class="grid-item" href="https://islamic-pedia.vercel.app/athkar" target="_blank">
+      <span class="grid-icon">🕌</span>
+      <span>الأذكار</span>
+    </a>
+    <a class="grid-item" href="https://islamic-pedia.vercel.app/memorize" target="_blank">
+      <span class="grid-icon">🧠</span>
+      <span>الحفظ</span>
+    </a>
+    <a class="grid-item" href="https://islamic-pedia.vercel.app/sira" target="_blank">
+      <span class="grid-icon">🌙</span>
+      <span>السيرة</span>
+    </a>
+    <a class="grid-item" href="https://islamic-pedia.vercel.app/radio" target="_blank">
+      <span class="grid-icon">📻</span>
+      <span>الإذاعة</span>
+    </a>
+    <a class="grid-item" href="https://islamic-pedia.vercel.app/search" target="_blank">
+      <span class="grid-icon">🔍</span>
+      <span>البحث</span>
+    </a>
+  </section>
+
+  <section class="tasbih">
+    <div class="tasbih-display" id="tasbih-display">0</div>
+    <button class="tasbih-btn" id="tasbih-btn">سبّح</button>
+    <div class="tasbih-actions">
+      <button class="tasbih-reset" id="tasbih-reset">إعادة</button>
+      <select class="tasbih-select" id="tasbih-target">
+        <option value="33">33</option>
+        <option value="34">34</option>
+        <option value="99">99</option>
+        <option value="100">100</option>
+        <option value="0" selected>بلا حدّ</option>
+      </select>
+    </div>
+  </section>
+
+  <a class="open-app" href="https://islamic-pedia.vercel.app" target="_blank">
+    افتح الموسوعة الكاملة ←
+  </a>
+
+  <script src="popup.js"></script>
+</body>
+</html>

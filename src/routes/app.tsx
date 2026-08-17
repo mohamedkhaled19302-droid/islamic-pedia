@@ -5,7 +5,8 @@ import { ModeHeader } from "@/components/quran/ModeHeader";
 import { useLang } from "@/lib/i18n";
 import { APP_BINARY_URLS, APP_VERSION, GITHUB_REPO, isPackagedApp } from "@/lib/app-downloads";
 
-const CHROME_EXT_URL = `${GITHUB_REPO}/tree/main/chrome-extension`;
+const CHROME_EXT_URL = "/chrome-extension.zip";
+const CHROME_EXT_FOLDER_URL = "/chrome-extension/";
 
 export const Route = createFileRoute("/app")({
   head: () => ({
@@ -146,12 +147,11 @@ function DownloadAppPage() {
 
             <a
               href={CHROME_EXT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              download="islamic-pedia-chrome-extension.zip"
               className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-gold-gradient px-5 py-3 text-sm font-bold text-gold-foreground shadow-glow transition-transform hover:scale-[1.02]"
             >
-              <Puzzle className="size-4" />
-              تحميل الإضافة من GitHub
+              <Download className="size-4" />
+              تحميل إضافة كروم
             </a>
 
             <div className="mt-4 rounded-xl border border-border bg-background p-4">
@@ -159,9 +159,9 @@ function DownloadAppPage() {
                 <ShieldCheck className="size-4 text-gold" /> طريقة التثبيت
               </p>
               <ol className="mt-2 space-y-1.5">
-                <Step n={1}>حمّل مجلد الإضافة من الرابط أعلاه</Step>
+                <Step n={1}>حمّل الملف أعلاه ثم فكّ الضغط</Step>
                 <Step n={2}>افتح <code className="rounded bg-muted px-1 py-0.5 text-xs">chrome://extensions</code> وفعّل وضع المطوّر</Step>
-                <Step n={3}>اضغط «تحميل إضافة غير مضغوطة» واختر مجلد <code className="rounded bg-muted px-1 py-0.5 text-xs">chrome-extension</code></Step>
+                <Step n={3}>اضغط «تحميل إضافة غير مضغوطة» واختر المجلد الذي فككته</Step>
               </ol>
             </div>
           </div>
