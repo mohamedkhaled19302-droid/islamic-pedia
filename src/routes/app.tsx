@@ -156,12 +156,31 @@ function DownloadAppPage() {
 
             <div className="mt-4 rounded-xl border border-border bg-background p-4">
               <p className="flex items-center gap-2 text-sm font-bold text-foreground">
-                <ShieldCheck className="size-4 text-gold" /> طريقة التثبيت
+                <ShieldCheck className="size-4 text-gold" /> طريقة التثبيت خطوة بخطوة
               </p>
-              <ol className="mt-2 space-y-1.5">
-                <Step n={1}>حمّل الملف أعلاه ثم فكّ الضغط</Step>
-                <Step n={2}>افتح <code className="rounded bg-muted px-1 py-0.5 text-xs">chrome://extensions</code> وفعّل وضع المطوّر</Step>
-                <Step n={3}>اضغط «تحميل إضافة غير مضغوطة» واختر المجلد الذي فككته</Step>
+              <ol className="mt-2 space-y-3">
+                <Step n={1}>
+                  اضغط على زر التحميل أعلاه. سيُحمَّل ملف <code className="rounded bg-muted px-1 py-0.5 text-xs">islamic-pedia-chrome-extension.zip</code> إلى جهازك.
+                </Step>
+                <Step n={2}>
+                  اذهب إلى المجلد الذي نزل فيه الملف وافتحه بكليك يمين واختر <strong className="text-foreground">«استخراج كل الملفات»</strong> أو استخدم برنامج مثل WinRAR. سيظهر مجلد جديد اسمه <code className="rounded bg-muted px-1 py-0.5 text-xs">chrome-extension</code>.
+                </Step>
+                <Step n={3}>
+                  افتح متصفح جوجل كروم واكتب في شريط العنوان:
+                  <br />
+                  <code className="rounded bg-muted px-1 py-0.5 text-xs">chrome://extensions</code>
+                  <br />
+                  ثم اضغط Enter.
+                </Step>
+                <Step n={4}>
+                  في أعلى الصفحة التي فتحت، شغّل مفتاح <strong className="text-foreground">«وضع المطوّر»</strong> (Developer Mode) عن طريق الزر الصغير في الزاوية اليمنى العليا.
+                </Step>
+                <Step n={5}>
+                  ستظهر أزرار جديدة. اضغط على <strong className="text-foreground">«تحميل إضافة غير مضغوطة»</strong> (Load unpacked) واختر مجلد <code className="rounded bg-muted px-1 py-0.5 text-xs">chrome-extension</code> الذي استخرجته في الخطوة 2.
+                </Step>
+                <Step n={6}>
+                  ستظهر أيقونة الإضافة على شريط أدوات كروم. اضغط عليها في أي وقت للوصول إلى مواقيت الصلاة والسبحة القرآن والأذكار.
+                </Step>
               </ol>
             </div>
           </div>
