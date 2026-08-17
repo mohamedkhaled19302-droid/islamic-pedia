@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Download, MonitorDown, ShieldCheck, Smartphone, Globe, CheckCircle2, Code2 } from "lucide-react";
+import { Download, MonitorDown, ShieldCheck, Smartphone, Globe, CheckCircle2, Code2, Puzzle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ModeHeader } from "@/components/quran/ModeHeader";
 import { useLang } from "@/lib/i18n";
 import { APP_BINARY_URLS, APP_VERSION, GITHUB_REPO, isPackagedApp } from "@/lib/app-downloads";
+
+const CHROME_EXT_URL = `${GITHUB_REPO}/tree/main/chrome-extension`;
 
 export const Route = createFileRoute("/app")({
   head: () => ({
@@ -133,6 +135,29 @@ function DownloadAppPage() {
           >
             <Code2 className="size-4" />
             فتح على GitHub
+          </a>
+        </section>
+
+        <section className="animate-rise rounded-2xl border border-border bg-card p-5 shadow-soft">
+          <h2 className="flex items-center gap-2 font-bold text-foreground">
+            <Puzzle className="size-5 text-gold" /> إضافة المتصفح
+          </h2>
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">
+            إضافة كروم توفر لك مواقيت الصلاة، السبحة، القرآن الكريم، والأذكار في نافذة صغيرة بضغطة واحدة من شريط الأدوات.
+          </p>
+          <ol className="mt-3 space-y-2 text-sm leading-7 text-muted-foreground">
+            <li>1. حمّل مجلد الإضافة من GitHub</li>
+            <li>2. افتح chrome://extensions في متصفحك وفعّل وضع المطوّر</li>
+            <li>3. اضغط "تحميل إضافة غير مضغوطة" واختر مجلد chrome-extension</li>
+          </ol>
+          <a
+            href={CHROME_EXT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex items-center gap-2 rounded-xl bg-gold-gradient px-5 py-2.5 text-sm font-bold text-gold-foreground shadow-glow transition-transform hover:scale-105"
+          >
+            <Puzzle className="size-4" />
+            تحميل الإضافة من GitHub
           </a>
         </section>
 
