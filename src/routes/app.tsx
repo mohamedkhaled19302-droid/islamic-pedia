@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Download, MonitorDown, ShieldCheck, Smartphone, Globe, CheckCircle2, Code2, Puzzle } from "lucide-react";
+import { Download, MonitorDown, ShieldCheck, Smartphone, CheckCircle2, Code2, Puzzle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ModeHeader } from "@/components/quran/ModeHeader";
 import { useLang } from "@/lib/i18n";
@@ -22,6 +22,17 @@ export const Route = createFileRoute("/app")({
   }),
   component: DownloadAppPage,
 });
+
+function Step({ n, children }: { n: number; children: React.ReactNode }) {
+  return (
+    <li className="flex items-start gap-3">
+      <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gold/15 text-[11px] font-bold text-gold">
+        {n}
+      </span>
+      <span className="text-sm leading-7 text-muted-foreground">{children}</span>
+    </li>
+  );
+}
 
 function DownloadAppPage() {
   const { t } = useLang();
@@ -53,112 +64,129 @@ function DownloadAppPage() {
     <main className="min-h-screen pb-16">
       <ModeHeader title={t("app.title")} subtitle={t("app.subtitle")} />
 
-      <div className="mx-auto max-w-2xl space-y-6 px-4 py-6">
-        <section className="animate-rise rounded-2xl border border-border bg-card p-5 shadow-soft">
-          <h2 className="flex items-center gap-2 font-bold text-foreground">
-            <MonitorDown className="size-5 text-gold" /> {t("app.windowsTitle")}
-          </h2>
-          <p className="mt-3 text-sm leading-7 text-muted-foreground">{t("app.windowsDesc")}</p>
-          <p className="mt-2 text-sm leading-7 text-muted-foreground">{t("app.windowsInstallSteps")}</p>
-          <a
-            href={APP_BINARY_URLS.windows}
-            className="mt-4 inline-flex items-center gap-2 rounded-xl bg-gold-gradient px-5 py-2.5 text-sm font-bold text-gold-foreground shadow-glow transition-transform hover:scale-105"
-          >
-            <Download className="size-4" />
-            {t("app.download")} · {t("install.windows")} {APP_VERSION}
-          </a>
+      <div className="mx-auto max-w-2xl space-y-5 px-4 py-6">
 
-          <div className="mt-5 rounded-xl border border-gold/40 bg-secondary/60 p-4">
-            <p className="flex items-center gap-2 text-sm font-bold text-foreground">
-              <ShieldCheck className="size-4 text-gold" /> {t("app.windowsWarnTitle")}
-            </p>
-            <p className="mt-1 text-sm leading-7 text-muted-foreground">{t("app.windowsWarnDesc")}</p>
-            <ol className="mt-2 space-y-1.5 text-sm leading-7 text-muted-foreground">
-              <li>1. {t("app.windowsWarnStep1")}</li>
-              <li>2. {t("app.windowsWarnStep2")}</li>
-              <li>3. {t("app.windowsWarnStep3")}</li>
-            </ol>
+        {/* ── ويندوز ── */}
+        <section className="animate-rise overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
+          <div className="flex items-center gap-3 border-b border-border/60 bg-secondary/40 px-5 py-3">
+            <MonitorDown className="size-5 text-gold" />
+            <h2 className="font-bold text-foreground">{t("app.windowsTitle")}</h2>
+          </div>
+          <div className="px-5 py-4">
+            <p className="text-sm leading-7 text-muted-foreground">{t("app.windowsDesc")}</p>
+
+            <a
+              href={APP_BINARY_URLS.windows}
+              className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-gold-gradient px-5 py-3 text-sm font-bold text-gold-foreground shadow-glow transition-transform hover:scale-[1.02]"
+            >
+              <Download className="size-4" />
+              {t("app.download")} · {t("install.windows")} {APP_VERSION}
+            </a>
+
+            <div className="mt-4 rounded-xl border border-gold/30 bg-gold/5 p-4">
+              <p className="flex items-center gap-2 text-sm font-bold text-foreground">
+                <ShieldCheck className="size-4 text-gold" /> {t("app.windowsWarnTitle")}
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">{t("app.windowsWarnDesc")}</p>
+              <ol className="mt-2 space-y-1.5">
+                <Step n={1}>{t("app.windowsWarnStep1")}</Step>
+                <Step n={2}>{t("app.windowsWarnStep2")}</Step>
+                <Step n={3}>{t("app.windowsWarnStep3")}</Step>
+              </ol>
+            </div>
           </div>
         </section>
 
-        <section className="animate-rise rounded-2xl border border-border bg-card p-5 shadow-soft">
-          <h2 className="flex items-center gap-2 font-bold text-foreground">
-            <Smartphone className="size-5 text-gold" /> {t("app.androidTitle")}
-          </h2>
-          <p className="mt-3 text-sm leading-7 text-muted-foreground">{t("app.androidDesc")}</p>
-
-          <a
-            href={APP_BINARY_URLS.apk}
-            className="mt-4 inline-flex items-center gap-2 rounded-xl bg-gold-gradient px-5 py-2.5 text-sm font-bold text-gold-foreground shadow-glow transition-transform hover:scale-105"
-          >
-            <Download className="size-4" />
-            {t("app.download")} · APK {APP_VERSION}
-          </a>
-
-          <h3 className="mt-5 flex items-center gap-2 text-sm font-bold text-foreground">
-            <ShieldCheck className="size-4 text-gold" /> {t("app.androidSteps")}
-          </h3>
-          <ol className="mt-2 space-y-2 text-sm leading-7 text-muted-foreground">
-            <li>1. {t("app.androidStep1")}</li>
-            <li>2. {t("app.androidStep2")}</li>
-            <li>3. {t("app.androidStep3")}</li>
-            <li>4. {t("app.androidStep4")}</li>
-          </ol>
-
-          <div className="mt-5 rounded-xl border border-gold/40 bg-secondary/60 p-4">
-            <p className="flex items-center gap-2 text-sm font-bold text-foreground">
-              <ShieldCheck className="size-4 text-green-600" /> {t("app.androidSafe")}
-            </p>
-            <p className="mt-1 text-sm leading-7 text-muted-foreground">{t("app.androidSafeDesc")}</p>
+        {/* ── أندرويد ── */}
+        <section className="animate-rise overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
+          <div className="flex items-center gap-3 border-b border-border/60 bg-secondary/40 px-5 py-3">
+            <Smartphone className="size-5 text-gold" />
+            <h2 className="font-bold text-foreground">{t("app.androidTitle")}</h2>
           </div>
+          <div className="px-5 py-4">
+            <p className="text-sm leading-7 text-muted-foreground">{t("app.androidDesc")}</p>
 
-          <div className="mt-5 rounded-xl border border-border bg-background p-4">
-            <p className="flex items-center gap-2 text-sm font-bold text-foreground">
-              <Globe className="size-4 text-primary" /> {t("app.playStoreTitle")}
-            </p>
-            <p className="mt-1 text-sm leading-7 text-muted-foreground">{t("app.playStoreDesc")}</p>
+            <a
+              href={APP_BINARY_URLS.apk}
+              className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-gold-gradient px-5 py-3 text-sm font-bold text-gold-foreground shadow-glow transition-transform hover:scale-[1.02]"
+            >
+              <Download className="size-4" />
+              {t("app.download")} · APK {APP_VERSION}
+            </a>
+
+            <div className="mt-4 rounded-xl border border-border bg-background p-4">
+              <p className="flex items-center gap-2 text-sm font-bold text-foreground">
+                <ShieldCheck className="size-4 text-gold" /> {t("app.androidSteps")}
+              </p>
+              <ol className="mt-2 space-y-1.5">
+                <Step n={1}>{t("app.androidStep1")}</Step>
+                <Step n={2}>{t("app.androidStep2")}</Step>
+                <Step n={3}>{t("app.androidStep3")}</Step>
+                <Step n={4}>{t("app.androidStep4")}</Step>
+              </ol>
+            </div>
+
+            <div className="mt-3 rounded-xl border border-green-500/30 bg-green-500/5 p-3">
+              <p className="text-xs font-bold text-green-700 dark:text-green-400">{t("app.androidSafe")}</p>
+              <p className="mt-0.5 text-xs text-muted-foreground">{t("app.androidSafeDesc")}</p>
+            </div>
           </div>
         </section>
 
-        <section className="animate-rise rounded-2xl border border-border bg-card p-5 shadow-soft">
-          <h2 className="flex items-center gap-2 font-bold text-foreground">
-            <Code2 className="size-5 text-gold" /> الكود المصدري
-          </h2>
-          <p className="mt-3 text-sm leading-7 text-muted-foreground">
-            المشروع مفتوح المصدر بالكامل على GitHub. يمكنك الاطلاع على الكود أو المساهمة أو تحميل أحدث إصدار مباشرة.
-          </p>
-          <a
-            href={GITHUB_REPO}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 rounded-xl bg-foreground px-5 py-2.5 text-sm font-bold text-background shadow-soft transition-transform hover:scale-105"
-          >
-            <Code2 className="size-4" />
-            فتح على GitHub
-          </a>
+        {/* ── إضافة المتصفح ── */}
+        <section className="animate-rise overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
+          <div className="flex items-center gap-3 border-b border-border/60 bg-secondary/40 px-5 py-3">
+            <Puzzle className="size-5 text-gold" />
+            <h2 className="font-bold text-foreground">إضافة المتصفح</h2>
+          </div>
+          <div className="px-5 py-4">
+            <p className="text-sm leading-7 text-muted-foreground">
+              إضافة كروم توفر لك مواقيت الصلاة، السبحة، القرآن الكريم، والأذكار في نافذة صغيرة بضغطة واحدة.
+            </p>
+
+            <a
+              href={CHROME_EXT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-gold-gradient px-5 py-3 text-sm font-bold text-gold-foreground shadow-glow transition-transform hover:scale-[1.02]"
+            >
+              <Puzzle className="size-4" />
+              تحميل الإضافة من GitHub
+            </a>
+
+            <div className="mt-4 rounded-xl border border-border bg-background p-4">
+              <p className="flex items-center gap-2 text-sm font-bold text-foreground">
+                <ShieldCheck className="size-4 text-gold" /> طريقة التثبيت
+              </p>
+              <ol className="mt-2 space-y-1.5">
+                <Step n={1}>حمّل مجلد الإضافة من الرابط أعلاه</Step>
+                <Step n={2}>افتح <code className="rounded bg-muted px-1 py-0.5 text-xs">chrome://extensions</code> وفعّل وضع المطوّر</Step>
+                <Step n={3}>اضغط «تحميل إضافة غير مضغوطة» واختر مجلد <code className="rounded bg-muted px-1 py-0.5 text-xs">chrome-extension</code></Step>
+              </ol>
+            </div>
+          </div>
         </section>
 
-        <section className="animate-rise rounded-2xl border border-border bg-card p-5 shadow-soft">
-          <h2 className="flex items-center gap-2 font-bold text-foreground">
-            <Puzzle className="size-5 text-gold" /> إضافة المتصفح
-          </h2>
-          <p className="mt-3 text-sm leading-7 text-muted-foreground">
-            إضافة كروم توفر لك مواقيت الصلاة، السبحة، القرآن الكريم، والأذكار في نافذة صغيرة بضغطة واحدة من شريط الأدوات.
-          </p>
-          <ol className="mt-3 space-y-2 text-sm leading-7 text-muted-foreground">
-            <li>1. حمّل مجلد الإضافة من GitHub</li>
-            <li>2. افتح chrome://extensions في متصفحك وفعّل وضع المطوّر</li>
-            <li>3. اضغط "تحميل إضافة غير مضغوطة" واختر مجلد chrome-extension</li>
-          </ol>
-          <a
-            href={CHROME_EXT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 rounded-xl bg-gold-gradient px-5 py-2.5 text-sm font-bold text-gold-foreground shadow-glow transition-transform hover:scale-105"
-          >
-            <Puzzle className="size-4" />
-            تحميل الإضافة من GitHub
-          </a>
+        {/* ── الكود المصدري ── */}
+        <section className="animate-rise overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
+          <div className="flex items-center gap-3 border-b border-border/60 bg-secondary/40 px-5 py-3">
+            <Code2 className="size-5 text-gold" />
+            <h2 className="font-bold text-foreground">الكود المصدري</h2>
+          </div>
+          <div className="px-5 py-4">
+            <p className="text-sm leading-7 text-muted-foreground">
+              المشروع مفتوح المصدر بالكامل. يمكنك الاطلاع على الكود أو المساهمة أو تحميل أحدث إصدار.
+            </p>
+            <a
+              href={GITHUB_REPO}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-bold text-background shadow-soft transition-transform hover:scale-[1.02]"
+            >
+              <Code2 className="size-4" />
+              فتح على GitHub
+            </a>
+          </div>
         </section>
 
         <p className="rounded-2xl border border-border bg-card p-4 text-center text-xs leading-7 text-muted-foreground">
