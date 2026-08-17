@@ -3,6 +3,8 @@
   "name": "الموسوعة الإسلامية",
   "description": "قرآن الكريم، تفسير، أحاديث، أذكار، مواقيت الصلاة، تسبيح، إذاعات قرآن — في نافذة صغيرة",
   "version": "1.0.0",
+  "author": "Mohamed Khaled",
+  "homepage_url": "https://islamic-pedia.vercel.app",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
